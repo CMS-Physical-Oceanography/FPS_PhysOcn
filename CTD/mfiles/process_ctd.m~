@@ -1,0 +1,30 @@
+% rosette or flow-through or both?
+ctdType = 'rosette';
+%
+% data are stored in sub-dirs based on
+% sample date: yyyymmdd
+dates = {'20230425'};
+% dates previously processed:
+% ???????
+%
+% raw-data parent directory
+rawDir = '/Users/derekgrimes/Projects/FPS/data/';
+% where to archive data?
+arcDir = '/Users/derekgrimes/Projects/FPS/mat_data/';
+%
+floDir = 'ctd_flowThrough/';    
+rosDir = 'ctd_rosette/';
+%
+switch ctdType
+  case {'flow-through','both'}
+    datDir = [rawDir,floDir];
+    SBE = convert_CTD_flowThrough_hex2mat(datDir,dates,arcDir);
+  case 'rosette'
+    datDir = [rawDir,rosDir];
+    SBE = convert_CTD_rosette_hex2mat(datDir,dates,arcDir);    
+  case 'both'
+    datDir = [rawDir,floDir];
+    floSBE = convert_CTD_flowThrough_hex2mat(datDir,dates,arcDir);
+    datDir = [rawDir,rosDir];
+    rosSBE = convert_CTD_rosette_hex2mat(datDir,dates,arcDir);    
+end

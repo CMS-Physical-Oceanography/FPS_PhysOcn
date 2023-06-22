@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SBE_InstrumentConfiguration SB_ConfigCTD_FileVersion="7.26.4.0" >
+  <Instrument Type="4" >
+    <Name>SBE 21 Seacat Thermosalinograph</Name>
+    <!-- Remote temperature: 0 = none, 1 = SBE 3, 2 = SBE 38. -->
+    <RemoteTemperature>2</RemoteTemperature>
+    <ExternalVoltageChannels>3</ExternalVoltageChannels>
+    <SampleIntervalSeconds>3</SampleIntervalSeconds>
+    <NmeaPositionDataAdded>1</NmeaPositionDataAdded>
+    <NmeaDepthDataAdded>1</NmeaDepthDataAdded>
+    <NmeaTimeAdded>1</NmeaTimeAdded>
+    <NmeaDeviceConnectedToPC>1</NmeaDeviceConnectedToPC>
+    <ScanTimeAdded>0</ScanTimeAdded>
+    <SensorArray Size="6" >
+      <Sensor index="0" SensorID="55" >
+        <TemperatureSensor SensorID="55" >
+          <SerialNumber>3229</SerialNumber>
+          <CalibrationDate>16-Feb-23</CalibrationDate>
+          <UseG_J>1</UseG_J>
+          <A>0.00000000e+000</A>
+          <B>0.00000000e+000</B>
+          <C>0.00000000e+000</C>
+          <D>0.00000000e+000</D>
+          <F0_Old>0.000</F0_Old>
+          <G>4.23492004e-003</G>
+          <H>6.28534174e-004</H>
+          <I>1.81576512e-005</I>
+          <J>8.80484672e-007</J>
+          <F0>1000.000</F0>
+          <Slope>1.00000000</Slope>
+          <Offset>0.0000</Offset>
+        </TemperatureSensor>
+      </Sensor>
+      <Sensor index="1" SensorID="3" >
+        <ConductivitySensor SensorID="3" >
+          <SerialNumber>3229</SerialNumber>
+          <CalibrationDate>16-Feb-23</CalibrationDate>
+          <UseG_J>1</UseG_J>
+          <!-- Cell const and series R are applicable only for wide range sensors. -->
+          <SeriesR>0.0000</SeriesR>
+          <CellConst>2000.0000</CellConst>
+          <ConductivityType>0</ConductivityType>
+          <Coefficients equation="0" >
+            <A>0.00000000e+000</A>
+            <B>0.00000000e+000</B>
+            <C>0.00000000e+000</C>
+            <D>0.00000000e+000</D>
+            <M>0.0</M>
+            <CPcor>-9.57000000e-008</CPcor>
+          </Coefficients>
+          <Coefficients equation="1" >
+            <G>-4.11994514e+000</G>
+            <H>4.86260957e-001</H>
+            <I>-2.98648869e-004</I>
+            <J>3.96821273e-005</J>
+            <CPcor>-9.57000000e-008</CPcor>
+            <CTcor>3.2500e-006</CTcor>
+            <!-- WBOTC not applicable unless ConductivityType = 1. -->
+            <WBOTC>0.00000000e+000</WBOTC>
+          </Coefficients>
+          <Slope>1.00000000</Slope>
+          <Offset>0.00000</Offset>
+        </ConductivitySensor>
+      </Sensor>
+      <Sensor index="2" SensorID="56" >
+        <TemperatureSensor SensorID="56" >
+          <SerialNumber>0200</SerialNumber>
+          <CalibrationDate>12/8/2022</CalibrationDate>
+        </TemperatureSensor>
+      </Sensor>
+      <Sensor index="3" SensorID="11" >
+        <FluoroSeapointSensor SensorID="11" >
+          <SerialNumber>SCF-3623 (0-50 ug/L)</SerialNumber>
+          <CalibrationDate>9/26/2022</CalibrationDate>
+          <!-- The following is an array index, not the actual gain setting. -->
+          <GainSetting>2</GainSetting>
+          <Offset>0.000</Offset>
+        </FluoroSeapointSensor>
+      </Sensor>
+      <Sensor index="4" SensorID="69" >
+        <Fluorometer SensorID="69" >
+          <SerialNumber>SUVF-6257 (0-500 QSU)</SerialNumber>
+          <CalibrationDate>1/20/2023</CalibrationDate>
+          <Range>500.0</Range>
+          <Offset>0.0000</Offset>
+        </Fluorometer>
+      </Sensor>
+      <Sensor index="5" SensorID="33" >
+        <OBS_SeapointTurbiditySensor SensorID="33" >
+          <SerialNumber>STM-17913 (0-125 FTU)</SerialNumber>
+          <CalibrationDate>1/30/2023</CalibrationDate>
+          <!-- The following is an array index, not the actual gain setting. -->
+          <GainSetting>2</GainSetting>
+          <ScaleFactor>1.000</ScaleFactor>
+        </OBS_SeapointTurbiditySensor>
+      </Sensor>
+    </SensorArray>
+  </Instrument>
+</SBE_InstrumentConfiguration>

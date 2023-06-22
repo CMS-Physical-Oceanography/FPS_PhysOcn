@@ -1,0 +1,305 @@
+function [SBE] = convert_capeFear_flowThrough_hex2mat(datDir,dates,arcDir);
+%
+%
+% USAGE: [SBE] = convert_CTD_flowThrough_hex2mat(datDir,dates,arcDir);
+%
+% inputs:
+% datDir= top directory for raw data files
+% date  = {'yyyymmdd'} cell array of sub-directories 
+% arcDir= directory to archive data (Default: datDir)
+% outputs:
+% SBE   = structure array containing flow-through data for dates.
+
+%
+if nargin == 3
+    outDir = arcDir;
+else
+    outDir = datDir;
+end
+% Process transects individually
+SBE = struct([]);
+nd = length(dates);
+for jj = 1:nd
+    date      = dates{jj};
+    % Data-directory and data-file structures
+    flowdir    = [datDir,date];
+    ctdFiles  = dir([flowdir,filesep,'*.hex']);
+    conFiles  = dir([flowdir,filesep,'*.xmlcon']);
+    % read the current xmlcon file
+    conFile = [conFiles(1).folder,filesep,conFiles(1).name];
+    config  = parseXML(conFile);
+    %
+    nf  = size(ctdFiles,1);
+    %
+    for kk = 1:nf
+        clear zgrid Pgrid Dgrid D2grid Sgrid Tgrid t x y
+        %
+        % READ CTD - SBE21 data file
+        % ttttccccrrrrrruuuvvvwwwlatitlongi?????secondssss
+        %
+        % tttt = temperature frequency,  4 bytes/32 bits
+        % cccc = conductivity frequency, 4 bytes/32 bits
+        % rrrrrr= secondary temperature, 6 bytes/48 bits
+        % uuu = stored voltage output 0, 3 bytes/12 bits
+        % vvv = stored voltage output 1, 3 bytes/12 bits
+        % see below for decoding:
+        %
+        % open the current folder/file
+        inFile = [ctdFiles(kk).folder,filesep,ctdFiles(kk).name];
+        fid = fopen(inFile);
+        % flags for processing header/data stream
+        pasthdr = 0;
+        validln = 0;
+        if fid ~= -1
+            fprintf(['processing file: ',datDir,ctdFiles(kk).name,' \n'])
+            lnum = 0;
+            while ~feof(fid)
+                % Grab line from file
+                tline = fgetl(fid);
+                % Look for starting Lat Lon and UTC time in file header 
+                if lnum==0
+                    split = regexp(tline,'=','split');
+                    str   = split{1};
+                    switch str
+                      case '* FileName '
+                        SBE(kk).rawFile = split{2};
+                      case '* Temperature SN '
+                        SBE(kk).TemperatureSN = str2num(split{2});                    
+                      case '* Conductivity SN '
+                        SBE(kk).ConductivitySN = str2num(split{2});
+                      case '* NMEA Latitude '
+                        dum = strtrim(split{2});
+                        pm  = 2*strcmp(dum(end),'N')-1;
+                        SBE(kk).Latitude = sign(pm)*(str2num(dum(1:3)) + str2num(dum(4:end-1))/60);
+                      case '* NMEA Longitude '
+                        dum = strtrim(split{2});
+                        pm  = 2*strcmp(dum(end),'E')-1;
+                        SBE(kk).Longitude = sign(pm)*(str2num(dum(1:3)) + str2num(dum(4:end-1))/60);
+                      case '* NMEA UTC (Time) '
+                        dum = strtrim(split{2});
+                        SBE(kk).Time_UTC  = datestr(dum);
+                    end
+                end
+                %
+                % Begin data collection at end of header
+                if min(tline(1:5) == '*END*')
+                    lnum    = 1;
+                    pasthdr = 1;
+                    validln = 0;% there are a few short lines w/ baud rates, etc. skip these
+                    continue
+                elseif ~validln & length(tline)>50% lines should be 52 hex-chars long
+                    validln = 1;
+                end
+                
+                % Grab data stream if past header and line is long enough
+                if pasthdr & validln
+                    %                break
+                    % parse hex stream
+                    temphex = tline(1:4);
+                    condhex = tline(5:8);
+                    tmp2hex  = tline(9:14);
+                    aux0hex  = tline(15:17); 
+                    aux1hex  = tline(18:20);
+                    aux2hex  = tline(21:23);
+                    latihex  = tline(25:30);
+                    longhex  = tline(31:36);                              
+                    timehex  = tline(43:52);
+                    t0hex    = timehex(9:10);
+                    t1hex    = timehex(7:8);
+                    t2hex    = timehex(5:6);
+                    t3hex    = timehex(3:4);
+                    t4hex    = timehex(1:2);
+                    % convert hex strings to frequency/voltage
+                    tempraw(lnum)  = hex2dec(temphex)/19 + 2100;
+                    condraw(lnum)  = sqrt(hex2dec(condhex)*2100 + 6250000);
+                    tmp2raw(lnum)  = hex2dec(tmp2hex)/256;
+                    aux0raw(lnum) = hex2dec(aux0hex)/819;
+                    aux1raw(lnum) = hex2dec(aux1hex)/819;
+                    aux2raw(lnum) = hex2dec(aux2hex)/819;
+                    % Convert NMEA stream (kludge, determined by flipping bits)
+                    lon(lnum) = 0-hex2dec(longhex)*2e-5;
+                    lat(lnum) =   hex2dec(latihex)*2e-5;               
+                    t0 = hex2dec(t0hex)*2^24;
+                    t1 = hex2dec(t1hex)*2^16;
+                    t2 = hex2dec(t2hex)*2^8;
+                    t3 = hex2dec(t3hex)*2^0;
+                    t4 = hex2dec(t4hex)*2^-8;
+                    seconds(lnum) = (t0+t1+t2+t3+t4);
+                    time(lnum)    = datenum('Jan 1 2000') + seconds(lnum)/86400;
+                    %
+                    lnum = lnum+1;
+                end
+            end
+            % close current file
+            fclose(fid);
+            %
+            rawData = struct('temp',tempraw,'cond',condraw,'pres',0.0,'temp2',tmp2raw,'aux0',aux0raw,'aux1',aux1raw,'aux2',aux2raw);
+            % convert to physical/engineering units
+            data = convert_units_SBE21(rawData,config);
+            data.lat = lat;
+            data.lon = lon;
+            data.seconds = seconds;
+            data.time    = time;
+            data.config  = config;
+            %
+            % need equation of state to get salinity in PSU!
+            %
+            % make some preliminary plots and save Level0 data
+            outFile = sprintf('');
+            %
+            SBE(jj,kk) = data;
+        end
+    end
+end
+figure, geoscatter(lat,lon,6,condraw,'filled'),geobasemap('satellite')
+% $$$          OLD CODES
+% $$$          %% get rid of data when CTD is sitting still or ascending
+% $$$          
+% $$$          Pu =flip(P);% for upcast
+% $$$          Du =flip(D); 
+% $$$          Tu =flip(T); 
+% $$$          Su =flip(S); 
+% $$$ 
+% $$$          for ll = 1:length(P)
+% $$$             if any(P(ll)<=P(1:ll-1))
+% $$$                 P(ll) = NaN;
+% $$$                 D(ll) = NaN;
+% $$$                 T(ll) = NaN;
+% $$$                 S(ll) = NaN;
+% $$$ % $$$                 Draw(ll) = nan;
+% $$$ % $$$                 d0(ll) = nan;
+% $$$ % $$$                 d1(ll) = nan;
+% $$$ % $$$                 d2(ll) = nan;
+% $$$ % $$$                 d3(ll) = nan;
+% $$$ % $$$                 d4(ll) = nan;
+% $$$ % $$$                 d5(ll) = nan;
+% $$$ % $$$                 d6(ll) = nan;
+% $$$             end
+% $$$          end
+% $$$ 
+% $$$          for ll = 1:length(P)
+% $$$             if any(Pu(ll)<=Pu(1:ll-1))
+% $$$                 Pu(ll) = NaN;
+% $$$                 Du(ll) = NaN;
+% $$$                 Tu(ll) = NaN;
+% $$$                 Su(ll) = NaN;
+% $$$             end
+% $$$          end
+% $$$ 
+% $$$          
+% $$$          %% flag dye spikes. 
+% $$$          i0 = find(D>120);% don't expect to see this much dye
+% $$$          i1 = find(abs(diff(D))>1.5);% gradient of 12ppb/s? 
+% $$$          i2 = find(abs(diff(D,2,2))>.75);% 48ppb/s^2?
+% $$$          
+% $$$          i3 = union(i0,i1+1);
+% $$$          i4 = union(i3,i2+1);
+% $$$         
+% $$$          D(i4) = nan;
+% $$$ 
+% $$$          %% nan all data with bad P
+% $$$          inan = find(isnan(P) | isnan(D));
+% $$$          P(inan) = [];
+% $$$          D(inan) = [];
+% $$$          T(inan) = [];
+% $$$          S(inan) = [];
+% $$$ 
+% $$$          %% nan all data with bad P
+% $$$          inan = find(isnan(Pu) | isnan(Du));
+% $$$          Pu(inan) = [];
+% $$$          Du(inan) = [];
+% $$$          Tu(inan) = [];
+% $$$          Su(inan) = [];
+% $$$ 
+% $$$          %% log maximum pressure for P-grid later on
+% $$$          if kk==1
+% $$$             Pmax = nanmax(P);
+% $$$          elseif nanmax(P)>Pmax
+% $$$             Pmax = nanmax(P);
+% $$$          end
+% $$$         
+% $$$          
+% $$$          %% fill cell with profiles
+% $$$          Dc{kk} = D;
+% $$$          Tc{kk} = T;
+% $$$          Pc{kk} = P;
+% $$$          Sc{kk} = S;
+% $$$          
+% $$$          %% fill cell with profiles
+% $$$          Duc{kk} = flip(Du);
+% $$$          Tuc{kk} = flip(Tu);
+% $$$          Puc{kk} = flip(Pu);
+% $$$          Suc{kk} = flip(Su);
+% $$$          
+% $$$      else 
+% $$$         disp(['could not open file: ', [CTDdir,CASTdir,castfiles(indices(kk)).name]])
+% $$$         return
+% $$$      end 
+% $$$     end   
+% $$$ 
+% $$$       %% interpolate onto P-grid for nanmeans of T(z),D(z),S(z)
+% $$$       Pgrid = [0:0.1:ceil(Pmax)]';
+% $$$       
+% $$$ 
+% $$$       for k = 1:length(Dc)
+% $$$         Dgrid(:,k) = [interp1(Pc{k},Dc{k},Pgrid)]';
+% $$$         Tgrid(:,k) = [interp1(Pc{k},Tc{k},Pgrid)]';
+% $$$         Sgrid(:,k) = [interp1(Pc{k},Sc{k},Pgrid)]';
+% $$$         Dugrid(:,k) = [interp1(Puc{k},Duc{k},Pgrid)]';
+% $$$         Tugrid(:,k) = [interp1(Puc{k},Tuc{k},Pgrid)]';
+% $$$         Sugrid(:,k) = [interp1(Puc{k},Suc{k},Pgrid)]';
+% $$$ 
+% $$$       end
+% $$$     
+% $$$ 
+% $$$      %% convert lat, lon, time (UTC) --> IB09 x, y, t (pdt)
+% $$$      for k = 1:size(latstr,2)
+% $$$         lat(k,1) = str2num(latstr{k}(1:2))+ ...
+% $$$                    str2num(latstr{k}(4:8))/60; % N
+% $$$         lon(k,1) = -(str2num(lonstr{k}(1:3))+ ...
+% $$$                      str2num(lonstr{k}(5:9))/60);  % W --> negative
+% $$$         
+% $$$         time0 = datenum('08/31/2015 00:00:00');
+% $$$         year = 2015;
+% $$$         day = (rem(sample_date(ii),10000) - 15)./100;
+% $$$         month = (sample_date(ii) - day)/10000;
+% $$$         hour = str2num(tstr_UTC{k}(1:2)) - 7;% PDT = UTC-7
+% $$$         mins = str2num(tstr_UTC{k}(4:5));
+% $$$         sec = str2num(tstr_UTC{k}(7:8));
+% $$$         time = datenum([2015 month day hour mins sec]);
+% $$$         t(k,1)= time-time0;
+% $$$         t2(k,1) = t_UTC{k} - time0 - 7/24;
+% $$$ % $$$         t_UTC(k,1) = 3600*str2num(tstr_UTC{k}(1:2))+60* ...
+% $$$ % $$$                           str2num(tstr_UTC{k}(4:5))+ ...
+% $$$ % $$$                           str2num(tstr_UTC{k}(7:8));
+% $$$ % $$$         t(k,1) = t_UTC(k) - 7*3600; % PDT = UTC - 7 hours
+% $$$      end
+% $$$      
+% $$$      %% depth approximation [m]
+% $$$      zgrid = -Pgrid;
+% $$$      
+% $$$      
+% $$$      %% convert from lat lon to xy in IB09 coords
+% $$$      [x,y] = lltoxy_imperialbeach(lat,lon);
+% $$$      
+% $$$      
+% $$$      %% Compile data into struct
+% $$$      SBE(ii).date = datestr(datenum(sprintf('%06d', ...
+% $$$                                     sample_date(ii)),'mmddyy')); 
+% $$$      SBE(ii).t = t2;
+% $$$      SBE(ii).P = Pgrid;
+% $$$      SBE(ii).T = Tgrid;
+% $$$      SBE(ii).S = Sgrid;
+% $$$      SBE(ii).D = Dgrid;
+% $$$      SBE(ii).Tu = Tugrid;
+% $$$      SBE(ii).Su = Sugrid;
+% $$$      SBE(ii).Du = Dugrid;
+% $$$ 
+% $$$      SBE(ii).lat=lat;
+% $$$      SBE(ii).lon=lon;
+% $$$      SBE(ii).x = x;
+% $$$      SBE(ii).y = y;
+% $$$      SBE(ii).z = zgrid;
+% $$$ 
+% $$$      
+end

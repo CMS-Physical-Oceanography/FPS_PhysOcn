@@ -1,0 +1,397 @@
+function [SBE] = convert_CTD_flowThrough_hex2mat(datDir,date,arcDir);
+%
+%
+% USAGE: [SBE] = convert_CTD_flowThrough_hex2mat(datDir,date,arcDir);
+%
+% inputs:
+% datDir= top directory for raw data files
+% date  = 'yyyymmdd' sub-directory of sample
+% arcDir= directory to archive data (Default: datDir)
+% outputs:
+% SBE   = structure array containing each cast for this date.
+
+% Data directory and data files structure
+CTDdir = [datDir,date];
+files  = dir([CTDdir,filesep,'*.hex']);
+conFile= dir([CTDdir,filesep,'*.xmlcon']);
+%
+config = parseXML([conFile.folder,filesep,conFile.name]);
+%
+if nargin == 3
+    outDir = arcDir;
+else
+    outDir = datDir;
+end
+%
+% Process transects individually
+SBE = struct([]);
+nf  = size(files,1);
+%
+for kk = 1:nf
+    clear zgrid Pgrid Dgrid D2grid Sgrid Tgrid t x y
+    %
+    % READ CTD - older SBE25 data file
+    % ttttttccccccspppuuuvvv
+    %
+    % tttttt = temperature frequency, 3 bytes
+    % cccccc = conductivity frequency, 3 bytes
+    % s = sign character for pressure (sign character 0 = +; sign character 4 = -)
+    % ppp = pressure, 12 bits
+    % uuu = stored voltage output 0, 12 bits
+    % vvv = stored voltage output 1, 12 bits
+    fid = fopen([files(kk).folder,filesep,files(kk).name]);
+    pasthdr = 0;
+     if fid ~= -1
+         fprintf(['processing file: ',datDir,files(kk).name,' \n'])
+         lnum = 0;
+         while ~feof(fid)
+            %Grab line from file
+            tline = fgetl(fid);
+            %Look for Lat Lon and UTC time in file header 
+            if lnum==0
+                split = regexp(tline,'=','split');
+                str   = split{1};
+                switch str
+                  case '* FileName '
+                    SBE(kk).rawFile = split{2};
+                  case '* Temperature SN '
+                    SBE(kk).TemperatureSN = str2num(split{2});                    
+                  case '* Conductivity SN '
+                    SBE(kk).ConductivitySN = str2num(split{2});
+                  case '* NMEA Latitude '
+                    dum = strtrim(split{2});
+                    pm  = 2*strcmp(dum(end),'N')-1;
+                    SBE(kk).Latitude = sign(pm)*(str2num(dum(1:3)) + str2num(dum(4:end-1))/60);
+                  case '* NMEA Longitude '
+                    dum = strtrim(split{2});
+                    pm  = 2*strcmp(dum(end),'E')-1;
+                    SBE(kk).Longitude = sign(pm)*(str2num(dum(1:3)) + str2num(dum(4:end-1))/60);
+                  case '* NMEA UTC (Time) '
+                    dum = strtrim(split{2});
+                    SBE(kk).Time_UTC  = datestr(dum);
+                end
+            end
+            %
+            %Begin data collection at end of header
+            if min(tline(1:5) == '*END*')
+                pasthdr = 1;
+                lnum    = 1;
+                continue
+            end
+            
+            %Grab data
+            if pasthdr
+                break
+               temphex = tline(1:4);
+               condhex = tline(5:8);
+% $$$                preshex = ['00' tline(17:22)];
+% $$$                ptmphex = ['00' tline(23:28)];
+               tmp2hex  = tline(9:14);
+               aux0hex  = tline(15:17); 
+               aux1hex  = tline(18:20);
+               aux2hex  = tline(22:24);
+               
+               aux3hex  = tline(41:44);
+               aux4hex  = tline(45:48);
+               timehex  = tline(49:54);
+               latihex  = tline(55:60);
+               longhex  = tline(61:66);
+% $$$                aux5hex  = tline(49:52); % not used
+% $$$                aux6hex  = tline(53:56); % not used
+% $$$                aux7hex  = tline(57:60); % not used
+% $$$                diaghex  = tline(61:68); % not used              
+               % algorithm for SBE25plus--needs verification!
+               q32           = quantizer('float','nearest','saturate',[32 8]);
+               tempraw(lnum) = hex2num(q32,temphex);
+               condraw(lnum) = hex2num(q32,condhex);
+% $$$                presraw(lnum) = hex2num(q32,preshex);
+% $$$                ptmpraw(lnum) = hex2num(q32,ptmphex);
+               presraw(lnum) = hex2dec(preshex);
+               ptmpraw(lnum) = hex2dec(ptmphex(1:2))*256+hex2dec(ptmphex(3:4))+hex2dec(ptmphex(5:6))/256;% hex2dec(ptmphex);
+               aux0raw(lnum) = hex2dec(aux0hex)*5.000/2^16;
+               aux1raw(lnum) = hex2dec(aux1hex)*5.000/2^16;
+               aux2raw(lnum) = hex2dec(aux2hex)*5.000/2^16;
+               aux3raw(lnum) = hex2dec(aux3hex)*5.000/2^16;
+               aux4raw(lnum) = hex2dec(aux4hex)*5.000/2^16;                                                            
+% $$$                aux5raw(lnum) = hex2dec(aux5hex)*5.000/2^16;% not used
+% $$$                aux6raw(lnum) = hex2dec(aux6hex)*5.000/2^16;% not used
+% $$$                aux7raw(lnum) = hex2dec(aux7hex)*5.000/2^16;% not used
+               %
+               % old algorithm for SBE25
+% $$$                temphex = tline(1:6);
+% $$$                condhex = tline(7:12);
+% $$$                sign    = tline(13);
+% $$$                preshex = tline(14:16);
+% $$$                auxhex  = tline(18:20);
+% $$$                d0hex = tline(20:22);
+% $$$                d1hex = tline(23:25);
+% $$$                d2hex = tline(26:28);
+% $$$                d3hex = tline(29:31);
+% $$$                d4hex = tline(32:34);
+% $$$                d5hex = tline(35:37);
+% $$$                d6hex = tline(38:40);
+% $$$                tempraw(lnum) = (hex2dec(temphex(1:2))*256) + ...
+% $$$                    hex2dec(temphex(3:4)) + (hex2dec(temphex(5:6))/256);
+% $$$                condraw(lnum) = (hex2dec(condhex(1:2))*256) + ...
+% $$$                    hex2dec(condhex(3:4)) + (hex2dec(condhex(5:6))/256);
+% $$$                presraw(lnum) = hex2dec(preshex);
+% $$$                auxraw(lnum) = hex2dec(auxhex); 
+% $$$                d0raw(lnum)= hex2dec(d0hex);
+% $$$                d1raw(lnum)= hex2dec(d1hex);
+% $$$                d2raw(lnum)= hex2dec(d2hex);
+% $$$                d3raw(lnum)= hex2dec(d3hex);
+% $$$                d4raw(lnum)= hex2dec(d4hex);
+% $$$                d5raw(lnum)= hex2dec(d5hex);
+% $$$                d6raw(lnum)= hex2dec(d6hex);
+               lnum = lnum+1;
+            end
+         end   
+         fclose(fid);
+         %
+         rawData = struct('temp',tempraw,'pres',presraw,'ptmp',ptmpraw,'aux0',aux0raw,'aux1',aux1raw,'aux2',aux2raw,'aux3',aux3raw,'aux4',aux4raw);
+         % now do conversions to physical units
+         [T,C,S,P,dO,PAR,AFL,FTU,Flo] = convert_units_SBE25(rawData,config)
+         
+     end
+
+         [T, S, P] = SBE_ConvUnitsSBE25_MMO(tempraw,condraw,presraw);
+         
+         inan = find(P <= 0 | S <= 25 | S > 35 | T < 12 | T > ...
+                     26);
+         T(inan) = nan;
+         S(inan) = nan;
+         P(inan) = nan;
+         
+         %%load dye cals
+         load(['~/CSIDE/cals/fluorometers/rob_matlab/structs/' ...
+                    'FL_1489.mat']);% loads structure FL.
+         Tcal = nanmean(FL.temp);
+         gain = FL.gain;
+         darkcounts = FL.darkcounts;
+
+         %% convert from counts to input voltage
+         Draw = dyeraw./819;
+         
+         %% convert from volts to ppb
+         D_obs = gain.*(Draw-darkcounts);% apply most recent cals
+
+         %% correct Rhodamine fluorescence for temperature
+         % D_actual = D_obs * exp(0.027 * (T_obs - Tcal))
+         D = D_obs .* exp(0.027*(T - Tcal));
+
+% $$$          %% still need to determine if there is a turbidity channel
+% $$$          d0 = d0raw;
+% $$$          d1 = d1raw;
+% $$$          d2 = d2raw;
+% $$$          d3 = d3raw;
+% $$$          d4 = d4raw;
+% $$$          d5 = d5raw;
+% $$$          d6 = d6raw;
+
+         
+         %% plot QC
+         switch ReleaseNum
+           case 1
+             switch SampleDay
+               case 1
+                 SBEfile = '../mat_data/20150923_CTD.mat';
+               case 2
+                 SBEfile = '../mat_data/20150924_CTD.mat';
+             end
+           case 2
+             switch SampleDay
+               case 1
+                 SBEfile = '../mat_data/20151008_CTD.mat';
+               case 2
+                 SBEfile = '../mat_data/20151009_CTD.mat';
+             end
+           case 3
+             switch SampleDay
+               case 1
+                 SBEfile = '../mat_data/20151012_CTD.mat';
+               case 2
+                 SBEfile = '../mat_data/20151013_CTD.mat';
+             end
+         end
+         
+    CTD = load(SBEfile) ;
+    CTD = CTD.SBE;
+         figure, 
+  subplot(1,3,1)
+  plot(D,-P,'linewidth',1.5)
+  ylims = get(gca,'ylim');
+  hold on, plot(CTD.D(:,kk),CTD.z,'--r','linewidth',1.5)
+    set(gca,'ylim',ylims)
+  xlabel('Dye [ppb]','fontsize',16)
+  ylabel('Depth [m]','fontsize',16)
+ subplot(1,3,2)
+ plot(T,-P,'linewidth',1.5)
+ hold on, plot(CTD.T(:,kk),CTD.z,'--r','linewidth',1.5)
+ xlabel('Temp [^{o}C]','fontsize',16)
+ set(gca,'ylim',ylims,'yticklabel','')
+ subplot(1,3,3)
+ % CTD.S(1:5,1) = nan;
+ plot(S,-P,'linewidth',1.5)
+ hold on, plot(CTD.S(:,kk),CTD.z,'--r','linewidth',1.5)
+ CTD.S(1:15,1) = nan;
+ hold off
+ plot(S,-P,'linewidth',1.5)
+ hold on, plot(CTD.S(:,kk),CTD.z,'--r','linewidth',1.5)
+ set(gca,'ylim',ylims,'yticklabel','')
+ xlabel('Sal [psu]','fontsize',16)
+ title('')
+ subplot(1,3,2)
+ title(sprintf('Cast %d: %s  (x,y) = (%d,%d) [km]',kk,CTD.date,floor(CTD.x(kk)*1e-3),floor(CTD.y(kk)*1e-3)),'fontsize',16)
+ print('-dpdf',sprintf('../figures/UpVsDown_CTD_%s_CAST%d.pdf',CTD.date,kk))
+% $$$  pause
+ 
+         %% get rid of data when CTD is sitting still or ascending
+         
+         Pu =flip(P);% for upcast
+         Du =flip(D); 
+         Tu =flip(T); 
+         Su =flip(S); 
+
+         for ll = 1:length(P)
+            if any(P(ll)<=P(1:ll-1))
+                P(ll) = NaN;
+                D(ll) = NaN;
+                T(ll) = NaN;
+                S(ll) = NaN;
+% $$$                 Draw(ll) = nan;
+% $$$                 d0(ll) = nan;
+% $$$                 d1(ll) = nan;
+% $$$                 d2(ll) = nan;
+% $$$                 d3(ll) = nan;
+% $$$                 d4(ll) = nan;
+% $$$                 d5(ll) = nan;
+% $$$                 d6(ll) = nan;
+            end
+         end
+
+         for ll = 1:length(P)
+            if any(Pu(ll)<=Pu(1:ll-1))
+                Pu(ll) = NaN;
+                Du(ll) = NaN;
+                Tu(ll) = NaN;
+                Su(ll) = NaN;
+            end
+         end
+
+         
+         %% flag dye spikes. 
+         i0 = find(D>120);% don't expect to see this much dye
+         i1 = find(abs(diff(D))>1.5);% gradient of 12ppb/s? 
+         i2 = find(abs(diff(D,2,2))>.75);% 48ppb/s^2?
+         
+         i3 = union(i0,i1+1);
+         i4 = union(i3,i2+1);
+        
+         D(i4) = nan;
+
+         %% nan all data with bad P
+         inan = find(isnan(P) | isnan(D));
+         P(inan) = [];
+         D(inan) = [];
+         T(inan) = [];
+         S(inan) = [];
+
+         %% nan all data with bad P
+         inan = find(isnan(Pu) | isnan(Du));
+         Pu(inan) = [];
+         Du(inan) = [];
+         Tu(inan) = [];
+         Su(inan) = [];
+
+         %% log maximum pressure for P-grid later on
+         if kk==1
+            Pmax = nanmax(P);
+         elseif nanmax(P)>Pmax
+            Pmax = nanmax(P);
+         end
+        
+         
+         %% fill cell with profiles
+         Dc{kk} = D;
+         Tc{kk} = T;
+         Pc{kk} = P;
+         Sc{kk} = S;
+         
+         %% fill cell with profiles
+         Duc{kk} = flip(Du);
+         Tuc{kk} = flip(Tu);
+         Puc{kk} = flip(Pu);
+         Suc{kk} = flip(Su);
+         
+     else 
+        disp(['could not open file: ', [CTDdir,CASTdir,castfiles(indices(kk)).name]])
+        return
+     end 
+    end   
+
+      %% interpolate onto P-grid for nanmeans of T(z),D(z),S(z)
+      Pgrid = [0:0.1:ceil(Pmax)]';
+      
+
+      for k = 1:length(Dc)
+        Dgrid(:,k) = [interp1(Pc{k},Dc{k},Pgrid)]';
+        Tgrid(:,k) = [interp1(Pc{k},Tc{k},Pgrid)]';
+        Sgrid(:,k) = [interp1(Pc{k},Sc{k},Pgrid)]';
+        Dugrid(:,k) = [interp1(Puc{k},Duc{k},Pgrid)]';
+        Tugrid(:,k) = [interp1(Puc{k},Tuc{k},Pgrid)]';
+        Sugrid(:,k) = [interp1(Puc{k},Suc{k},Pgrid)]';
+
+      end
+    
+
+     %% convert lat, lon, time (UTC) --> IB09 x, y, t (pdt)
+     for k = 1:size(latstr,2)
+        lat(k,1) = str2num(latstr{k}(1:2))+ ...
+                   str2num(latstr{k}(4:8))/60; % N
+        lon(k,1) = -(str2num(lonstr{k}(1:3))+ ...
+                     str2num(lonstr{k}(5:9))/60);  % W --> negative
+        
+        time0 = datenum('08/31/2015 00:00:00');
+        year = 2015;
+        day = (rem(sample_date(ii),10000) - 15)./100;
+        month = (sample_date(ii) - day)/10000;
+        hour = str2num(tstr_UTC{k}(1:2)) - 7;% PDT = UTC-7
+        mins = str2num(tstr_UTC{k}(4:5));
+        sec = str2num(tstr_UTC{k}(7:8));
+        time = datenum([2015 month day hour mins sec]);
+        t(k,1)= time-time0;
+        t2(k,1) = t_UTC{k} - time0 - 7/24;
+% $$$         t_UTC(k,1) = 3600*str2num(tstr_UTC{k}(1:2))+60* ...
+% $$$                           str2num(tstr_UTC{k}(4:5))+ ...
+% $$$                           str2num(tstr_UTC{k}(7:8));
+% $$$         t(k,1) = t_UTC(k) - 7*3600; % PDT = UTC - 7 hours
+     end
+     
+     %% depth approximation [m]
+     zgrid = -Pgrid;
+     
+     
+     %% convert from lat lon to xy in IB09 coords
+     [x,y] = lltoxy_imperialbeach(lat,lon);
+     
+     
+     %% Compile data into struct
+     SBE(ii).date = datestr(datenum(sprintf('%06d', ...
+                                    sample_date(ii)),'mmddyy')); 
+     SBE(ii).t = t2;
+     SBE(ii).P = Pgrid;
+     SBE(ii).T = Tgrid;
+     SBE(ii).S = Sgrid;
+     SBE(ii).D = Dgrid;
+     SBE(ii).Tu = Tugrid;
+     SBE(ii).Su = Sugrid;
+     SBE(ii).Du = Dugrid;
+
+     SBE(ii).lat=lat;
+     SBE(ii).lon=lon;
+     SBE(ii).x = x;
+     SBE(ii).y = y;
+     SBE(ii).z = zgrid;
+
+     
+end

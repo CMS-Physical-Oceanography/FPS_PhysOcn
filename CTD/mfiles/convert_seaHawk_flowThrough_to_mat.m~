@@ -1,0 +1,10 @@
+% data are stored in sub-dirs based on
+% sample date: yyyymmdd
+dates = {'202306'};
+% dates previously processed:
+% ???????
+%
+% raw-data parent directory
+rawDir = '/Users/derekgrimes/Projects/FPS/data/';
+% where to archive data?
+arcDir = '/Users/derekgrimes/Projects/FPS/mat_data/';

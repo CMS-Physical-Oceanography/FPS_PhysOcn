@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SBE_InstrumentConfiguration SB_ConfigCTD_FileVersion="7.26.1.0" >
+  <Instrument Type="15" >
+    <Name>SBE 25plus Sealogger CTD</Name>
+    <!-- This XMLCON file is for real-time data acquisition with Seasave or processing the .HEX file. -->
+    <Usage>1</Usage>
+    <TCP_Sensors Size="3" >
+      <Sensor index="0" SensorID="55" >
+        <TemperatureSensor SensorID="55" >
+          <SerialNumber>6681</SerialNumber>
+          <CalibrationDate>4/19/2022</CalibrationDate>
+          <UseG_J>1</UseG_J>
+          <A>0.00000000e+000</A>
+          <B>0.00000000e+000</B>
+          <C>0.00000000e+000</C>
+          <D>0.00000000e+000</D>
+          <F0_Old>0.000</F0_Old>
+          <G>4.32598628e-003</G>
+          <H>6.37449295e-004</H>
+          <I>2.16901727e-005</I>
+          <J>2.01717480e-006</J>
+          <F0>1000.000</F0>
+          <Slope>1.00000000</Slope>
+          <Offset>0.0000</Offset>
+        </TemperatureSensor>
+      </Sensor>
+      <Sensor index="1" SensorID="3" >
+        <ConductivitySensor SensorID="3" >
+          <SerialNumber>6071</SerialNumber>
+          <CalibrationDate>4/20/22</CalibrationDate>
+          <UseG_J>1</UseG_J>
+          <!-- Cell const and series R are applicable only for wide range sensors. -->
+          <SeriesR>0.0000</SeriesR>
+          <CellConst>2000.0000</CellConst>
+          <ConductivityType>0</ConductivityType>
+          <Coefficients equation="0" >
+            <A>0.00000000e+000</A>
+            <B>0.00000000e+000</B>
+            <C>0.00000000e+000</C>
+            <D>0.00000000e+000</D>
+            <M>0.0</M>
+            <CPcor>-9.57000000e-008</CPcor>
+          </Coefficients>
+          <Coefficients equation="1" >
+            <G>-1.02173485e+001</G>
+            <H>1.46962080e+000</H>
+            <I>-2.48752683e-003</I>
+            <J>2.78327116e-004</J>
+            <CPcor>-9.57000000e-008</CPcor>
+            <CTcor>3.2500e-006</CTcor>
+            <!-- WBOTC not applicable unless ConductivityType = 1. -->
+            <WBOTC>0.00000000e+000</WBOTC>
+          </Coefficients>
+          <Slope>1.00000000</Slope>
+          <Offset>0.00000</Offset>
+        </ConductivitySensor>
+      </Sensor>
+      <Sensor index="2" SensorID="46" >
+        <PressureSensor SensorID="46" >
+          <SerialNumber>5013237</SerialNumber>
+          <CalibrationDate>5/4/2022</CalibrationDate>
+          <PA0>-1.14410700e-001</PA0>
+          <PA1>5.49884800e-004</PA1>
+          <PA2>1.85169300e-013</PA2>
+          <PTEMPA0>-9.23121700e+001</PTEMPA0>
+          <PTEMPA1>4.16653400e+001</PTEMPA1>
+          <PTEMPA2>1.63615100e+000</PTEMPA2>
+          <PTCA0>8.43138500e+006</PTCA0>
+          <PTCA1>-1.48449500e+002</PTCA1>
+          <PTCA2>5.94638500e+000</PTCA2>
+          <PTCB0>1.05192200e+002</PTCB0>
+          <PTCB1>-8.06575400e-003</PTCB1>
+          <PTCB2>0.00000000e+000</PTCB2>
+          <Offset>0.000000</Offset>
+        </PressureSensor>
+      </Sensor>
+    </TCP_Sensors>
+    <ExternalVoltageSensors Size="8" >
+      <Sensor index="0" SensorID="38" ExportInRealTime="1" >
+        <OxygenSensor SensorID="38" >
+          <SerialNumber>1101</SerialNumber>
+          <CalibrationDate>1/10/2023</CalibrationDate>
+          <Use2007Equation>1</Use2007Equation>
+          <CalibrationCoefficients equation="0" >
+            <!-- Coefficients for Owens-Millard equation. -->
+            <Boc>0.0000</Boc>
+            <Soc>0.0000e+000</Soc>
+            <offset>0.0000</offset>
+            <Pcor>0.00e+000</Pcor>
+            <Tcor>0.0000</Tcor>
+            <Tau>0.0</Tau>
+          </CalibrationCoefficients>
+          <CalibrationCoefficients equation="1" >
+            <!-- Coefficients for Sea-Bird equation - SBE calibration in 2007 and later. -->
+            <Soc>4.0616e-001</Soc>
+            <offset>-0.4880</offset>
+            <A>-4.0367e-003</A>
+            <B> 1.6074e-004</B>
+            <C>-2.2772e-006</C>
+            <D0> 2.5826e+000</D0>
+            <D1> 1.92634e-004</D1>
+            <D2>-4.64803e-002</D2>
+            <E> 3.6000e-002</E>
+            <Tau20> 1.2900</Tau20>
+            <H1>-3.3000e-002</H1>
+            <H2> 5.0000e+003</H2>
+            <H3> 1.4500e+003</H3>
+          </CalibrationCoefficients>
+        </OxygenSensor>
+      </Sensor>
+      <Sensor index="1" SensorID="76" ExportInRealTime="1" >
+        <PARLog_SatlanticSensor SensorID="76" >
+          <SerialNumber>2206</SerialNumber>
+          <CalibrationDate>4/26/2022</CalibrationDate>
+          <a0>1.05000400</a0>
+          <a1>0.00000000</a1>
+          <Im>1.35890000</Im>
+        </PARLog_SatlanticSensor>
+      </Sensor>
+      <Sensor index="2" SensorID="20" ExportInRealTime="1" >
+        <FluoroWetlabECO_AFL_FL_Sensor SensorID="20" >
+          <SerialNumber>0089</SerialNumber>
+          <CalibrationDate>12/6/2022</CalibrationDate>
+          <ScaleFactor>1.00000000e+001</ScaleFactor>
+          <!-- Dark output -->
+          <Vblank>0.0570</Vblank>
+        </FluoroWetlabECO_AFL_FL_Sensor>
+      </Sensor>
+      <Sensor index="3" SensorID="67" ExportInRealTime="1" >
+        <TurbidityMeter SensorID="67" >
+          <SerialNumber>0089</SerialNumber>
+          <CalibrationDate>12/6/2022</CalibrationDate>
+          <ScaleFactor>5.000000</ScaleFactor>
+          <!-- Dark output -->
+          <DarkVoltage>0.070000</DarkVoltage>
+        </TurbidityMeter>
+      </Sensor>
+      <Sensor index="4" SensorID="69" ExportInRealTime="1" >
+        <Fluorometer SensorID="69" >
+          <SerialNumber>SUVF-6154</SerialNumber>
+          <CalibrationDate>12/1/2022</CalibrationDate>
+          <Range>150.0</Range>
+          <Offset>0.0000</Offset>
+        </Fluorometer>
+      </Sensor>
+      <Sensor index="5" SensorID="27" ExportInRealTime="0" >
+        <NotInUse SensorID="27" >
+          <SerialNumber></SerialNumber>
+          <CalibrationDate></CalibrationDate>
+          <OutputType>0</OutputType>
+          <Free>1</Free>
+        </NotInUse>
+      </Sensor>
+      <Sensor index="6" SensorID="27" ExportInRealTime="0" >
+        <NotInUse SensorID="27" >
+          <SerialNumber></SerialNumber>
+          <CalibrationDate></CalibrationDate>
+          <OutputType>0</OutputType>
+          <Free>1</Free>
+        </NotInUse>
+      </Sensor>
+      <Sensor index="7" SensorID="27" ExportInRealTime="0" >
+        <NotInUse SensorID="27" >
+          <SerialNumber></SerialNumber>
+          <CalibrationDate></CalibrationDate>
+          <OutputType>0</OutputType>
+          <Free>1</Free>
+        </NotInUse>
+      </Sensor>
+    </ExternalVoltageSensors>
+    <RealTimeOptions >
+      <!--     0 = Slower -->
+      <!--     1 = Faster -->
+      <HistoricRate>1</HistoricRate>
+      <DeckUnit>1</DeckUnit>
+      <BaudConsole>3</BaudConsole>
+      <NmeaPositionDataAdded>1</NmeaPositionDataAdded>
+      <NmeaDepthDataAdded>0</NmeaDepthDataAdded>
+      <NmeaTimeAdded>1</NmeaTimeAdded>
+      <NmeaDeviceConnectedToPC>1</NmeaDeviceConnectedToPC>
+      <ScanTimeAdded>0</ScanTimeAdded>
+      <SurfaceParVoltageAdded>0</SurfaceParVoltageAdded>
+    </RealTimeOptions>
+    <SerialChannel1 >
+      <Storage>0</Storage>
+      <Type>0</Type>
+      <Sensors Size="0" />
+    </SerialChannel1>
+    <SerialChannel2 >
+      <Storage>0</Storage>
+      <Type>0</Type>
+      <Sensors Size="0" />
+    </SerialChannel2>
+  </Instrument>
+</SBE_InstrumentConfiguration>

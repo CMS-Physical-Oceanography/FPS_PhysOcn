@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConductivitySensor SensorID="3" SB_ConfigCTD_FileVersion="7.23.0.2" >
+  <SerialNumber>2908</SerialNumber>
+  <CalibrationDate>09-Feb-23</CalibrationDate>
+  <UseG_J>1</UseG_J>
+  <!-- Cell const and series R are applicable only for wide range sensors. -->
+  <SeriesR>0.0000</SeriesR>
+  <CellConst>2000.0000</CellConst>
+  <ConductivityType>0</ConductivityType>
+  <Coefficients equation="0" >
+    <A>0.00000000e+000</A>
+    <B>0.00000000e+000</B>
+    <C>0.00000000e+000</C>
+    <D>0.00000000e+000</D>
+    <M>0.0</M>
+    <CPcor>-9.57000000e-008</CPcor>
+  </Coefficients>
+  <Coefficients equation="1" >
+    <G>-1.01576559e+001</G>
+    <H>1.37332449e+000</H>
+    <I>-8.12547521e-004</I>
+    <J>1.17672071e-004</J>
+    <CPcor>-9.57000000e-008</CPcor>
+    <CTcor>3.2500e-006</CTcor>
+    <!-- WBOTC not applicable unless ConductivityType = 1. -->
+    <WBOTC>0.00000000e+000</WBOTC>
+  </Coefficients>
+  <Slope>1.00000000</Slope>
+  <Offset>0.00000</Offset>
+</ConductivitySensor>
