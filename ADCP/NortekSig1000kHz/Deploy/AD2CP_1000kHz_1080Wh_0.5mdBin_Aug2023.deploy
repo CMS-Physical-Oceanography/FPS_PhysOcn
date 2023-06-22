@@ -1,0 +1,37 @@
+#$DeployFileVersion,4,d5c4969fd717a2f23d3ecf7d2be55200
+#$SWSource,"Deployment-v4.6.15.0"
+#$InstrumentId,{"InstrumentType":"Signature1000","HeadFrequency":1000,"IsDeepWater":false,"IsLADCP":false,"FWVersion":"2214.12"$C
+#$}
+#$DeploymentName,"Aug2023_1dB"
+#$Comment,null
+#$ApplicationConfig,[{"Enabled":true,"Application":"Avg, BurstWaves5Beams","Mounting":"Fixedframe","Orientation":"UpLooking","G$C
+#$eography":"CoastalWater","SoundVelocity":"Measured","SoundVelocityValue":0.0,"Salinity":35.0,"StrongWaves":false,"ProfileRang$C
+#$e":14.0,"InstrumentDepth":20.0,"TidalRange":1.5,"BurstHR":false,"BurstHR5":false},{"Enabled":false,"Application":"None","Moun$C
+#$ting":"Fixedframe","Orientation":"UpLooking","Geography":"CoastalWater","SoundVelocity":"Measured","SoundVelocityValue":0.0,"$C
+#$Salinity":35.0,"StrongWaves":false,"ProfileRange":14.0,"InstrumentDepth":20.0,"TidalRange":1.5,"BurstHR":false,"BurstHR5":fal$C
+#$se}]
+#$AlternatingRatio,[6,1]
+#$DeploymentConfigExtensions,[{"AvgDesiredRange":14.0,"BurstDesiredRange":14.0,"BurstHrDesiredRange":14.0,"EchoSounderDesiredRa$C
+#$nge":14.0,"AvgEndProfile":15.4,"BurstEndProfile":16.2,"BurstHrEndProfile":15.4,"EchoSounderEndProfile":15.4,"AIStep":1,"Range$C
+#$Step":0.1,"BurstMeasurementContinuous":true,"AvgMeasurementLoad":100.0,"MinAvgMeasurementLoad":0.416666657,"MaxAvgMeasurement$C
+#$Load":100.0,"AvgAutoMeasurementLoad":false,"AvgMeasurementLoadTick":0.020833334,"BurstMeasurementLoad":100.0,"BurstAutoMeasur$C
+#$ementLoad":true,"BurstMeasurementLoadTick":33.3333321,"PulseDistanceAutoOption":3,"PulseDistance":3,"DistanceToBottom":2.0,"D$C
+#$istanceToSurface":2.0,"DesiredVelocityRange":0.25,"ValidBurstIntervals":[],"MeasurementIntervalAlternate":0},{"AvgDesiredRang$C
+#$e":14.0,"BurstDesiredRange":14.0,"BurstHrDesiredRange":14.0,"EchoSounderDesiredRange":14.0,"AvgEndProfile":15.4,"BurstEndProf$C
+#$ile":15.4,"BurstHrEndProfile":15.4,"EchoSounderEndProfile":15.4,"AIStep":1,"RangeStep":0.1,"BurstMeasurementContinuous":false$C
+#$,"AvgMeasurementLoad":100.0,"MinAvgMeasurementLoad":0.0,"MaxAvgMeasurementLoad":100.0,"AvgAutoMeasurementLoad":true,"AvgMeasu$C
+#$rementLoadTick":1.0,"BurstMeasurementLoad":100.0,"BurstAutoMeasurementLoad":true,"BurstMeasurementLoadTick":1.0,"PulseDistanc$C
+#$eAutoOption":3,"PulseDistance":3,"DistanceToBottom":2.0,"DistanceToSurface":2.0,"DesiredVelocityRange":0.25,"ValidBurstInterv$C
+#$als":[],"MeasurementIntervalAlternate":0}]
+#$BatteryItem,null
+#$BatteryCombo,{"InternalBattery":{"Name":"None 0 Wh","Volume":0.0,"Voltage":0.0},"ExternalBattery":{"Name":"Alkaline 1080 Wh",$C
+#$"Volume":1080.0,"Voltage":18.0},"Volume":1080.0,"Voltage":18.0}
+#$RecorderItem,{"Name":"16 GB","Capacity":16000000000}
+#$AhrsInstalled,false
+#$DeploymentDays,20
+SETDEFAULT,ALL
+SETPLAN,MIAVG=1200,AVG=1,DIAVG=0,VD=0,MV=10,SA=35,BURST=1,MIBURST=1200,DIBURST=0,SV=0,FN="Aug2023_1dB.ad2cp",SO=0,FREQ=1000,NSTT=0
+SETAVG,NC=30,CS=0.5,BD=0.1,CY="ENU",PL=0,AI=1200,VR=2.5,DF=3,NPING=4800,NB=4,CH=0,MUX=0,BW="BROAD",ALTI=0,BT=0,ICE=0,ALTISTART=0.1,ALTIEND=30,RAWALTI=1
+SETBURST,NC=32,NB=5,CS=0.5,BD=0.1,CY="BEAM",PL=0,SR=1,NS=1200,VR=2.5,DF=3,NPING=3,CH=0,VR5=2.5,ALTI=1,BT=0,DISV=0,ECHO=0,RAWALTI=1,ALTISTART=2.5,ALTIEND=25.5,HR=0,HR5=0
+SETTMAVG,EN=0,CD=1,PD=1,AVG=1200,TV=1,TA=1,TC=1,CY="ENU",FO=0,SO=1,DF=100,DISTILT=0,TPG=0,MAPBINS=0
+SAVE,ALL
