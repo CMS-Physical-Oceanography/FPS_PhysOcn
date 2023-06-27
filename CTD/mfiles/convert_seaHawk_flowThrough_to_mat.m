@@ -1,6 +1,6 @@
-function seahawkFT = convert_seaHawk_flowThrough_to_mat(datDir,dates,arcDir);
+function seahawk = convert_seaHawk_flowThrough_to_mat(datDir,dates,arcDir);
 %
-% USAGE: seahawkFT = convert_CTD_rosette_hex2mat(datDir,dates,arcDir);
+% USAGE: seahawk = convert_CTD_rosette_hex2mat(datDir,dates,arcDir);
 %
 % inputs:
 % datDir= top directory for raw data files
@@ -17,7 +17,10 @@ else
 end
 %
 nd        = length(dates);
-seahawkFT = struct([]);
+temporary = struct([]);
+seahawk   = struct([]);
+NMEA      = struct([]);
+SENSOR    = struct([]);
 for jj = 1:nd
     date = dates{jj};
     % Data directory and data files structure
@@ -38,7 +41,7 @@ for jj = 1:nd
     for kk = 1:nf
         NMEAfile = [NMEAfiles(kk).folder, filesep, NMEAfiles(kk).name];
         fid      = fopen(NMEAfile);
-        formats  = {'GPGGA', '%*s %f %f %s %f %s %u %u %f %f %s %f %s %f %*s';...
+        formats  = {'GPGGA', '%*s %f %f %s %f %s %f %f %f %f %s %f %s %f %*s';...
                     'GPGLL', '%*s %f %s %f %s %f %s %s %*s';...
                     'GPVTG', '%*s %f %s %f %s %f %s %f %s %*s';...
                     'GLZDA', '%*s %f %d %d %d %s %*s'};
@@ -60,7 +63,7 @@ for jj = 1:nd
         hour0 = nan(nLines,1); min0 = hour0; sec0 = hour0;
         hour1 = nan(nLines,1); min1 = hour1; sec1 = hour1;        
         year  = nan(nLines,1); mon  = year ; day  = year ;
-        hour  = nan(nLines,1); min  = hour ; sec  = hour ;
+% $$$         hour  = nan(nLines,1); min  = hour ; sec  = hour ;
         lat0  = nan(nLines,1); lon0 = lat0 ; lat1 = lat0 ; lon1 = lat0;
         % zero iterating vars
         Fnum     = 0;
@@ -106,7 +109,6 @@ for jj = 1:nd
                 fix(lnum) = D{6};
                 nSat(lnum)= D{7};
                 hdop(lnum)= D{8};
-                unit(lnum)= D{9};
               case 2
 
                 % lat ddmm.mmmm
@@ -141,14 +143,14 @@ for jj = 1:nd
                 ss     = round(rem(hhmmss,1e2),4);
                 mm     = rem(hhmmss-ss,1e4)/1e2;
                 hh     = (hhmmss-mm*1e2-ss)/1e4;
-                hour(lnum) = hh;
-                min(lnum)  = mm;
-                sec(lnum)  = ss;
+% $$$                 hour(lnum) = hh;
+% $$$                 min(lnum)  = mm;
+% $$$                 sec(lnum)  = ss;
                 day(lnum)  = D{2};
                 mon(lnum)  = D{3};
                 year(lnum) = D{4};
                 if ~isempty(D{5}) & ~exist('zone','var')
-                   zone(lnum) = char(D{5});
+                   zone    = char(D{5});
                 end
             end
             Fnum = Fnew;
@@ -158,27 +160,28 @@ for jj = 1:nd
             end
         end
         % trim pre-allocated vars
-        year = year(1:lnum); mon = mon(1:lnum); day = day(1:lnum);
-        hour = hour(1:lnum); min = min(1:lnum); sec = sec(1:lnum);
-        hour1=hour1(1:lnum); min1=min1(1:lnum); sec1=sec1(1:lnum);
-        lat0 =lat0(1:lnum) ; lon0= lon0(1:lnum);
-        lat1 =lat1(1:lnum) ; lon1= lon1(1:lnum);
-        figure, geoscatter(lat1,lon1), geobasemap('satellite')        
+        N = min(length(speed),lnum);
+        year = year(1:N); mon = mon(1:N); day = day(1:N);
+        hour0=hour0(1:N); min0=min0(1:N); sec0=sec0(1:N);        
+        lat0 =lat0(1:N) ; lon0= lon0(1:N);
         %
-        seahawkFT(jj,kk).date_vec = [ year, mon, day, hour, min, sec ];
-        seahawkFT(jj,kk).time     = datenum([ year, mon, day, hour0, min0, sec0 ]);
-        seahawkFT(jj,kk).time_zone= zone';
-        seahawkFT(jj,kk).lat      = lat0
-        seahawkFT(jj,kk).lon      = lon0
-        seahawkFT(jj,kk).hhmmss   = [ hour0, min0, sec0 ];
-        seahawkFT(jj,kk).heading  = heading';
-        seahawkFT(jj,kk).headRef  = headRef';
-        seahawkFT(jj,kk).speed    = speed';
-        seahawkFT(jj,kk).speedRef = speedRef;
-        seahawkFT(jj,kk).HDOP     = hdop;
-        seahawkFT(jj,kk).fix      = fix;
-        seahawkFT(jj,kk).num_sat  = nSat;
-        seahawkFT(jj,kk).unit     = unit;
+        %
+        NMEA(jj,kk).date_vec  = [ year, mon, day, hour0, min0, sec0 ];
+        NMEA(jj,kk).timeUTC   = datenum([ year, mon, day, hour0, min0, sec0 ]);
+        NMEA(jj,kk).time_zone = zone';
+        NMEA(jj,kk).latitude  = lat0;
+        NMEA(jj,kk).longitude = lon0;
+        NMEA(jj,kk).hhmmss    = [ hour0, min0, sec0 ];
+        NMEA(jj,kk).heading   = heading';
+        NMEA(jj,kk).headRef   = headRef';
+        NMEA(jj,kk).speed     = speed';
+        NMEA(jj,kk).speedRef  = speedRef;
+        NMEA(jj,kk).HDOP      = hdop';
+        NMEA(jj,kk).fix       = double(fix');
+        NMEA(jj,kk).satellites= double(nSat');
+        NMEAstartTimeUTC(kk)  = min(NMEA(jj,kk).timeUTC);
+        NMEAendTimeUTC(kk)    = max(NMEA(jj,kk).timeUTC);        
+% $$$         figure, geoscatter(lat0,lon0,4,speed','filled'), geobasemap('satellite')        
     end
     %
     %
@@ -200,11 +203,86 @@ for jj = 1:nd
                 flag  = 1;
             end
         end
-        format = '%s %s %f %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
+        format = '%s %s %f %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
         D      = textscan(fid,format,'Delimiter',',');
         N      = size(D{1},1);
         timeStr= cat(2, char(D{1}),repmat(' ',N,1),char(D{2}));
-        timeUTC= datenum(timeStr)+4;
+        monthOfSample = month(datetime(timeStr(1,:)));
+        weekOfMonth   = week(datetime(timeStr(1,:)),'weekofmonth');
+        ET2UTC = 5;
+        if (monthOfSample>4 & monthOfSample<11) | (monthOfSample==4 & weekOfMonth>2) | (monthOfSample==11 & weekOfMonth==1)
+            ET2UTC = 4;
+        end
+        SENSOR(jj,kk).timeUTC    = datenum(timeStr)+ET2UTC/24+D{3}/86400;
+        SENSOR(jj,kk).temperature= D{23};
+        SENSOR(jj,kk).salinity   = D{15};
+        SENSOR(jj,kk).turbidity  = D{19};
+        SENSOR(jj,kk).ChlA       = D{5};
+        SENSOR(jj,kk).fDOM       = D{8};
+        SENSOR(jj,kk).O2sat      = D{11};
+        SENSOR(jj,kk).O2mg_L     = D{13};
+        SENSOR(jj,kk).pH         = D{22};        
+        SENSOR(jj,kk).pressure   = D{14};
+        %
+        vars                   = split(varString,',');
+        SENSOR(jj,kk).units    = vars([21,14,18,5,8,11,12,20,13]);
+        SENSORstartTimeUTC(kk) = min(SENSOR(jj,kk).timeUTC);
+        SENSORendTimeUTC(kk)   = max(SENSOR(jj,kk).timeUTC);        
+    end
+    %
+    if nf>1
+        % now pair up the NMEA/SENSOR structures based on start-times
+        pairs     = 1:nf;
+        startDiff = abs(NMEAstartTimeUTC'-SENSORstartTimeUTC)*86400;
+        endDiff   = abs(NMEAendTimeUTC'-SENSORendTimeUTC)*86400;
+        % get the index of the nearest NMEA to each SENSOR
+        [minStartDiff,indNMEAstart] = min(startDiff,[],1);
+        [minEndDiff  ,indNMEAend  ] = min(endDiff  ,[],1);
+        startUncertainty       = minStartDiff./min(startDiff(pairs'~=indNMEAstart));
+        endUncertainty         = minEndDiff./min(  endDiff(  pairs'~=indNMEAend  ));
+        fprintf('fractional error btwn NMEA/SENSOR start-time: %f \n',round(mean(startUncertainty),5))
+        indNMEA = indNMEAstart;
+    else
+        indNMEA=1;
+    end
+    %
+    % combine each record (need to decide which variables to interpret NMEA or SENSOR)
+    for kk = 1:nf
+        ii         = indNMEA(kk);
+        % get times and acceptable limits
+        timeSENSOR = SENSOR(jj,kk).timeUTC;
+        timeNMEA   = NMEA(jj,ii).timeUTC;
+        timeStart  = max( timeSENSOR(1)  , timeNMEA(1)  );
+        timeEnd    = min( timeSENSOR(end), timeNMEA(end));
+        % interpolate to nearest 1-second.
+        timeINT    = timeNMEA(timeNMEA>=timeStart & timeNMEA<=timeEnd);
+        timeINT    = round( timeINT*86400 );
+        timeINT    = unique(timeINT);
+        %
+        temporary(jj,kk).time = timeINT/86400;
+        temporary(jj,kk).date_vec = datevec(timeINT/86400);
+        %
+        varsNMEA   = {'latitude','longitude','speed','HDOP','fix','satellites'};
+        goodNMEA   = find(diff(timeNMEA*86400)>0);
+        for ll = 1:length(varsNMEA)
+            eval(['temporary(jj,kk).',varsNMEA{ll},' = interp1(timeNMEA(goodNMEA)*86400,NMEA(jj,ii).',varsNMEA{ll},'(goodNMEA,:),timeINT);']);
+        end
+        %
+        temporary(jj,kk).sensor_units = SENSOR(jj,kk).units;
+        varsSENSOR = {'temperature','salinity','turbidity','ChlA','fDOM','O2sat','O2mg_L','pH','pressure'};
+        goodSENSOR   = find(diff(timeSENSOR*86400)>0);
+        for ll = 1:length(varsSENSOR)
+            eval(['temporary(jj,kk).',varsSENSOR{ll},' = interp1(timeSENSOR(goodSENSOR)*86400,SENSOR(jj,ii).',varsSENSOR{ll},'(goodSENSOR,:),timeINT);']);
+        end
+        %
+        % now archive one file for each input file
+        seahawk = temporary(jj,kk);
+        fileOut = sprintf([arcDir,filesep,'seahawk_flowThrough_%s_L0.mat'],datestr(seahawk(1).time(1),'yyyymmdd_HHMM'));
+        save(fileOut,'-struct','seahawk')
     end
 end
+% now save a combined file
+seahawk = temporary;
+fileOut = sprintf([arcDir,filesep,'seahawk_flowThrough_%s_to_%s_L0.mat'],datestr(seahawk(1).time(1),'yyyymmdd'),datestr(seahawk(end).time(1),'yymmdd'));
+save(fileOut,'seahawk')
 end
