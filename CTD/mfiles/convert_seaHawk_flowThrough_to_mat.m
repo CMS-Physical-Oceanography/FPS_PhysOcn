@@ -45,7 +45,7 @@ for jj = 1:nd
                     'GPGLL', '%*s %f %s %f %s %f %s %s %*s';...
                     'GPVTG', '%*s %f %s %f %s %f %s %f %s %*s';...
                     'GLZDA', '%*s %f %d %d %d %s %*s'};
-        % make sure that we start w/ a GPGGA string
+        % start w/ a GPGGA string
         nLines   = 0;
         flag     = 0;
         while ~feof(fid)% Fnum>1
@@ -63,30 +63,33 @@ for jj = 1:nd
         hour0 = nan(nLines,1); min0 = hour0; sec0 = hour0;
         hour1 = nan(nLines,1); min1 = hour1; sec1 = hour1;        
         year  = nan(nLines,1); mon  = year ; day  = year ;
-% $$$         hour  = nan(nLines,1); min  = hour ; sec  = hour ;
         lat0  = nan(nLines,1); lon0 = lat0 ; lat1 = lat0 ; lon1 = lat0;
         % zero iterating vars
         Fnum     = 0;
-        lnum     = 1;
+        lnum     = 0;
         while ~feof(fid)
-            if lnum==26806; break; end            
+% $$$             if lnum==3; break; end            
             tline = fgetl(fid);
             %
             Fnew = find(ismember(formats(:,1),tline(2:6)));
-            if (isempty(Fnew) | (Fnew~=Fnum+1)) & ~flag
-                Fnum=0;
-                flag=1;
+            if isempty(Fnew)
                 continue
-            elseif isempty(Fnew) & flag
-                continue
-            else
-                flag=0;
             end
+% $$$             if (isempty(Fnew) | (Fnew~=Fnum+1)) %& ~flag
+% $$$                 Fnum=0;
+% $$$                 %                flag=1;
+% $$$                 continue
+% $$$             elseif isempty(Fnew) %| flag
+% $$$                 continue
+% $$$             else
+% $$$                 flag=0;
+% $$$             end
             %
             % parse string
             D = textscan(tline,formats{Fnew,2},'Delimiter',',');
             switch Fnew
               case 1
+                lnum = lnum+1;
                 % GPGGA
                 % time hhmmss.ss
                 hhmmss = D{1};
@@ -153,11 +156,11 @@ for jj = 1:nd
                    zone    = char(D{5});
                 end
             end
-            Fnum = Fnew;
-            if Fnum==4;
-                lnum=lnum+1;
-                Fnum=0;
-            end
+% $$$             Fnum = Fnew;
+% $$$             if Fnum==4;
+% $$$ % $$$                 lnum=lnum+1;
+% $$$                 Fnum=0;
+% $$$             end
         end
         % trim pre-allocated vars
         N = min(length(speed),lnum);

@@ -2,11 +2,11 @@
 ctdType = 'seahawk';
 % ctdType = 'rosette';
 % ctdType = 'cape-fear';
-%
+% 
 % data are stored in sub-dirs based on
 % sample date: yyyymmdd
 % dates = {'20230425'};%; %{'20230425'};
-dates = {'20230619'};
+dates = {'20230714'};%{'20230619'};
 % dates previously processed:
 % ???????
 %
@@ -18,7 +18,7 @@ rawDir = [rootDir,filesep,'CTD/data/'];
 arcDir = [rootDir,filesep,'CTD/mat_data/'];
 %
 cfDir = 'capeFear_flowThrough/';
-shDir = 'seahawk_flowThrough/';    
+shDir = 'seaHawk_flowThrough/';    
 rsDir = 'rosette/';
 %
 switch ctdType
