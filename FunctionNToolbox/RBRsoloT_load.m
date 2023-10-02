@@ -29,7 +29,7 @@ RBRsoloT.units='deg C';
 figure;
 plot(RBRsoloT.time, RBRsoloT.temp, 'LineWidth',1.5,'Color', 'red');
 title('Raw RBRsoloT Temp'); ylabel('Deg C'); grid on; axis tight;
-datetick('x','dd/mm','keepticks', 'keeplimits')
+datetick('x','mm/dd','keepticks', 'keeplimits')
 %% Saving file to L0 proc folder within the Correct BOEMTest and Crate
 
 % Creating L0 Folder within the BOEMTest and Crate Folder

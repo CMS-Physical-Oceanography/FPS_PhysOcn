@@ -205,7 +205,7 @@
         set(gca, 'XTickLabel',[]); ylabel('Tp (s)'); axis tight;
     subplot(313)
         plot(wave_time, D_p, '.','LineWidth', 1.5,'Color','magenta'); 
-        grid on; ylabel('D_p (deg)'); axis tight; datetick('x','dd/mm','keeplimits','keepticks')
+        grid on; ylabel('D_p (deg)'); axis tight; datetick('x','mm/dd','keeplimits','keepticks')
   end
         
 %% Saving Wave and Spectrum data to ADCP structure
@@ -258,7 +258,7 @@
   wave_source=fullfile(inpath,'*.PD0');
   pd0file=dir(wave_source);
   cd(pd0file.folder);
-  pd0filedir=fullfile(pd0file.folder, pd0file.name)
+  pd0filedir=fullfile(pd0file.folder, pd0file.name);
 
   ct = 0;
   for h = 1:length(pd0file) 
@@ -341,6 +341,7 @@ for i = 1:length(ADCP.cur)
     ADCP.cur(i).bt_corr(:,index)=[];
     ADCP.cur(i).bt_ampl(:,index)=[];
     ADCP.cur(i).bt_perc_good(:,index)=[];
+    ADCP.cur(i).config.ranges = ADCP.cur.config.ranges.*-1;
     
     ct=ct+1;
 end
@@ -348,71 +349,61 @@ disp('Section 2 complete')
 %%  Section 3 Test Images 
 % creates images to visualize the data for the first and last 100 ensembles.
 figure
-for jj=1:length(ADCP.cur)
     subplot(221)
-    imagesc(squeeze(ADCP.cur(jj).intens(:,1,:)));
-    title('Beam 1 Echo Amp'); ylabel('bin number');
-    set(gca, 'Ydir', 'normal'); xticks([1:75:length(ADCP.cur.intens)]); grid on;
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges,squeeze(ADCP.cur.intens(:,1,:)));
+    title('Beam 1 Echo Amp'); ylabel('Depth (m)');
+    set(gca, 'Ydir', 'normal'); grid on; datetick('x', 'mm/dd','keepticks');
     
     ax2=subplot(222)
-    imagesc(squeeze(ADCP.cur(jj).intens(:,2,:)));
-    title('Beam 2 Echo Amp');ylabel('bin number');
-    set(gca, 'Ydir', 'normal'); xticks([1:75:length(ADCP.cur.intens)]); grid on;
-    colorbar(ax2); caxis([40 160]);
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges,squeeze(ADCP.cur.intens(:,2,:)));
+    title('Beam 2 Echo Amp');
+    set(gca, 'Ydir', 'normal'); grid on; datetick('x', 'mm/dd','keepticks');
+    colorbar(ax2, 'eastoutside'); caxis([40 160]);
 
     subplot(223)
-    imagesc(squeeze(ADCP.cur(jj).intens(:,3, :)));
-    title('Beam 3 Echo Amp');ylabel('bin number');
-    set(gca, 'Ydir', 'normal'); xticks([1:75:length(ADCP.cur.intens)]); grid on;
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges, squeeze(ADCP.cur.intens(:,3, :)));
+    title('Beam 3 Echo Amp'); ylabel('Depth (m)');
+    set(gca, 'Ydir', 'normal'); grid on; datetick('x', 'mm/dd','keepticks');
 
     ax4=subplot(224)
-    imagesc(squeeze(ADCP.cur(jj).intens(:,4, :)));
-    title('Beam 4 Echo Amp');ylabel('bin number'); set(gca, 'ylim',[1 45]);
-    set(gca, 'Ydir', 'normal'); xticks([1:75:length(ADCP.cur.intens)]); grid on;
-    colorbar(ax4); caxis([40 160]);
-end
-
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges, squeeze(ADCP.cur.intens(:,4, :)));
+    title('Beam 4 Echo Amp'); set(gca, 'Ydir', 'normal'); grid on;
+    colorbar(ax4, 'eastoutside'); caxis([40 160]); datetick('x', 'mm/dd','keepticks');
+ 
 figure 
-for kk=1:length(ADCP.cur)
     subplot(221)
-    imagesc(squeeze(ADCP.cur(kk).east_vel)); set(gca, 'YDir','normal');
-    ylabel('bin number'); xticks([1:75:length(ADCP.cur.east_vel)]);
-    set(gca, 'ylim',[1 45]); title('East velcoity (m/s)'); colorbar
-    caxis([-0.25 0.25])
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges, squeeze(ADCP.cur.east_vel)); 
+    set(gca, 'YDir','normal'); ylabel('Depth (m)'); title('East velcoity (m/s)'); colorbar
+    caxis([-0.25 0.25]);
 
     subplot(222)
-    imagesc(squeeze(ADCP.cur(kk).north_vel)); set(gca, 'YDir','normal');
-    ylabel('bin number'); xticks([1:75:length(ADCP.cur.north_vel)]);
-    set(gca, 'ylim',[1 45]); title('North velcoity (m/s)');  
-    colorbar; caxis([-0.25 0.25])
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges, squeeze(ADCP.cur.north_vel)); 
+    set(gca, 'YDir','normal'); title('North velcoity (m/s)');  
+    colorbar; caxis([-0.25 0.25]);
 
     subplot(223)
-    imagesc(squeeze(ADCP.cur(kk).vert_vel)); set(gca, 'YDir','normal');
-    ylabel('bin number'); xticks([1:75:length(ADCP.cur.vert_vel)]);
-    set(gca, 'ylim',[1 45]); title('Vertical velcoity (m/s)');  
-    colorbar; caxis([-0.15 0.15])
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges, squeeze(ADCP.cur.vert_vel)); 
+    set(gca, 'YDir','normal'); ylabel('Depth (m)'); title('Vertical velcoity (m/s)');  
+    colorbar; caxis([-0.01 0.15]);
 
     subplot(224)
-    imagesc(squeeze(ADCP.cur(kk).error_vel)); set(gca, 'YDir','normal');
-    ylabel('bin number'); xticks([1:75:length(ADCP.cur.error_vel)]);
-    set(gca, 'ylim',[1 45]); title('Error velcoity (cm/s)');  
-    colorbar; caxis([-0.1 0.1])
-end
+    imagesc(ADCP.cur.mtime, ADCP.cur.config.ranges, squeeze(ADCP.cur.error_vel)); 
+    set(gca, 'YDir','normal'); title('Error velcoity (cm/s)');  
+    colorbar; caxis([-0.01 0.01]);
 
 figure
-for hh=1:length(ADCP.cur)
     subplot(311)
-    plot(ADCP.cur(hh).mtime,ADCP.cur(hh).heading, 'Color','blue','LineWidth',1.5);
-    title('Raw Directional Pivoting during Deployment'); ylabel('Heading')
+    plot(ADCP.cur.mtime,ADCP.cur.heading, 'Color','blue','LineWidth',1.5);
+    title('Raw Directional Pivoting during Deployment'); ylabel('Heading (deg)'); grid on; axis tight;
+    set(gca, 'XTickLabel', []);
 
     subplot(312)
-    plot(ADCP.cur(hh).mtime,ADCP.cur(hh).pitch, 'Color','green','LineWidth',1.5);
-    ylabel('Pitch');
+    plot(ADCP.cur.mtime,ADCP.cur.pitch, 'Color','green','LineWidth',1.5);
+    ylabel('Pitch (deg)');grid on; axis tight; set(gca, 'XTickLabel', []);
 
     subplot(313)
-    plot(ADCP.cur(hh).mtime,ADCP.cur(hh).roll, 'Color','black','LineWidth',1.5);
-    ylabel('Roll');
-end
+    plot(ADCP.cur.mtime,ADCP.cur.roll, 'Color','black','LineWidth',1.5);
+    ylabel('Roll (deg)'); grid on; axis tight; datetick('x','mm/dd','keeplimits','keepticks');
 disp('Section 3 complete')
 
 %% Section 4 Calculating depth from pressure data

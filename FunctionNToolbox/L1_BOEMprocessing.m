@@ -1,4 +1,4 @@
-function [ADCP, RBRtri, SBE37, RBRsoloT]=L1_BOEMprocessing(deploypath, deploydepth, surfacebin)
+function [ADCP, RBRtri, SBE37, RBRsoloT]=L1_BOEMprocessing(deploypath, deploydepth, surfacebin, startTime, endTime)
 % L1 BOEM Processing Function
 % ========================================================================
 % L1_Boemprocessing inputs the file path of the files from the load
@@ -9,15 +9,17 @@ function [ADCP, RBRtri, SBE37, RBRsoloT]=L1_BOEMprocessing(deploypath, deploydep
 % Input:
 %   - deploypath: path created by deployname and crateNum to the specific
 %   BOEMTest\Crate# folder
+%
 %   - deploydepth: deployment depth of the lander is necessary for removing data 
 % while the lander is physically out of the water and being lowed down to the sea surface. 
 % The variable deploydepth in meters is defined by the depth at which the lander 
 % is deployed minus a meter to account for tidal fluctuations. 
-%   - surfacebin: It defines the sea surface bin # where the echo intensities 
-% are > 90. The bin number can be found by looking at the raw output from the 
-% RDIWH_load.m function in ADCP.cur.intens variable. Look at a window that is known 
-% to be in the water by corresponding the index with a specific time step (Ex: val(:, :, 27) -> datetime(ADCP.cur.mtime(27), 'ConvertFrom', 'datenum')). 
-% Count from the top to the middle of the intens > 90 in the specific ensemble. 
+%
+%   - surfacebin: %It defines the sea surface bin # where the echo intensities 
+% are > 90 associated with the water depth and bin size. The bin number can be determined
+% by looking at the raw output from the RDIWH_load.m function in ADCP.cur.intens variable or 
+% divide the mean depth during the deployment by the bin size to get a bin
+% number at the surface approximately
 % The numeric bin # of this variable is important to set a parameter for NaN data above the sea surface.  
 % 
 % Output: 
@@ -56,6 +58,93 @@ specTime=datetime(ADCP.spec.time, 'ConvertFrom', 'datenum');
 curTime=datetime(ADCP.cur.mtime, 'ConvertFrom','datenum');
 rbrtemp=datetime(RBRsoloT.time, 'ConvertFrom', 'datenum');
 
+%Creating a Start and End time for each instrumnet
+    %SeaBird37 (1 min INT)
+    SBE37_ind=find(SBE37.time>= datenum(startTime) & SBE37.time<= datenum(endTime));
+      SBE37.conductivity = SBE37.conductivity(SBE37_ind);
+      SBE37.pressure = SBE37.pressure(SBE37_ind);
+      SBE37.temperature = SBE37.temperature(SBE37_ind);
+      SBE37.salinity = SBE37.salinity(SBE37_ind);
+      SBE37.time =SBE37.time(SBE37_ind);
+%       %Interp SBE37 to ADCP currents
+%       SBE37.conductivity = interp1(SBE37.time, SBE37.conductivity, ADCP.cur. mtime, 'linear');
+%       SBE37.pressure = interp1(SBE37.time, SBE37.pressure, ADCP.cur.mtime, 'linear');
+%       SBE37.temperature = interp1(SBE37.time, SBE37.temperature, ADCP.cur.mtime, 'linear');
+%       SBE37.salinity = interp1(SBE37.time, SBE37.salinity, ADCP.cur.mtime, 'linear');
+%       SBE37.time = interp1(SBE37.time, SBE37.time, ADCP.cur.mtime, 'linear');
+
+  %RBRtri (1 min INT)
+    RBRtri_ind=find(RBRtri.time >= datenum(startTime) & RBRtri.time <= datenum(endTime));
+      RBRtri.time=RBRtri.time(RBRtri_ind);
+      RBRtri.chlorophyll_a=RBRtri.chlorophyll_a(RBRtri_ind);
+      RBRtri.FDOM=RBRtri.FDOM(RBRtri_ind);
+      RBRtri.turbidity=RBRtri.turbidity(RBRtri_ind);
+%       %Interp RBRtri to ADCP Currents
+%       RBRtri.turbidity=interp1(RBRtri.time, RBRtri.turbidity, ADCP.cur.mtime, 'linear');
+%       RBRtri.chlorophyll_a=interp1(RBRtri.time, RBRtri.chlorophyll_a, ADCP.cur.mtime, 'linear');
+%       RBRtri.FDOM=interp1(RBRtri.time, RBRtri.FDOM, ADCP.cur.mtime, 'linear');
+%       RBRtri.time=interp1(RBRtri.time, RBRtri.time, ADCP.cur.mtime, 'linear');
+
+    %RBRsoloT 
+    if isempty(RBRsoloT) == 0
+        RBRtemp_ind=find(RBRsoloT.time>= datenum(startTime) & RBRsoloT.time <= datenum(endTime));
+       RBRsoloT.temp=RBRsoloT.temp(RBRtemp_ind);
+       RBRsoloT.time=RBRsoloT.time(RBRtemp_ind);
+   %Interp RBRsoloT to SBE37 (1 min INT)
+       RBRsoloT.temp=interp1(RBRsoloT.time, RBRsoloT.temp, SBE37.time, 'linear');
+       RBRsoloT.time=interp1(RBRsoloT.time, RBRsoloT.time, SBE37.time, 'linear');
+    end
+    
+   %ADCP Currents (5 min INT)
+   ADCPtemp_ind = find(ADCP.cur.mtime >= datenum(startTime) & ADCP.cur.mtime<= datenum(endTime));
+    ADCP.cur.mtime = ADCP.cur.mtime(ADCPtemp_ind);
+    ADCP.cur.pitch = ADCP.cur.pitch(ADCPtemp_ind);
+    ADCP.cur.roll = ADCP.cur.roll(ADCPtemp_ind);
+    ADCP.cur.heading = ADCP.cur.heading(ADCPtemp_ind);
+    ADCP.cur.depth = ADCP.cur.depth(ADCPtemp_ind);
+    ADCP.cur.temperature = ADCP.cur.temperature(ADCPtemp_ind);
+    ADCP.cur.pressure = ADCP.cur.pressure(ADCPtemp_ind);
+    ADCP.cur.mean_depth = ADCP.cur.mean_depth(ADCPtemp_ind);
+    ADCP.cur.east_vel = ADCP.cur.east_vel(:, ADCPtemp_ind);
+    ADCP.cur.north_vel = ADCP.cur.north_vel(:, ADCPtemp_ind);
+    ADCP.cur.vert_vel = ADCP.cur.vert_vel(:, ADCPtemp_ind);
+    ADCP.cur.error_vel = ADCP.cur.error_vel(:, ADCPtemp_ind);
+    ADCP.cur.corr = ADCP.cur.corr(:, :, ADCPtemp_ind);
+    ADCP.cur.intens = ADCP.cur.intens(:, :, ADCPtemp_ind); 
+    clearvars ADCPtemp_ind
+
+  %ADCP Log9 File (20 min Ensembles- 40 min INT)
+  ADCPtemp_ind = find(ADCP.log9.wave_time >= datenum(startTime) & ADCP.log9.wave_time <= datenum(endTime));
+    ADCP.log9.Hs = ADCP.log9.Hs(ADCPtemp_ind);
+    ADCP.log9.Tp = ADCP.log9.Tp(ADCPtemp_ind);
+    ADCP.log9.Dp = ADCP.log9.Dp(ADCPtemp_ind);
+    ADCP.log9.Hs_Sea = ADCP.log9.Hs_Sea(ADCPtemp_ind);
+    ADCP.log9.Dp_Sea = ADCP.log9.Dp_Sea(ADCPtemp_ind);
+    ADCP.log9.Tp_Sea = ADCP.log9.Tp_Sea(ADCPtemp_ind);
+    ADCP.log9.Hs_swell = ADCP.log9.Hs_Swell(ADCPtemp_ind);
+    ADCP.log9.Tp_Swell = ADCP.log9.Tp_Swell(ADCPtemp_ind);
+    ADCP.log9.Dp_Swell = ADCP.log9.Dp_Swell(ADCPtemp_ind);
+    ADCP.log9.Hmax = ADCP.log9.Hmax(ADCPtemp_ind);
+    ADCP.log9.Tmax = ADCP.log9.Tmax(ADCPtemp_ind);
+    ADCP.log9.Honethird = ADCP.log9.Honethird(ADCPtemp_ind);
+    ADCP.log9.Tonethird = ADCP.log9.Tonethird(ADCPtemp_ind);
+    ADCP.log9.Honetenth = ADCP.log9.Honetenth(ADCPtemp_ind);
+    ADCP.log9.Tonetenth = ADCP.log9.Tonetenth(ADCPtemp_ind);
+    ADCP.log9.Hmean = ADCP.log9.Hmean(ADCPtemp_ind);
+    ADCP.log9.Tmean = ADCP.log9.Tmean(ADCPtemp_ind);
+    ADCP.log9.D_pmean = ADCP.log9.D_pmean(ADCPtemp_ind);
+    ADCP.log9.wave_time = ADCP.log9.wave_time(ADCPtemp_ind);
+    clearvars ADCPtemp_ind;
+
+    %ADCP Spectrum Files (20 min Ensembles- 40 min INT)
+    ADCPtemp_ind = find(ADCP.spec.time >= datenum(startTime) & ADCP.spec.time <= datenum(endTime))
+    ADCP.spec.DSpec.burst = ADCP.spec.DSpec.burst(:,:,ADCPtemp_ind);
+    ADCP.spec.SSpec.burst = ADCP.spec.SSpec.burst(:, ADCPtemp_ind);
+    ADCP.spec.VSpec.burst = ADCP.spec.VSpec.burst(:, ADCPtemp_ind);
+    ADCP.spec.PSpec.burst = ADCP.spec.PSpec.burst(:, ADCPtemp_ind);
+    ADCP.spec.time = ADCP.spec.time(ADCPtemp_ind);
+
+
 %Determining in and out of water time by the RDIWH recorded depth
 for i = 1:length(ADCP.cur)
        if length(unique(ADCP.cur(i).depth))>2 && mean(ADCP.cur(i).depth) > deploydepth %Checking to make sure pressure sensor is recording and in the range of what we expect
@@ -68,7 +157,6 @@ for i = 1:length(ADCP.cur)
            ADCP.cur(i).heading(bad_depth)=[];
            ADCP.cur(i).depth(bad_depth)=[];
            ADCP.cur(i).temperature(bad_depth)=[];
-           ADCP.cur(i).salinity(bad_depth)=[];
            ADCP.cur(i).pressure(bad_depth)=[];
            ADCP.cur(i).east_vel(:,bad_depth)=[];
            ADCP.cur(i).north_vel(:,bad_depth)=[];
@@ -77,7 +165,6 @@ for i = 1:length(ADCP.cur)
            ADCP.cur(i).intens(:,:,bad_depth)=[];
            ADCP.cur(i).mean_depth(bad_depth)=[];
            ADCP.cur(i).corr(:,:, bad_depth) = [];
-       else
        end
 end
 
@@ -96,7 +183,6 @@ for i = 1:length(ADCP.cur)
    ADCP.cur(i).heading(bad_echo)=[];
    ADCP.cur(i).depth(bad_echo)=[];
    ADCP.cur(i).temperature(bad_echo)=[];
-   ADCP.cur(i).salinity(bad_echo)=[];
    ADCP.cur(i).pressure(bad_echo)=[];
    ADCP.cur(i).east_vel(:,bad_echo)=[];
    ADCP.cur(i).north_vel(:,bad_echo)=[];
@@ -105,114 +191,40 @@ for i = 1:length(ADCP.cur)
    ADCP.cur(i).intens(:,:,bad_echo)=[];
    ADCP.cur(i).mean_depth(bad_echo)=[];
    ADCP.cur(i).corr(: ,:, bad_echo) = [];
-   startTime=ADCP.cur.mtime(1);
-   endTime=ADCP.cur.mtime(end);
-
-    for j=1:length(SBE37)  
-      SBE37(j).time = datenum([datetime(startTime, 'ConvertFrom', 'datenum') :minutes(1):datetime(endTime, 'ConvertFrom', 'datenum')])';
-        SBE37_ind=find(SBE37(j).time>= startTime & SBE37(j).time<= endTime);
-      SBE37(j).conductivity = SBE37.conductivity(SBE37_ind);
-      SBE37(j).pressure = SBE37.pressure(SBE37_ind);
-      SBE37(j).temperature = SBE37.temperature(SBE37_ind);
-      SBE37(j).salinity = SBE37.salinity(SBE37_ind);
-      %Interp SBE37 to ADCP currents
-      SBE37(j).conductivity = interp1(SBE37.time, SBE37.conductivity, ADCP.cur. mtime, 'linear');
-      SBE37(j).pressure = interp1(SBE37.time, SBE37.pressure, ADCP.cur.mtime, 'linear');
-      SBE37(j).temperature = interp1(SBE37.time, SBE37.temperature, ADCP.cur.mtime, 'linear');
-      SBE37(j).salinity = interp1(SBE37.time, SBE37.salinity, ADCP.cur.mtime, 'linear');
-      SBE37(j).time = interp1(SBE37.time, SBE37.time, ADCP.cur.mtime, 'linear');
-    end
-  %RBRtri 
-    for jj=1:length(RBRtri)
-       RBRtri_ind=find(RBRtri.time >= startTime & RBRtri.time <= endTime);
-      RBRtri(jj).time=RBRtri.time(RBRtri_ind);
-      RBRtri(jj).chlorophyll_a=RBRtri.chlorophyll_a(RBRtri_ind);
-      RBRtri(jj).FDOM=RBRtri.FDOM(RBRtri_ind);
-      RBRtri(jj).turbidity=RBRtri.turbidity(RBRtri_ind);
-      %Interp RBRtri to ADCP Currents
-      RBRtri(jj).turbidity=interp1(RBRtri.time, RBRtri.turbidity, ADCP.cur.mtime, 'linear');
-      RBRtri(jj).chlorophyll_a=interp1(RBRtri.time, RBRtri.chlorophyll_a, ADCP.cur.mtime, 'linear');
-      RBRtri(jj).FDOM=interp1(RBRtri.time, RBRtri.FDOM, ADCP.cur.mtime, 'linear');
-      RBRtri(jj).time=interp1(RBRtri.time, RBRtri.time, ADCP.cur.mtime, 'linear');
-    end
-    %RBRsoloT
-    if isempty(RBRsoloT) == 0
-        RBRtemp_ind=find(RBRsoloT.time>= startTime & RBRsoloT.time <= endTime);
-       RBRsoloT.temp=RBRsoloT.temp(RBRtemp_ind);
-       RBRsoloT.time=RBRsoloT.time(RBRtemp_ind);
-      %Interp RBRsoloT to ADCP currents
-       RBRsoloT.temp=interp1(RBRsoloT.time, RBRsoloT.temp, ADCP.cur.mtime, 'linear');
-       RBRsoloT.time=interp1(RBRsoloT.time, RBRsoloT.time, ADCP.cur.mtime, 'linear');
-    end
-    
-end
 
 %Second form of QC on data by clearing any pressure data less than 2 dB.
-for gg=1:length(SBE37)
-   sbepres=find(SBE37.pressure<= 2);
-   SBE37.pressure(sbepres) = [];
-   SBE37.conductivity(sbepres) = [];
-   SBE37.temperature(sbepres) = [];
-   SBE37.salinity(sbepres) = [];
-   SBE37.time(sbepres) = [];
-  % RBRtri
-   RBRtri.chlorophyll_a(sbepres) = [];
-   RBRtri.FDOM(sbepres) = [];
-   RBRtri.turbidity(sbepres) = [];
-   RBRtri.time(sbepres) = [];
-  % RBRsoloT
-   RBRsoloT.temp(sbepres) = [];
-   RBRsoloT.time(sbepres) = [];
-  % RDI 
-   ADCP.cur.mtime(sbepres) = [];
-   ADCP.cur.pitch(sbepres) = [];
-   ADCP.cur.roll(sbepres) = [];
-   ADCP.cur.heading(sbepres) = [];
-   ADCP.cur.depth(sbepres) = [];
-   ADCP.cur.temperature(sbepres) = [];
-   ADCP.cur.salinity(sbepres) = [];
-   ADCP.cur.pressure(sbepres) = [];
-   ADCP.cur.east_vel(:,sbepres) = [];
-   ADCP.cur.north_vel(:,sbepres) = [];
-   ADCP.cur.vert_vel(:,sbepres) = [];
-   ADCP.cur.error_vel(:,sbepres) = [];
-   ADCP.cur.intens(:,:,sbepres) = [];
-   ADCP.cur.mean_depth(sbepres) = [];
-   ADCP.cur.corr(:, :, sbepres) = [];
-end
-%% Finding in the water time for the Spectrum and Log9 files
-% Spectrum files are left empty where the columns for the Velocity Spectrum
-% are all zeros.
-for kk= 1:length(ADCP.spec)
-    zeroColumns = find(all(ADCP.spec.VSpec.burst == 0, 1));
-    ADCP.spec(kk).DSpec.burst(:, :, zeroColumns)= [];
-    ADCP.spec(kk).PSpec.burst(:, zeroColumns)= [];
-    ADCP.spec(kk).VSpec.burst(:, zeroColumns)= [];
-    ADCP.spec(kk).SSpec.burst(: ,zeroColumns)= [];
-    ADCP.spec(kk).time(zeroColumns)= [];
-  % LOG 9 Files Shorten to Fit same indices as Spectrum files
-    ADCP.log9(kk).Hs(zeroColumns)=[];
-    ADCP.log9(kk).Md(zeroColumns)= [];
-    ADCP.log9(kk).Tp(zeroColumns)= [];
-    ADCP.log9(kk).wave_time(zeroColumns)= [];
-end
-
-%Looking in the Log9 file at Hs to see where wave data and spec data needs
-%to be cleared from the data set.
-
-for ff=1:length(ADCP.log9)
-    Hsbad_ind=find(ADCP.log9.Hs<=0.05);
-    ADCP.log9.Hs(Hsbad_ind) = [];
-    ADCP.log9.Md(Hsbad_ind) = [];
-    ADCP.log9.Tp(Hsbad_ind) = [];
-    ADCP.log9.wave_time(Hsbad_ind) = [];
-    %Clearing Spec data where wave data is bad
-    ADCP.spec.DSpec.burst(:, :, Hsbad_ind) = [];
-    ADCP.spec.PSpec.burst(:, Hsbad_ind)= [];
-    ADCP.spec.SSpec.burst(:, Hsbad_ind) = [];
-    ADCP.spec.VSpec.burst(:, Hsbad_ind) = [];
-    ADCP.spec.time(Hsbad_ind) = [];
-end
+% for gg=1:length(SBE37)
+%    sbepres=find(SBE37.pressure<= 2);
+%    SBE37.pressure(sbepres) = [];
+%    SBE37.conductivity(sbepres) = [];
+%    SBE37.temperature(sbepres) = [];
+%    SBE37.salinity(sbepres) = [];
+%    SBE37.time(sbepres) = [];
+%   % RBRtri
+%    RBRtri.chlorophyll_a(sbepres) = [];
+%    RBRtri.FDOM(sbepres) = [];
+%    RBRtri.turbidity(sbepres) = [];
+%    RBRtri.time(sbepres) = [];
+%   % RBRsoloT
+%    RBRsoloT.temp(sbepres) = [];
+%    RBRsoloT.time(sbepres) = [];
+%   % RDI 
+%    ADCP.cur.mtime(sbepres) = [];
+%    ADCP.cur.pitch(sbepres) = [];
+%    ADCP.cur.roll(sbepres) = [];
+%    ADCP.cur.heading(sbepres) = [];
+%    ADCP.cur.depth(sbepres) = [];
+%    ADCP.cur.temperature(sbepres) = [];
+%    ADCP.cur.salinity(sbepres) = [];
+%    ADCP.cur.pressure(sbepres) = [];
+%    ADCP.cur.east_vel(:,sbepres) = [];
+%    ADCP.cur.north_vel(:,sbepres) = [];
+%    ADCP.cur.vert_vel(:,sbepres) = [];
+%    ADCP.cur.error_vel(:,sbepres) = [];
+%    ADCP.cur.intens(:,:,sbepres) = [];
+%    ADCP.cur.mean_depth(sbepres) = [];
+%    ADCP.cur.corr(:, :, sbepres) = [];
+% end
 
 %% RDI WH QA/QC procedures to RDIWH
 % north values
