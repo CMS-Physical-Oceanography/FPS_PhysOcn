@@ -1,0 +1,291 @@
+
+>>>>>> Function starting 06/27/23 17:11:04 >>>>>>
+
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>TS230627171107
+>CZ
+
+Powering Down
+
+>>>>>> Function starting 06/27/23 17:11:09 >>>>>>
+
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>AX
+
+------------------------------------------------------------------------------
+                    RDI Compass Error Estimating Algorithm
+
+
+   Press any key to start taking data after the instrument is setup.
+
+
+
+Rotate the unit in a plane until all data samples are acquired...
+   rotate less than 5ø/sec.  Press Q to quit.
+
+ N       NE       E        SE       S       SW        W        NW       N
+ ^                ^                 ^                 ^                 ^
+                                                      Û ********************************************************* ***** ***************************************************                ********************************************************************               *****************
+Accumulating data ...                                                                                                                                    Calculating compass performance ...
+
+
+                          >>> Total error:   0.4ø <<<
+
+Press D for details or any other key to continue...
+
+>CZ
+
+Powering Down
+
+>>>>>> Function starting 06/27/23 17:12:08 >>>>>>
+
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>CR1
+[Parameters set to FACTORY defaults]
+>DEPLOY?
+Deployment Commands:
+CF = 11111 --------------- Flow Ctrl (EnsCyc;PngCyc;Binry;Ser;Rec)
+CK ----------------------- Keep Parameters as USER Defaults
+CR # --------------------- Retrieve Parameters (0 = USER, 1 = FACTORY)
+CS ----------------------- Start Deployment
+
+EA = +00000 -------------- Heading Alignment (1/100 deg)
+EB = +00000 -------------- Heading Bias (1/100 deg)
+ED = 00000 --------------- Transducer Depth (0 - 65535 dm)
+ES = 35 ------------------ Salinity (0-40 pp thousand)
+EX = 11111 --------------- Coord Transform (Xform: Type,Tilts,3 Bm,Map)
+EZ = 1111101 ------------- Sensor Source (C,D,H,P,R,S,T)
+
+RE ----------------------- Recorder ErAsE
+RN ----------------------- Set Deployment Name
+
+TE = 01:00:00.00 --------- Time per Ensemble (hrs:min:sec.sec/100)
+TF = **/**/**,**:**:** --- Time of First Ping (yr/mon/day,hour:min:sec)
+TP = 01:20.00 ------------ Time per Ping (min:sec.sec/100)
+TS = 23/06/27,17:12:11 --- Time Set (yr/mon/day,hour:min:sec)
+
+WD = 111 100 000 --------- Data Out (Vel,Cor,Amp; PG,St,P0; P1,P2,P3)
+WF = 0044 ---------------- Blank After Transmit (cm)
+Press any key to continue                       WN = 030 ----------------- Number of depth cells (1-128)
+WP = 00045 --------------- Pings per Ensemble (0-16384)
+WS = 0100 ---------------- Depth Cell Size (cm)
+WV = 175 ----------------- Mode 1 Ambiguity Vel (cm/s radial)
+
+>SYSTEM?
+System Control, Data Recovery and Testing Commands:
+AC ----------------------- Output Active Fluxgate & Tilt Calibration data
+AF ----------------------- Field calibrate to remove hard/soft iron error
+AR ----------------------- Restore factory fluxgate calibration data
+AX ----------------------- Examine compass performance
+AZ ----------------------- Zero pressure reading
+
+CB = 811 ----------------- Serial Port Control (Baud; Par; Stop)
+CP # --------------------- Polled Mode (0 = NORMAL, 1 = POLLED)
+CZ  ---------------------- Power Down Instrument
+
+FC ----------------------- Clear Fault Log
+FD ----------------------- Display Fault Log
+
+OL ----------------------- Display Features List
+
+PA ----------------------- Pre-Deployment Tests
+PC1 ---------------------- Beam Continuity
+PC2 ---------------------- Sensor Data
+PS0 ---------------------- System Configuration
+PS3 ---------------------- Transformation Matrices
+
+RR ----------------------- Recorder Directory
+Press any key to continue                       RF ----------------------- Recorder Space used/free (bytes)
+RY ----------------------- Upload Recorder Files to Host
+
+>TS?
+TS 23/06/27,17:12:18 --- Time Set (yr/mon/day,hour:min:sec)
+>PS0
+  Instrument S/N:  14975
+       Frequency:  1228800 HZ
+   Configuration:  4 BEAM, JANUS
+     Match Layer:  10
+      Beam Angle:  20 DEGREES
+    Beam Pattern:  CONVEX 
+     Orientation:  UP  
+       Sensor(s):  HEADING  TILT 1  TILT 2  DEPTH  TEMPERATURE  PRESSURE
+Pressure Sens Coefficients:
+              c3 = -5.021539E-13
+              c2 = +2.981354E-08
+              c1 = +8.780288E-03
+          Offset = -1.070541E+01
+
+Temp Sens Offset:  -0.29 degrees C
+
+    CPU Firmware:  51.42 [0]
+   Boot Code Ver:  Required:  1.17   Actual:  1.17
+    DEMOD #1 Ver:  ad48, Type:  1f
+    DEMOD #2 Ver:  ad48, Type:  1f
+    PWRTIMG  Ver:  85d3, Type:   4
+
+Board Serial Number Data:
+   8F  00 00 03 87 A8 E4  09 CPU727-2000-00J
+   BD  00 00 03 87 BA FD  09 DSP727-2001-02G
+   0B  00 00 00 D9 A5 33  09 PIO727-3000-00G
+   0F  00 00 03 87 AB 6B  09 REC727-1000-02E
+>PA
+
+PRE-DEPLOYMENT TESTS
+
+CPU TESTS:
+  RTC......................................PASS
+  RAM......................................PASS
+  ROM......................................PASS
+RECORDER TESTS:
+  PC Card #0...............................DETECTED
+    Card Detect............................PASS
+    Communication..........................PASS
+    DOS Structure..........................PASS
+    Sector Test (short)....................PASS
+  PC Card #1...............................DETECTED
+    Card Detect............................PASS
+    Communication..........................PASS
+    DOS Structure..........................PASS
+    Sector Test (short)....................PASS
+DSP TESTS:
+  Timing RAM...............................PASS
+  Demod  RAM...............................PASS
+  Demod  REG...............................PASS
+  FIFOs....................................PASS
+SYSTEM TESTS:
+  XILINX Interrupts... IRQ3  IRQ3  IRQ3 ...PASS
+  Wide Bandwidth...........................PASS
+  Narrow Bandwidth.........................PASS
+  RSSI Filter..............................PASS
+  Transmit.................................PASS
+SENSOR TESTS:
+  H/W Operation............................PASS
+>PC2
+
+Press any key to quit sensor display ...
+
+All Sensors are Internal Only.
+Heading   Pitch    Roll   Up/Down    Attitude Temp   Ambient Temp   PRESSURE
+ 98.95ø  15.09ø  -0.21ø     Up          24.14øC        22.09øC        -0.1 kPa 99.07ø  15.05ø  -0.25ø     Up          24.13øC        22.08øC        -0.1 kPa 98.66ø  15.13ø  -0.15ø     Up          24.14øC        22.08øC         0.1 kPa 98.76ø  15.12ø  -0.22ø     Up          24.17øC        22.10øC        -0.0 kPa 98.90ø  15.11ø  -0.22ø     Up          24.15øC        22.07øC        -0.1 kPa 98.67ø  15.12ø  -0.23ø     Up          24.15øC        22.10øC         0.0 kPa 98.57ø  15.12ø  -0.23ø     Up          24.14øC        22.10øC        -0.0 kPa
+>RS
+RS = 001,2197 ------------- REC SPACE USED (MB), FREE (MB)
+
+>PC1
+
+
+BEAM CONTINUITY TEST
+
+When prompted to do so, vigorously rub the selected
+beam's face.
+
+If a beam does not PASS the test, send any character to
+the ADCP to automatically select the next beam.
+
+Collecting Statistical Data...
+  50  47  46  49  50  48  45  48  50  48  45  47  50  48  46  47  50  48  46  47  50  48  46  47  50  48  45  47  50  48  46  47  50  48  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47  50  47  46  47
+
+Rub Beam 1 = PASS
+Rub Beam 2 = PASS
+Rub Beam 3 = PASS
+Rub Beam 4 = PASS
+
+>CZ
+
+Powering Down
+
+>>>>>> Function starting 06/27/23 17:13:29 >>>>>>
+
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>AZ
+Pressure Offset Updated in NVRAM.
+
+>CZ
+
+Powering Down
+
+>>>>>> Function starting 06/27/23 17:13:39 >>>>>>
+
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>RE ErAsE  erasing...
+Recorder erased.
+
+>CZ
+
+Powering Down
+
+>>>>>> Function starting 06/27/23 17:13:49 >>>>>>
+
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>RR
+Recorder Directory:
+Volume serial number for device #0 is 206f-6241
+
+  No files found.
+
+  Bytes used on device #0 = 0
+Volume serial number for device #1 is 206f-6241
+
+  No files found.
+
+  Bytes used on device #1 = 0
+Total capacity   = 2304417792 bytes
+Total bytes used =          0 bytes in 0 files
+Total bytes free = 2304417792 bytes
+
+>
+[BREAK Wakeup A]
+WorkHorse Broadband ADCP Version 51.42
+Teledyne RD Instruments (c) 1996-2014
+All Rights Reserved.
+>CR1
+[Parameters set to FACTORY defaults]
+>CF11101
+>EA0
+>EB-900
+>ED180
+>ES35
+>EX11111
+>EZ1111101
+>WA255
+>WB0
+>WD111100000
+>WF44
+>WN45
+>WP600
+>WS50
+>WV175
+>HD111000000
+>HB5
+>HP2400
+>HR00:40:00.00
+>HT00:00:00.50
+>TE00:05:00.00
+>TP00:00.50
+>TF23/06/29 10:00:00
+>CK
+[Parameters saved as USER defaults]
+>The command CS is not allowed in this command file.  It has been ignored.
+>The following commands are generated by this program:
+>CF?
+CF = 11101 --------------- Flow Ctrl (EnsCyc;PngCyc;Binry;Ser;Rec)
+>CF11101
+>RN Dp629
+>cs
