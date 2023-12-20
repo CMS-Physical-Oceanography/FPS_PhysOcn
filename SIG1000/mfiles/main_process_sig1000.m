@@ -33,12 +33,11 @@ HeadingOffset = -9;
 % read in first/last data files and estimate atmospheric pressures
 select_times_from_pressure
 %
-%
 % load and pre-process data.
 load_and_processes_sig1000_matrix_format
-%
 %
 % make time-averages
 time_average_and_rotate_sig1000
 %
+% estimate hourly wave stats
 wave_statistics_sig1000
