@@ -1,13 +1,12 @@
-function [SBE37,filename] = SBE37_load(file_path,save_to_path,depnum,stationID,sscalc,stime,etime)
-% [SBE37,filename] = SBE37_load(file_path,save_to_path,depnum,stationID,sscalc,stime,etime)
+function [SBE37,filename] = SBE37_load_nopressure(file_path,save_to_path,depnum,stationID,stime,etime)
+%[SBE37,filename] = SBE37_load_nopressure(file_path,save_to_path,depnum,stationID,stime,etime)
 %
 %=========================================================================
 % This functions inputs the file path of the SeaTerm .asc output file and 
 % outputs a Data structure with temperature, conductivity, pressure, &
 % time into L0processing folder. 
 %
-% NOTE: sscalc is a switch for whether or not sound speeed is calculated in
-% SeaTerm. If it is, sscalc = 1, otherwise sscalc = 0
+% NOTE: This one does not include the pressure measurements
 %=========================================================================
 isthere=dir(file_path);
 if isempty(isthere) == 1
@@ -17,13 +16,7 @@ else
 fileID=fopen(file_path,'r');
 % Really annoying - changes whether or not sound speed is calculated as
 % well as the indexing below
-if sscalc == 1
-formatspec='%f %f %f %f %f %s %s';
-offs = 1;
-else
-    formatspec='%f %f %f %f %s %s';
-    offs = 0;
-end
+formatspec='%f %f %f %f %s %s';
 % 
 % Read the header and stop at line that starts with '*END*'
 str='*';
@@ -45,13 +38,13 @@ end
 dataArray = textscan(fileID, formatspec , 'Delimiter', ',');
 fclose(fileID)
 
-date_time = char(strcat(dataArray{5+offs},{' '},dataArray{6+offs}));
+date_time = char(strcat(dataArray{5},{' '},dataArray{6}));
 
 time=datenum(date_time);
 temp=dataArray{1,1}; %deg C
 conductivity=dataArray{1,2}; %Siemens/m (S/m)
-pres=dataArray{1,3};
-sal=dataArray{1,4};
+pres=NaN(size(conductivity));
+sal=dataArray{1,3};
 
 SBE37.temperature=temp;
 SBE37.conductivity=conductivity;

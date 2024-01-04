@@ -1,5 +1,6 @@
-function [RBRtri] = RBRtri_load(deploypath)
-
+function [RBRtri, filename] = RBRtri_load(file_path,save_to_path,depnum,stationID,stime,etime);
+% [RBRtri, filename] = RBRtri_load(file_path,save_to_path,depnum,stationID,stime,etime);
+%
 %=========================================================================
 % RBRtri_load reads the .rsk file output from the Ruskin.exe
 % software. The inputs to the function are the full filename ".rsk" and the 
@@ -19,13 +20,11 @@ function [RBRtri] = RBRtri_load(deploypath)
 %"help RSKtools" in the command window. 
 %=========================================================================
 
-%Creating path to RBRtri within BOEMtest folder
-rbrtriFolder=dir([deploypath, filesep, 'RBRtri*']);
-inpath=[deploypath, filesep, rbrtriFolder(1).name];
-source=fullfile(inpath,'*.rsk');
-filedir=dir(source);
-file_path=fullfile(inpath,filedir(1).name);
-
+isthere=dir(file_path);
+if isempty(isthere) == 1
+disp(strcat('Can''t find  ',file_path))
+else
+    
 %Reading raw .rsk file into matlab structure rsk
 rsk=RSKopen(file_path);
 
@@ -38,34 +37,39 @@ RBRtri.chlorophyll_a=RSK.data.values(:,1);
 RBRtri.FDOM=RSK.data.values(:,2);
 RBRtri.turbidity=RSK.data.values(:,3);
 RBRtri.time=RSK.data.tstamp;
-RBRtri.SN=num2str(rsk.instruments.serialID);
+RBRtri.SN=string(rsk.instruments.serialID);
 RBRtri.units= {'chlorophyll-a = ug/l'; 'FDOM = ppb'; 'turb = FTU'};
+RBRtri.notes = {'Time base is GMT';
+    sprintf('Created on %s',datestr(now))};
+%%
+% Trim the beginning and ends of the files:
+aa = find(RBRtri.time>=stime & RBRtri.time <=etime);
+time = RBRtri.time(aa);
+chlorophyll_a = RBRtri.chlorophyll_a(aa);
+FDOM = RBRtri.FDOM(aa);
+turbidity = RBRtri.turbidity(aa);
+units = RBRtri.units;
+SN = RBRtri.SN;
+notes = RBRtri.notes;
+
 %% Raw figures
   figure(); clf;
      subplot(311);
-        plot(RBRtri.time,RBRtri.chlorophyll_a, 'LineWidth',1.5,'Color','blue');
-        title('RBR Tridente Raw Data'); ylabel('phyll-a (ug/l)'); grid on;
-        set(gca,'XTickLabel',[]); axis tight
+        plot(time,chlorophyll_a, 'LineWidth',1.5,'Color','blue');
+        title(sprintf('RBR Tridente Raw Data %s',RBRtri.SN)); ylabel('phyll-a (ug/l)'); grid on;
+        set(gca,'XTickLabel',[]); axis tight; 
     subplot(312);
-        plot(RBRtri.time, RBRtri.FDOM, 'LineWidth',1.5,'Color','green');
-        ylabel('FDOM (ppb)'); grid on; set(gca,'XTickLabel',[]); axis tight
+        plot(time, FDOM, 'LineWidth',1.5,'Color','green');
+        ylabel('FDOM (ppb)'); grid on; set(gca,'XTickLabel',[]); axis tight; 
     subplot(313);
-        plot(RBRtri.time, RBRtri.turbidity, 'LineWidth',1.5,'Color','red');
-        ylabel('turb (FTU)'); grid on; axis tight; datetick('x','dd/mm','keepticks', 'keeplimits')
+        plot(time, turbidity, 'LineWidth',1.5,'Color','red');
+        ylabel('turb (FTU)'); grid on; axis tight; datetick('x','dd/mm','keepticks', 'keeplimits');
+        
      
 %% %Saving the file to outpath directory with file name and start date of
-%deployment
-
-% Creating L0 Folder within the BOEMTest and Crate Folder
-L0Folder=mkdir(deploypath, 'L0processing')
-
-date=datestr(RBRtri.time(1),'yyyy_mm_dd');
-%Linking the file to be saved in L0proc under BOEMtest
-outpath=[inpath, filesep, '..'];
-cd(outpath); outpath=pwd;
-L0Folder=dir([outpath, filesep, 'L0*']);
-filename=[outpath, filesep, L0Folder(1).name, filesep, 'RBRtri_', RBRtri.SN,'_', date,'_L0.mat'];
-save(filename, 'RBRtri'); 
+filename=[save_to_path,'RBR_',sprintf('%08d',str2num(RBRtri.SN)),'_','DEP',num2str(depnum),'_',stationID,'_L0.mat'];
+save(filename,'SN','time','chlorophyll_a','FDOM','turbidity','units','notes'); 
+end
 end
 
 
