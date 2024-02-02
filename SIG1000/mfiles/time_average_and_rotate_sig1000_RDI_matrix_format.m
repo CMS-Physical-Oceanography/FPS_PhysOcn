@@ -24,7 +24,7 @@ for ii= 1:Nf
     inFileName = sprintf([L0FRoot,'%03d.mat'],ii);
     fin  = [outRoot,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
-    in = load(fin,'VelEast','VelNorth','VelUp','VelError','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','mab','mab_Echo','Echo1','Echo2');
+    in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','Velocity_Error','Correlation_Minimum','Amplitude_Minimum','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','bin_mab','bin_mab_Echo','Echo1','Echo2');
     %
     %
     if ii==1
@@ -54,14 +54,14 @@ for ii= 1:Nf
     ns = rem(ns,1);
     %
     % average Iburst and burst Temp/Pres
-    in.Pressure    = nanmean(in.Pressure,2);
-    in.Temperature = nanmean(in.Temperature,2);
+    in.Pressure    = nanmean(in.Pressure,1);
+    in.Temperature = nanmean(in.Temperature,1);
     %
     % estimate bulk wave statistics on 1hr chunks?
     %
     % perform time-convolution (filling nan's in the mask), conv2 x 3 (nans=0, qcFlag, ones)
-    on  = [qcP; in.qcFlag];
-    o   = ones(size(on,1),1);
+    on  = [qcP, in.qcFlag];
+    o   = ones(1,size(on,2));
     %
     % convolve NAN matrix for normalization
     norm0   = conv2(o,F,'same');
@@ -71,21 +71,21 @@ for ii= 1:Nf
     norm(norm<=0.25)=inf;
     %
     % convolve signals
-    t1    = [tP;in.Time];
-    vb1   = conv2([vb1p;in.VelEast ].*on,F,'same')./norm;
-    vb2   = conv2([vb2p;in.VelNorth].*on,F,'same')./norm;
-    vb3   = conv2([vb3p;in.VelUp   ].*on,F,'same')./norm;
-    vb4   = conv2([vb4p;in.VelError].*on,F,'same')./norm;
-    echo1 = conv2([e1p ;in.Echo1]       ,F,'same')./norm0;
-    echo2 = conv2([e2p ;in.Echo2]       ,F,'same')./norm0;    
-    head  = conv2([hP  ;in.Heading ]    ,F,'same')./norm0;
-    pitch = conv2([pP  ;in.Pitch   ]    ,F,'same')./norm0;
-    roll  = conv2([rP  ;in.Roll    ]    ,F,'same')./norm0;
-    P     = conv2([Pp  ;in.Pressure]    ,F,'same')./norm0;
-    T     = conv2([Tp  ;in.Temperature] ,F,'same')./norm0;    
+    t1    = [tP, in.Time];
+    vb1   = conv2(1, F, [vb1p, in.Velocity_East ].*on,'same')./norm;
+    vb2   = conv2(1, F, [vb2p, in.Velocity_North].*on,'same')./norm;
+    vb3   = conv2(1, F, [vb3p, in.Velocity_Up   ].*on,'same')./norm;
+    vb4   = conv2(1, F, [vb4p, in.Velocity_Error].*on,'same')./norm;
+    echo1 = conv2(1, F, [e1p , in.Echo1]       ,'same')./norm0;
+    echo2 = conv2(1, F, [e2p , in.Echo2]       ,'same')./norm0;    
+    head  = conv2(1, F, [hP  , in.Heading ]    ,'same')./norm0;
+    pitch = conv2(1, F, [pP  , in.Pitch   ]    ,'same')./norm0;
+    roll  = conv2(1, F,[rP  , in.Roll    ]    ,'same')./norm0;
+    P     = conv2(1, F,[Pp  , in.Pressure]    ,'same')./norm0;
+    T     = conv2(1, F,[Tp  , in.Temperature] ,'same')./norm0;    
     %
     %
-    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'VelEast',vb1(Ns:Ns:Ns*(N-1),:),'VelNorth',vb2(Ns:Ns:Ns*(N-1),:),'VelUp',vb3(Ns:Ns:Ns*(N-1),:),'VelError',vb4(Ns:Ns:Ns*(N-1),:),'Heading',head(Ns:Ns:Ns*(N-1),:),'Pitch',pitch(Ns:Ns:Ns*(N-1),:),'Roll',pitch(Ns:Ns:Ns*(N-1),:),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(Ns:Ns:Ns*(N-1),:),'HeadingOffset',in.HeadingOffset,'mab',in.mab,'mab_Echo',in.mab_Echo,'Echo1',echo1(Ns:Ns:Ns*(N-1),:),'Echo2',echo2(Ns:Ns:Ns*(N-1),:));    
+    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(Ns:Ns:Ns*(N-1),:),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'mab',in.mab,'mab_Echo',in.mab_Echo,'Echo1',echo1(:,Ns:Ns:Ns*(N-1)),'Echo2',echo2(:,Ns:Ns:Ns*(N-1)));    
     %
     % 
     % need to rotate from magnetic to true?
@@ -98,7 +98,7 @@ for ii= 1:Nf
         vars = fields(out);
         for jj = 1:length(vars);
             var = vars{jj};
-            if ismember(var,{'HeadingOffset','mab','mab_Echo','beam2xyz'})
+            if ismember(var,{'HeadingOffset','bin_mab','bin_mab_Echo','beam2xyz'})
                 continue
             end
             eval(['out.',var,'= cat(1,out.',var,',avg.',var,');'])
@@ -106,14 +106,14 @@ for ii= 1:Nf
     end
     %
     % get pad data for next file
-    tP   = in.Time       (nt-Ns*(1+ns)+1:nt,:);
-    qcP  = in.qcFlag     (nt-Ns*(1+ns)+1:nt,:);
-    vb1p = in.VelEast    (nt-Ns*(1+ns)+1:nt,:);
-    vb2p = in.VelNorth   (nt-Ns*(1+ns)+1:nt,:);
-    vb3p = in.VelUp      (nt-Ns*(1+ns)+1:nt,:);
-    vb4p = in.VelError   (nt-Ns*(1+ns)+1:nt,:);
-    e1p  = in.Echo1      (nt-Ns*(1+ns)+1:nt,:);
-    e2p  = in.Echo2      (nt-Ns*(1+ns)+1:nt,:);    
+    tP   = in.Time       (:,nt-Ns*(1+ns)+1:nt);
+    qcP  = in.qcFlag     (:,nt-Ns*(1+ns)+1:nt);
+    vb1p = in.Velocity_East    (:,nt-Ns*(1+ns)+1:nt);
+    vb2p = in.Velocity_North   (:,nt-Ns*(1+ns)+1:nt);
+    vb3p = in.Velocity_Up      (:,nt-Ns*(1+ns)+1:nt);
+    vb4p = in.Velocity_Error   (:,nt-Ns*(1+ns)+1:nt);
+    e1p  = in.Echo1      (:,nt-Ns*(1+ns)+1:nt);
+    e2p  = in.Echo2      (:,nt-Ns*(1+ns)+1:nt);    
     hP   = in.Heading    (nt-Ns*(1+ns)+1:nt);
     pP   = in.Pitch      (nt-Ns*(1+ns)+1:nt);
     rP   = in.Roll       (nt-Ns*(1+ns)+1:nt);

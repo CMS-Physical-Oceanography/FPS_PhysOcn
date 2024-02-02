@@ -26,6 +26,9 @@ for jj = 1:nd
     % Data directory and data files structure
     flowDir   = [datDir,date];
     flowFiles = dir(flowDir);
+    % remove '.', '..', and '.mat' files
+    flowFiles(ismember({flowFiles.name},{'.','..'})) = [];
+    flowFiles(endsWith({flowFiles.name},'.mat')) = [];
     allFiles  = {flowFiles.name}';
     % find indices of NMEA & flow-through files 
     NMEAexp   = regexp(allFiles,'.*(NMEA).*');
@@ -33,7 +36,7 @@ for jj = 1:nd
     RVSHexp   = regexp(allFiles,'.*(RVSH).*');
     isRVSH    = ~cellfun('isempty',RVSHexp);
     % split files
-    if sum(isNMEA)~=sum(isRVSH), disp('missing at least one NMEA/RVSH file pair'), regurn, end
+    if sum(isNMEA)~=sum(isRVSH), disp('missing at least one NMEA/RVSH file pair'), return, end
     NMEAfiles = flowFiles(isNMEA);
     RVSHfiles = flowFiles(isRVSH);    
     nf = sum(isNMEA);
@@ -210,13 +213,14 @@ for jj = 1:nd
         D      = textscan(fid,format,'Delimiter',',');
         N      = size(D{1},1);
         timeStr= cat(2, char(D{1}),repmat(' ',N,1),char(D{2}));
-        monthOfSample = month(datetime(timeStr(1,:)));
-        weekOfMonth   = week(datetime(timeStr(1,:)),'weekofmonth');
-        ET2UTC = 5;
-        if (monthOfSample>4 & monthOfSample<11) | (monthOfSample==4 & weekOfMonth>2) | (monthOfSample==11 & weekOfMonth==1)
-            ET2UTC = 4;
-        end
-        SENSOR(jj,kk).timeUTC    = datenum(timeStr)+ET2UTC/24+D{3}/86400;
+%    looks like the time is already in UTC, don't need to add: +ET2UTC/24
+% $$$         monthOfSample = month(datetime(timeStr(1,:)));
+% $$$         weekOfMonth   = week(datetime(timeStr(1,:)),'weekofmonth');
+% $$$         ET2UTC = 5;
+% $$$         if (monthOfSample>4 & monthOfSample<11) | (monthOfSample==4 & weekOfMonth>2) | (monthOfSample==11 & weekOfMonth==1)
+% $$$             ET2UTC = 4;
+% $$$         end
+        SENSOR(jj,kk).timeUTC    = datenum(timeStr)+D{3}/86400;
         SENSOR(jj,kk).temperature= D{23};
         SENSOR(jj,kk).salinity   = D{15};
         SENSOR(jj,kk).turbidity  = D{19};
@@ -226,9 +230,15 @@ for jj = 1:nd
         SENSOR(jj,kk).O2mg_L     = D{13};
         SENSOR(jj,kk).pH         = D{22};        
         SENSOR(jj,kk).pressure   = D{14};
+        SENSOR(jj,kk).fileName   = RVSHfiles(kk).name;
         %
         vars                   = split(varString,',');
-        SENSOR(jj,kk).units    = vars([21,14,18,5,8,11,12,20,13]);
+        sensorColumns          = [23,15,19,5,8,11,13,22,14];
+        if length(vars)<=23
+            fprintf('\n missing data columns for: %s\n', RVSHfiles(kk).name)
+            sensorColumns(sensorColumns>length(vars))=[];
+        end
+        SENSOR(jj,kk).units    = vars(sensorColumns);
         SENSORstartTimeUTC(kk) = min(SENSOR(jj,kk).timeUTC);
         SENSORendTimeUTC(kk)   = max(SENSOR(jj,kk).timeUTC);        
     end
@@ -278,14 +288,18 @@ for jj = 1:nd
             eval(['temporary(jj,kk).',varsSENSOR{ll},' = interp1(timeSENSOR(goodSENSOR)*86400,SENSOR(jj,ii).',varsSENSOR{ll},'(goodSENSOR,:),timeINT);']);
         end
         %
-        % now archive one file for each input file
+        % archive one file for each input file
         seahawk = temporary(jj,kk);
+        if isempty(seahawk(1).time)
+            fprintf('\n empty data structure for: %s\n', SENSOR(jj,kk).fileName)
+            continue
+        end
         fileOut = sprintf([arcDir,filesep,'seahawk_flowThrough_%s_L0.mat'],datestr(seahawk(1).time(1),'yyyymmdd_HHMM'));
         save(fileOut,'-struct','seahawk')
     end
 end
 % now save a combined file
 seahawk = temporary;
-fileOut = sprintf([arcDir,filesep,'seahawk_flowThrough_%s_to_%s_L0.mat'],datestr(seahawk(1).time(1),'yyyymmdd'),datestr(seahawk(end).time(1),'yymmdd'));
+fileOut = sprintf([arcDir,filesep,'seahawk_flowThrough_%s_to_%s_L0.mat'],datestr(seahawk(1).time(1),'yyyymmdd'),datestr(seahawk(end).time(1),'yyyymmdd'));
 save(fileOut,'seahawk')
 end
