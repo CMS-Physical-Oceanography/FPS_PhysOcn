@@ -1,9 +1,9 @@
 %
-load([outRoot,filesep,L0FRoot,'config.mat'])
+load([outDir,filesep,filePrefix,'config.mat'])
 fs = double(Config.Burst_SamplingRate);
 Nc = Config.Burst_NCells;
 %
-files    = dir([outRoot,L0FRoot,'*.mat']);
+files    = dir([outDir,filesep,filePrefix,'*.mat']);
 fNameCell=extractfield(files,'name');
 files    = files(~contains(fNameCell,'config') & ~contains(fNameCell,'min.mat'));
 Nf       = length(files);
@@ -21,8 +21,8 @@ F  = F./sum(F);% normalize
 for ii= 1:Nf
     %
     % load the raw data
-    inFileName = sprintf([L0FRoot,'%03d.mat'],ii);
-    fin  = [outRoot,inFileName];
+    inFileName = sprintf([filePrefix,'%03d.mat'],ii);
+    fin  = [outDir,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
     in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','Velocity_Error','Correlation_Minimum','Amplitude_Minimum','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','bin_mab','bin_mab_Echo','Echo1','Echo2');
     %
@@ -57,7 +57,6 @@ for ii= 1:Nf
     in.Pressure    = nanmean(in.Pressure,1);
     in.Temperature = nanmean(in.Temperature,1);
     %
-    % estimate bulk wave statistics on 1hr chunks?
     %
     % perform time-convolution (filling nan's in the mask), conv2 x 3 (nans=0, qcFlag, ones)
     on  = [qcP, in.qcFlag];
@@ -80,12 +79,12 @@ for ii= 1:Nf
     echo2 = conv2(1, F, [e2p , in.Echo2]       ,'same')./norm0;    
     head  = conv2(1, F, [hP  , in.Heading ]    ,'same')./norm0;
     pitch = conv2(1, F, [pP  , in.Pitch   ]    ,'same')./norm0;
-    roll  = conv2(1, F,[rP  , in.Roll    ]    ,'same')./norm0;
-    P     = conv2(1, F,[Pp  , in.Pressure]    ,'same')./norm0;
-    T     = conv2(1, F,[Tp  , in.Temperature] ,'same')./norm0;    
+    roll  = conv2(1, F, [rP  , in.Roll    ]    ,'same')./norm0;
+    P     = conv2(1, F, [Pp  , in.Pressure]    ,'same')./norm0;
+    T     = conv2(1, F, [Tp  , in.Temperature] ,'same')./norm0;    
     %
     %
-    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(Ns:Ns:Ns*(N-1),:),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'mab',in.mab,'mab_Echo',in.mab_Echo,'Echo1',echo1(:,Ns:Ns:Ns*(N-1)),'Echo2',echo2(:,Ns:Ns:Ns*(N-1)));    
+    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(:,Ns:Ns:Ns*(N-1)),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'bin_mab',in.bin_mab,'bin_mab_Echo',in.bin_mab_Echo,'Echo1',echo1(:,Ns:Ns:Ns*(N-1)),'Echo2',echo2(:,Ns:Ns:Ns*(N-1)));    
     %
     % 
     % need to rotate from magnetic to true?
@@ -101,7 +100,7 @@ for ii= 1:Nf
             if ismember(var,{'HeadingOffset','bin_mab','bin_mab_Echo','beam2xyz'})
                 continue
             end
-            eval(['out.',var,'= cat(1,out.',var,',avg.',var,');'])
+            eval(['out.',var,'= cat(2,out.',var,',avg.',var,');'])
         end
     end
     %
@@ -121,6 +120,9 @@ for ii= 1:Nf
     Pp   = in.Pressure   (nt-Ns*(1+ns)+1:nt);
     %
 end
-fprintf(['saving: %s'],[outRoot,L1FRoot])
-save([outRoot,L1FRoot],'-struct','out')
+fprintf(['saving: %s'],[L0dir,L0FRoot])
+if ~exist(L0dir,'dir')
+    eval(['!mkdir -p ',L0dir])
+end
+save([L0dir,L0FRoot],'-struct','out')
 disp('done!')

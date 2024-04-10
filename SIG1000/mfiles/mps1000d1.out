@@ -1,0 +1,112 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >> >>>> >> >> >> >> >> >> >> >> >> >> >> >>  atmosphTime = 
+
+ans =
+
+  4x20 char array
+
+    '09-Oct-2023 12:28:13'
+    '30-Oct-2023 15:01:26'
+    '09-Oct-2023 15:12:12'
+    '31-Oct-2023 04:35:57'
+
+>> >> >> >> 
+ 
+pre-processing:       S103071A010_FPS1_1.mat 
+pre-processing:       S103071A010_FPS1_2.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103071_DEP1_FPSC0_001.mat 
+pre-processing:       S103071A010_FPS1_3.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103071_DEP1_FPSC0_002.mat 
+pre-processing:       S103071A010_FPS1_4.mat 
+pre-processing:       S103071A010_FPS1_5.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103071_DEP1_FPSC0_003.mat 
+pre-processing:       S103071A010_FPS1_6.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103071_DEP1_FPSC0_004.mat 
+pre-processing:       S103071A010_FPS1_7.mat 
+pre-processing:       S103071A010_FPS1_8.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103071_DEP1_FPSC0_005.mat 
+pre-processing:       S103071A010_FPS1_9.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103071_DEP1_FPSC0_006.mat 
+{Error using save
+Unable to write file
+/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment1/FPSC0/SIG1000/SIG_00103071_DEP1_FPSC0_006.mat:
+permission denied.
+
+Error in load_and_process_sig1000_RDI_matrix_format (line 136)
+        save(fout,'-struct','out')
+} 
+>> >> >> 
+ 
+loading file:   SIG_00103071_DEP1_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_006.mat 
+{Error using load
+Unable to read file
+'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment1/FPSC0/SIG1000/SIG_00103071_DEP1_FPSC0_006.mat'.
+
+Error in time_average_and_rotate_sig1000_RDI_matrix_format (line 27)
+    in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','Velocity_Error','Correlation_Minimum','Amplitude_Minimum','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','bin_mab','bin_mab_Echo','Echo1','Echo2');
+} 
+>> >> >> 
+ 
+loading file:   SIG_00103071_DEP1_FPSC0_001.mat 
+2024-03-05 14:04:59.009 MATLAB[10896:244908] CoreText note: Client requested name ".SFNS-Regular", it will get Times-Roman rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-03-05 14:04:59.009 MATLAB[10896:244908] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2024-03-05 14:04:59.014 MATLAB[10896:244908] CoreText note: Client requested name ".SFNS-Bold", it will get Times-Roman rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-03-05 14:04:59.098 MATLAB[10896:244908] CoreText note: Client requested name ".SFNS-Regular", it will get Times-Roman rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-03-05 14:04:59.099 MATLAB[10896:244908] CoreText note: Client requested name ".SFNS-Bold", it will get Times-Roman rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00103071_DEP1_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_006.mat 
+{Error using load
+Unable to read file
+'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment1/FPSC0/SIG1000/SIG_00103071_DEP1_FPSC0_006.mat'.
+
+Error in estimate_wave_bulk_stats_SIG1000_RDI_matrix_format (line 43)
+    in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','bin_mab');
+} 
+>> 
