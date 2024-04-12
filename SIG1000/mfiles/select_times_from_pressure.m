@@ -7,7 +7,7 @@ if isempty(atmosphTime)
     close all,
     figure, plot(Pres), title('select times when instrument was in air'),drawnow
     inAir       = ginput(2);
-    atmosphTime = Time(round(inAir(:,1)));
+    atmosphTime = Time(round(inAir(:,1)))';
 end
 %
 % log the pre-deployment atmosperic pressure time

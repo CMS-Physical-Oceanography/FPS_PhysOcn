@@ -314,9 +314,9 @@ for ii= 1:Nf
     end
     %
 end
-fprintf(['saving: %s'],[L1dir,L1FRoot])
+fprintf(['saving: %s \n'],[L1dir,L1FRoot])
 if ~exist(L1dir,'dir')
     eval(['!mkdir -p ',L1dir])
 end
 save([L1dir,L1FRoot,'.mat'],'currents','waves')
-disp('done!')
+fprintf('done! \n')

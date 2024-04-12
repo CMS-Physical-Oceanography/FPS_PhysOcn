@@ -138,7 +138,7 @@ while ii<=Nf
         N = 0;
         %
         if (ii==Nf & loadFlag )
-        disp('done!')
+        fprintf('done! \n')
         break
         end
     end

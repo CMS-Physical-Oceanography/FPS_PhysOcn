@@ -2,14 +2,14 @@ clear all
 close all
 % stages of processing
 % 1) define deployment number:
-deploy  = 1;
-% instrument was programmed in UTC, so no need to shift from EST-->UTC
-time_shift=0;
+deploy  = 2;
+% need to shift time to convert EST to UTC
+time_shift = 5/24;
 % 2) raw data input directory & filename convention:
-rootDIR = ['/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD1_SIG1000/mat_data/'];
-fRoot   = ['S103071A010_FPS1_'];
+rootDIR = '/Volumes/grimes-lab/BOEM/SIG1000/Deploy2/mat_data/';%sprintf('/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/mat_data/',deploy);
+fRoot   = sprintf('S103071A011_FPS%d_',deploy);
 % 3) output directory:
-outRoot = ['/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment1/FPSC0/'];
+outRoot = sprintf('/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSC0/',deploy);
 % 4) output data file prefix:
 outDir  = [outRoot,filesep,'SIG1000',filesep];
 filePrefix= sprintf('SIG_00103071_DEP%d_FPSC0_',deploy);
@@ -22,11 +22,10 @@ L1dir     = [outRoot, filesep, 'L1',filesep];
 L1FRoot   = sprintf('%sL1',filePrefix);
 %
 % 5) time-periods when instrument was air (leave times empty to manually reselect them)
-atmosphTime = [datenum(['09-Oct-2023 12:28:13'; '09-Oct-2023 15:12:12'])';...
-               datenum(['30-Oct-2023 15:01:26'; '31-Oct-2023 04:35:57'])'];
+atmosphTime = [datenum('15-Feb-2024 13:12:05'), datenum('15-Feb-2024 14:08:32')];
 % 6) deploy/recovery times
-deployTime  = datenum('09-Oct-2023 16:00:00');
-recoverTime = datenum('30-Oct-2023 14:00:00');
+deployTime  = [datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
+recoverTime = [datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
 %
 files = dir([rootDIR,fRoot,'*.mat']);
 Nf    = length(files);

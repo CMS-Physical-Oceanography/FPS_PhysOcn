@@ -120,9 +120,9 @@ for ii= 1:Nf
     Pp   = in.Pressure   (nt-Ns*(1+ns)+1:nt);
     %
 end
-fprintf(['saving: %s'],[L0dir,L0FRoot])
+fprintf(['saving: %s \n'],[L0dir,L0FRoot])
 if ~exist(L0dir,'dir')
     eval(['!mkdir -p ',L0dir])
 end
 save([L0dir,L0FRoot],'-struct','out')
-disp('done!')
+fprintf('done! \n')

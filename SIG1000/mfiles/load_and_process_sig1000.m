@@ -46,7 +46,7 @@ while ii<=Nf
         fprintf(['pre-processing:       %s \n'], fileName)
         load(fin)
         % use 5th beam time; the other beams are offset by dt = 1/(2*fs)
-        t    = Data.IBurst_Time;
+        t    = Data.IBurst_Time+time_shift;
         is   = find(t>=deployTime,1,'first');
         nt   = length(t);
         % check if instrument was pulled
@@ -75,7 +75,7 @@ while ii<=Nf
         loadFlag = 0;
     end
     %
-    out.Time       (N+1:N+(ie-(is-1)),1)     = Data.IBurst_Time(is:ie,1);
+    out.Time       (N+1:N+(ie-(is-1)),1)     = Data.IBurst_Time(is:ie,1)+time_shift;
     out.Heading    (N+1:N+(ie-(is-1)),1)     = Data.Burst_Heading(is:ie,1);
     out.Pitch      (N+1:N+(ie-(is-1)),1)     = Data.Burst_Pitch(is:ie,1);
     out.Roll       (N+1:N+(ie-(is-1)),1)     = Data.Burst_Roll(is:ie,1);
