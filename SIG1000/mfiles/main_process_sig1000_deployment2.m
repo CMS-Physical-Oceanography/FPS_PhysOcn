@@ -6,7 +6,7 @@ deploy  = 2;
 % need to shift time to convert EST to UTC
 time_shift = 5/24;
 % 2) raw data input directory & filename convention:
-rootDIR = '/Volumes/grimes-lab/BOEM/SIG1000/Deploy2/mat_data/';%sprintf('/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/mat_data/',deploy);
+rootDIR = sprintf('/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/mat_data/',deploy);
 fRoot   = sprintf('S103071A011_FPS%d_',deploy);
 % 3) output directory:
 outRoot = sprintf('/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSC0/',deploy);
@@ -62,3 +62,5 @@ ax = gca;
 set(ax,'ydir','normal','ticklabelinterpreter','latex','tickdir','out','plotboxaspectratio',[1.5 1 1])
 figname = sprintf('%s/figures/%s_spectra.pdf',outRoot,L1FRoot);
 exportgraphics(fig,figname)
+
+
