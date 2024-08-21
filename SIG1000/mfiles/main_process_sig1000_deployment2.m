@@ -44,23 +44,23 @@ recoverTime = recoverTime + time_shift;
 %
 % load and pre-process data.
 % load_and_processes_sig1000_matrix_format
-load_and_process_sig1000_RDI_matrix_format
+% $$$ load_and_process_sig1000_RDI_matrix_format
 %
 % make time-averages
 time_average_and_rotate_sig1000_RDI_matrix_format
 %
 % estimate hourly wave stats
-estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
-%
-%
-fig = figure;
-imagesc(datetime(waves.Time','convertFrom','datenum'),waves.frequency,log10(waves.Spp)),colormap(cmocean('thermal')),caxis([-2 1])
-ylabel('$f$ [Hz]','interpreter','latex')
-cb = colorbar;
-ylabel(cb,'[m$^2$/Hz]','interpreter','latex')
-ax = gca;
-set(ax,'ydir','normal','ticklabelinterpreter','latex','tickdir','out','plotboxaspectratio',[1.5 1 1])
-figname = sprintf('%s/figures/%s_spectra.pdf',outRoot,L1FRoot);
-exportgraphics(fig,figname)
-
+% $$$ estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
+% $$$ %
+% $$$ %
+% $$$ fig = figure;
+% $$$ imagesc(datetime(waves.Time','convertFrom','datenum'),waves.frequency,log10(waves.Spp)),colormap(cmocean('thermal')),caxis([-2 1])
+% $$$ ylabel('$f$ [Hz]','interpreter','latex')
+% $$$ cb = colorbar;
+% $$$ ylabel(cb,'[m$^2$/Hz]','interpreter','latex')
+% $$$ ax = gca;
+% $$$ set(ax,'ydir','normal','ticklabelinterpreter','latex','tickdir','out','plotboxaspectratio',[1.5 1 1])
+% $$$ figname = sprintf('%s/figures/%s_spectra.pdf',outRoot,L1FRoot);
+% $$$ exportgraphics(fig,figname)
+% $$$ 
 

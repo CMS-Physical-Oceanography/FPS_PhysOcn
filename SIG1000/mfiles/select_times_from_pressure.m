@@ -63,9 +63,9 @@ while sum(inAir)==0 & ~isempty([inAir])
     Pres = Data.Burst_Pressure;
     Time = Data.Burst_Time;
     inAir   = (Time>=atmosphTime(end,1) & Time<=atmosphTime(end,2));
-    if ~(sum(inAir)==0 & ~isempty([inAir]))
-        atmosphTime = cat(1,atmosphTime,Time(round(inAir(:,1)))');
-    end
+% $$$     if sum(inAir)~=0 & ~isempty([inAir])
+% $$$         atmosphTime = cat(1,atmosphTime,Time(round(inAir(:,1)))');
+% $$$     end
 end
 
 
