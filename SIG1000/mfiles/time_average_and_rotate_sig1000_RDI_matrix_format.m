@@ -63,18 +63,18 @@ for ii= 1:Nf
     o   = ones(1,size(on,2));
     %
     % convolve NAN matrix for normalization
-    norm0   = conv2(o,F,'same');
-    avgFlag = conv2(on,F,'same')./norm0;
+    norm0   = conv2(o,F','same');
+    norm    = conv2(on,F','same');
     % throw out regions with <%25 coverage
-    norm = avgFlag;
-    norm(norm<=0.25)=inf;
+    avgFlag = norm./norm0;
+    norm(avgFlag<=0.25)=inf;
     %
     % convolve signals
     t1    = [tP, in.Time];
-    vb1   = conv2(1, F, [vb1p, in.Velocity_East ].*on,'same');
-    vb2   = conv2(1, F, [vb2p, in.Velocity_North].*on,'same');
-    vb3   = conv2(1, F, [vb3p, in.Velocity_Up   ].*on,'same');
-    vb4   = conv2(1, F, [vb4p, in.Velocity_Error].*on,'same');
+    vb1   = conv2(1, F, [vb1p, in.Velocity_East ].*on,'same')./norm;
+    vb2   = conv2(1, F, [vb2p, in.Velocity_North].*on,'same')./norm;
+    vb3   = conv2(1, F, [vb3p, in.Velocity_Up   ].*on,'same')./norm;
+    vb4   = conv2(1, F, [vb4p, in.Velocity_Error].*on,'same')./norm;
     echo1 = conv2(1, F, [e1p , in.Echo1]       ,'same')./norm0;
     echo2 = conv2(1, F, [e2p , in.Echo2]       ,'same')./norm0;    
     head  = conv2(1, F, [hP  , in.Heading ]    ,'same')./norm0;
