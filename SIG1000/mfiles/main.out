@@ -1,0 +1,241 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >>  atmosphTime = 
+
+ans =
+
+  4x20 char array
+
+    '09-Oct-2023 12:28:13'
+    '30-Oct-2023 15:01:26'
+    '09-Oct-2023 15:12:12'
+    '31-Oct-2023 04:35:57'
+
+
+ 
+loading file:   SIG_00103071_DEP1_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_021.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment1/FPSC0//L0/SIG_00103071_DEP1_FPSC0_L0 
+done! 
+
+ 
+loading file:   SIG_00103071_DEP1_FPSC0_001.mat 
+2024-10-10 10:04:48.004 MATLAB[24974:1709626] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-10-10 10:04:48.004 MATLAB[24974:1709626] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2024-10-10 10:04:48.009 MATLAB[24974:1709626] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-10-10 10:04:48.013 MATLAB[24974:1709626] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-10-10 10:04:48.014 MATLAB[24974:1709626] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00103071_DEP1_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP1_FPSC0_021.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment1/FPSC0//L1/SIG_00103071_DEP1_FPSC0_L1 
+done! 
+>>  atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '15-Feb-2024 13:12:05'
+    '15-Feb-2024 14:08:32'
+
+
+ 
+loading file:   SIG_00103071_DEP2_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_021.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_022.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_023.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_024.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_025.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_026.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_027.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_028.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_029.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_030.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_031.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment2/FPSC0//L0/SIG_00103071_DEP2_FPSC0_L0 
+done! 
+
+ 
+loading file:   SIG_00103071_DEP2_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_021.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_022.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_023.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_024.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_025.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_026.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_027.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_028.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_029.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_030.mat 
+loading file:   SIG_00103071_DEP2_FPSC0_031.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment2/FPSC0//L1/SIG_00103071_DEP2_FPSC0_L1 
+done! 
+>>  atmosphTime = 
+
+ans =
+
+  4x20 char array
+
+    '13-May-2024 11:30:54'
+    '03-Jun-2024 16:39:11'
+    '13-May-2024 15:46:17'
+    '04-Jun-2024 02:41:20'
+
+
+ 
+loading file:   SIG_00103071_DEP3_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_021.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment3/FPSC0//L0/SIG_00103071_DEP3_FPSC0_L0 
+done! 
+
+ 
+loading file:   SIG_00103071_DEP3_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP3_FPSC0_021.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment3/FPSC0//L1/SIG_00103071_DEP3_FPSC0_L1 
+done! 
+>> 

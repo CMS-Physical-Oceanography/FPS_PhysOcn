@@ -42,4 +42,4 @@ for m=1:M
     A2(2:end-inyq,:)  = 2*A2(2:end-inyq,:);
     SX=SX+A2;
 end
-psd=SX*dt/M/ds;
+psd=SX*dt/M/Ns;

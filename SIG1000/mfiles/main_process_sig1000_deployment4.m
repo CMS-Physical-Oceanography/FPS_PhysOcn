@@ -2,17 +2,36 @@ clear all
 close all
 % stages of processing
 % 1) define deployment number:
-deploy  = 3;
+deploy  = 4;
+% adcpID  = 1;
+for adcpID = 1:3
+    if adcpID == 1
+        echo_mode=1;
+    else
+        echo_mode=0;
+    end
 % need to shift time to convert EST to UTC
 time_shift = 0/24;
 % 2) raw data input directory & filename convention:
-rootDIR = sprintf('/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/mat_data/',deploy);
-fRoot   = sprintf('S103071A013_FPS%d_',deploy);
+rootDIRs= {'/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/';...
+           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/converted/';...
+           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/converted/'};
+rootDIR = sprintf(rootDIRs{adcpID},deploy);
+fRoots  = {'S103071A017_FPS4_';...
+           'S101481A010_NCSU_';...
+           'S103080A006_NCSUB0'};
+fRoot   = fRoots{adcpID};
 % 3) output directory:
-outRoot = sprintf('/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSC0/',deploy);
+outRoots= {'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSE1/';...
+           '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSS1/';...
+          '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSS0/'};
+outRoot = sprintf(outRoots{adcpID},deploy);
 % 4) output data file prefix:
 outDir  = [outRoot,filesep,'SIG1000',filesep];
-filePrefix= sprintf('SIG_00103071_DEP%d_FPSC0_',deploy);
+prefixes= {'SIG_00103071_DEP%d_FPSE1_';...
+           'SIG_00101481_DEP%d_FPSS1_';...
+           'SIG_00103080_DEP%d_FPSS0_'};
+filePrefix= sprintf(prefixes{adcpID},deploy);
 %
 % 4a) current/echo average interval (seconds)
 dtAvg     = 300;
@@ -22,11 +41,9 @@ L1dir     = [outRoot, filesep, 'L1',filesep];
 L1FRoot   = sprintf('%sL1',filePrefix);
 %
 % 5) time-periods when instrument was air (leave times empty to manually reselect them)
-atmosphTime = [datenum('13-May-2024 11:30:54'), datenum('13-May-2024 15:46:17');...
-               datenum('03-Jun-2024 16:39:11'), datenum('04-Jun-2024 02:41:20')];%[datenum('15-Feb-2024 13:12:05'), datenum('15-Feb-2024 14:08:32')];
-% 6) deploy/recovery times
-deployTime  = [datenum('13-May-2024 16:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
-recoverTime = [datenum('03-Jun-2024 16:00:00')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
+atmosphTime = [datenum('20-Aug-2024 11:15:00'), datenum('20-Aug-2024 13:15:00')];% 6) deploy/recovery times
+deployTime  = [datenum('21-Aug-2024 00:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
+recoverTime = [datenum('18-Sep-2024 23:59:59')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
 %
 files = dir([rootDIR,fRoot,'*.mat']);
 Nf    = length(files);
@@ -40,14 +57,16 @@ select_times_from_pressure
 %
 % shift time limits
 atmosphTime = atmosphTime + time_shift;
-deployTime  = deployTime + time_shift;
+deployTime  = deployTime  + time_shift;
 recoverTime = recoverTime + time_shift;
 %
+if adcpID>1
 % load and pre-process data.
-% $$$ load_and_process_sig1000_RDI_matrix_format
+load_and_process_sig1000_RDI_matrix_format
 %
 % make time-averages
 time_average_and_rotate_sig1000_RDI_matrix_format
+end
 %
 % estimate hourly wave stats
 estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
@@ -62,6 +81,7 @@ ax = gca;
 set(ax,'ydir','normal','ticklabelinterpreter','latex','tickdir','out','plotboxaspectratio',[1.5 1 1])
 figname = sprintf('%s/figures/%s_spectra.pdf',outRoot,L1FRoot);
 exportgraphics(fig,figname)
+
 
 %
 Time = datetime(currents.Time,'convertFrom','datenum');
@@ -119,3 +139,6 @@ set(h,'interpreter','latex','orientation','horizontal')
 set(gca,'tickdir','out','ticklabelinterpreter','latex','plotboxaspectratio',[1 1/2 1],'xlim',[Time(1) Time(end)])
 figname = sprintf('%s/figures/%s_currents_depth_averaged.pdf',outRoot,L1FRoot);
 exportgraphics(fig,figname)
+
+end
+

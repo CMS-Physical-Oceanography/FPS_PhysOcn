@@ -1,4 +1,4 @@
- % load the first file, find the deploy times and atmospheric pressure periods
+% load the first file, find the deploy times and atmospheric pressure periods
 load([rootDIR,filesep,files(1).name],'Data','Config','Descriptions')
 %
 Pres = Data.Burst_Pressure;

@@ -1,9 +1,9 @@
 %
-load([rootDIR,filesep,filePrefix,'config.mat'])
+load([outDir,filesep,filePrefix,'config.mat'])
 fs = double(Config.Burst_SamplingRate);
 Nc = Config.Burst_NCells;
 %
-files    = dir([rootDIR,filesep,filePrefix,'*.mat']);
+files    = dir([outDir,filesep,filePrefix,'*.mat']);
 fNameCell=extractfield(files,'name');
 files    = files(~contains(fNameCell,'config') & ~contains(fNameCell,'min.mat'));
 Nf       = length(files);
@@ -22,18 +22,10 @@ for ii= 1:Nf
     %
     % load the raw data
     inFileName = sprintf([filePrefix,'%03d.mat'],ii);
-    fin  = [rootDIR,inFileName];
+    fin  = [outDir,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
-    in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','Velocity_Error','Correlation_Minimum','Amplitude_Minimum','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','bin_mab');
+    in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','Velocity_Error','Correlation_Minimum','Amplitude_Minimum','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','bin_mab','bin_mab_Echo','Echo1','Echo2');
     %
-    if echo_mode
-        try echo = load(fin,'bin_mab_Echo','Echo1','Echo2');
-        catch echo = load(fin,'bin_mab_Echo','Echo1'); end
-        fieldNames = fields(echo);
-        for jj = 1:length(fieldNames)
-            in.(fieldNames{jj}) = echo.(fieldNames{jj});
-        end
-    end
     %
     if ii==1
         % no padding
@@ -75,7 +67,7 @@ for ii= 1:Nf
     norm    = conv2(on,F','same');
     % throw out regions with <%25 coverage
     avgFlag = norm./norm0;
-    norm(norm<=0.25)=inf;
+    norm(avgFlag<=0.25)=inf;
     %
     % convolve signals
     t1    = [tP, in.Time];
@@ -83,27 +75,17 @@ for ii= 1:Nf
     vb2   = conv2(1, F, [vb2p, in.Velocity_North].*on,'same')./norm;
     vb3   = conv2(1, F, [vb3p, in.Velocity_Up   ].*on,'same')./norm;
     vb4   = conv2(1, F, [vb4p, in.Velocity_Error].*on,'same')./norm;
+    echo1 = conv2(1, F, [e1p , in.Echo1]       ,'same')./norm0;
+    echo2 = conv2(1, F, [e2p , in.Echo2]       ,'same')./norm0;    
     head  = conv2(1, F, [hP  , in.Heading ]    ,'same')./norm0;
     pitch = conv2(1, F, [pP  , in.Pitch   ]    ,'same')./norm0;
     roll  = conv2(1, F, [rP  , in.Roll    ]    ,'same')./norm0;
     P     = conv2(1, F, [Pp  , in.Pressure]    ,'same')./norm0;
-    T     = conv2(1, F, [Tp  , in.Temperature] ,'same')./norm0;
-    if echo_mode
-        echo1 = conv2(1, F, [e1p , in.Echo1]       ,'same')./norm0;
-        try echo2 = conv2(1, F, [e2p , in.Echo2]       ,'same')./norm0;
-        catch disp('only one echo-mode'), end
-    end
+    T     = conv2(1, F, [Tp  , in.Temperature] ,'same')./norm0;    
     %
     %
-    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(:,Ns:Ns:Ns*(N-1)),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'bin_mab',in.bin_mab);    
+    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(:,Ns:Ns:Ns*(N-1)),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'bin_mab',in.bin_mab,'bin_mab_Echo',in.bin_mab_Echo,'Echo1',echo1(:,Ns:Ns:Ns*(N-1)),'Echo2',echo2(:,Ns:Ns:Ns*(N-1)));    
     %
-    if echo_mode
-        avg(1).bin_mab_Echo=in.bin_mab_Echo;
-        avg(1).Echo1       =echo1(:,Ns:Ns:Ns*(N-1));
-        try avg(1).Echo2       =echo2(:,Ns:Ns:Ns*(N-1));
-        catch disp('only one echo-mode'), end
-    end
-        
     % 
     % need to rotate from magnetic to true?
 % $$$     [avg,Config2,beam2xyz] = beam2earth_sig1000_DG(avg,Config,'',in.HeadingOffset);
@@ -129,16 +111,13 @@ for ii= 1:Nf
     vb2p = in.Velocity_North   (:,nt-Ns*(1+ns)+1:nt);
     vb3p = in.Velocity_Up      (:,nt-Ns*(1+ns)+1:nt);
     vb4p = in.Velocity_Error   (:,nt-Ns*(1+ns)+1:nt);
+    e1p  = in.Echo1      (:,nt-Ns*(1+ns)+1:nt);
+    e2p  = in.Echo2      (:,nt-Ns*(1+ns)+1:nt);    
     hP   = in.Heading    (nt-Ns*(1+ns)+1:nt);
     pP   = in.Pitch      (nt-Ns*(1+ns)+1:nt);
     rP   = in.Roll       (nt-Ns*(1+ns)+1:nt);
     Tp   = in.Temperature(nt-Ns*(1+ns)+1:nt);
     Pp   = in.Pressure   (nt-Ns*(1+ns)+1:nt);
-    if echo_mode
-        e1p  = in.Echo1      (:,nt-Ns*(1+ns)+1:nt);
-        try e2p  = in.Echo2      (:,nt-Ns*(1+ns)+1:nt);
-        catch disp('only one echo-mode'), end
-    end
     %
 end
 fprintf(['saving: %s \n'],[L0dir,L0FRoot])
@@ -147,8 +126,3 @@ if ~exist(L0dir,'dir')
 end
 save([L0dir,L0FRoot],'-struct','out')
 fprintf('done! \n')
-% $$$ outFileName = [L0dir,L0FRoot,'.nc'];
-% $$$ if exist(outFileName,'file')
-% $$$     eval(['!rm ', outFileName])
-% $$$ end
-% $$$ struct2nc(out,outFileName,'NETCDF4')

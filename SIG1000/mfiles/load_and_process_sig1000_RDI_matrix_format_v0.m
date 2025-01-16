@@ -1,6 +1,3 @@
-files = dir([rootDIR,filesep,fRoot,'*.mat']);
-Nf    = length(files);
-%
 Config.ATM_Time = ATM_Time;
 Config.ATM_Pressure=ATM_Pressure;
 %
@@ -14,24 +11,14 @@ Nc   = double(Config.Burst_NCells);
 mab  = hab+blnk+binw.*[1:Nc]';
 %
 %  get bin sizing etc for echo
-if echo_mode
 blnkE= Config.EchoSounder_BlankingDistance;
 binwE= Config.EchoSounder_CellSize;
 NcE  = double(Config.EchoSounder_NCells);
 mabE = hab+blnkE+binwE.*[1:NcE]';
-end
 %
 % save the config info
-outFile = [rootDir, filePrefix, 'config.mat'];
-if ~exist(rootDir,'dir')
-    eval(['!mkdir ',rootDIR])
-end
+outFile = [outDir, filePrefix, 'config.mat'];
 save(outFile,'Config','Descriptions')
-% $$$ outFile = [L0dir, filePrefix, 'config.nc'];
-% $$$ if exist(outFile,'file')
-% $$$     eval(['!rm ', outFile])
-% $$$ end
-% $$$ struct2nc(Config,outFile,'NETCDF4')
 %
 % limit archive file to 24hr length
 maxDuration = 24*3600;
@@ -60,14 +47,8 @@ while ii<=Nf
         load(fin)
         % use 5th beam time; the other beams are offset by dt = 1/(2*fs)
         t    = Data.IBurst_Time;
-        nt   = length(t);
-        % check if instrument is deployed
         is   = find(t>=deployTime,1,'first');
-        if isempty(is)
-            disp(['--> instrument is not yet deployed, skipping this file.'])
-            loadFlag=1;
-            continue
-        end
+        nt   = length(t);
         % check if instrument was pulled
         iStop= find(t>=recoverTime,1,'first');
         if ~isempty(iStop)
@@ -83,12 +64,7 @@ while ii<=Nf
                       'Amplitude_Beam',[],...'AmpBeam2',[],'AmpBeam3',[],'AmpBeam4',[],'AmpBeam5',[],...
                       'Correlation_Beam',[],...'CorBeam2',[],'CorBeam3',[],'CorBeam4',[],'CorBeam5',[],...,
                       'Velocity_East',[],'Velocity_North',[],'Velocity_Up',[],'Velocity_Error',[],...
-                      'bin_mab',mab);
-        if echo_mode
-            out.bin_mab_Echo = mabE;
-            out.Echo1=[];
-            out.Echo2=[];
-        end
+                      'bin_mab',mab, 'bin_mab_Echo',mabE,'Echo1',[],'Echo2',[]);
     end
     %
     if N+nt-(is-1)<=Nmax
@@ -128,12 +104,8 @@ while ii<=Nf
     out.Velocity_North   (1:Nc,N+1:N+(ie-(is-1)))  = permute(Data.Burst_Velocity_ENU(is:ie,2,1:Nc),[3,1,2]);
     out.Velocity_Up      (1:Nc,N+1:N+(ie-(is-1)))  = permute(Data.Burst_Velocity_ENU(is:ie,3,1:Nc),[3,1,2]);
     out.Velocity_Error   (1:Nc,N+1:N+(ie-(is-1)))  = permute(Data.Burst_Velocity_ENU(is:ie,4,1:Nc),[3,1,2]);
-    if echo_mode
     out.Echo1            (1:NcE,N+1:N+(ie-(is-1))) = Data.Echo1Bin1_1000kHz_Echo(is:ie,1:NcE)';
-    try
-    out.Echo2            (1:NcE,N+1:N+(ie-(is-1))) = Data.Echo2Bin1_1000kHz_Echo(is:ie,1:NcE)';
-    catch disp('only one echo-mode'), end
-    end
+    out.Echo2            (1:NcE,N+1:N+(ie-(is-1))) = Data.Echo2Bin1_1000kHz_Echo(is:ie,1:NcE)';    
     %
     N = N+ie-(is-1);
     is= ie+1;
@@ -162,12 +134,6 @@ while ii<=Nf
         fout  = [outDir,outFileName];
         fprintf(['saving output file:   %s \n'],outFileName)
         save(fout,'-struct','out')
-% $$$         outFileName = sprintf([filePrefix,'%03d.nc'],outNf);
-% $$$         fout = [L0dir,outFileName];
-% $$$         if exist(fout,'file')
-% $$$             eval(['!rm ', outFileName])
-% $$$         end
-% $$$         struct2nc(out,outFileName,'NETCDF4')
         %
         N = 0;
         %

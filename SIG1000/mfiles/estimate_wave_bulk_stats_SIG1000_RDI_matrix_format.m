@@ -6,7 +6,7 @@ g       = 9.81;% m/s^2
 %
 %
 % get sampling information from config file
-load([outDir,filePrefix,'config.mat'])
+load([rootDIR,filePrefix,'config.mat'])
 fs = double(Config.Burst_SamplingRate);
 Nc = Config.Burst_NCells;
 %
@@ -24,7 +24,7 @@ olap  = 2/3;
 chnks = (Na-Ne*olap-1)/(Ne*(1-olap));
 %
 % get structure with all files in archive
-files = dir([outDir,filePrefix,'*.mat']);
+files = dir([rootDIR,filePrefix,'*.mat']);
 fNameCell=extractfield(files,'name');
 files = files(~contains(fNameCell,'config') & ~contains(fNameCell,'min.mat'));
 Nf    = length(files);
@@ -36,8 +36,8 @@ waves  = struct();
 for ii= 1:Nf
     %
     % load the raw data
-    inFileName = sprintf([filePrefix,'%03d.mat'],ii);
-    fin  = [outDir,inFileName];
+    inFileName = sprintf([filePrefix,'%02d.mat'],ii);
+    fin  = [rootDIR,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
 % $$$     in = load(fin,'VelEast','VelNorth','VelUp1','VelUp2','VelBeam5','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','mab');
     in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','bin_mab');

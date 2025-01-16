@@ -1,0 +1,76 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >> >> >> >>>>>> >> >>>>>> >> >> >>>>>> >> >> >> >>>>>> >> >> >> >> >> >> >> >> >> >> >>>> >> >> >> >> >> >> >> >> >> >> >> >> {Error using load
+Unable to find file or directory
+'/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD4_SIG1000/S103071A017_FPS4_0.mat'.
+
+Error in select_times_from_pressure (line 62)
+    load([rootDIR,filesep,fRoot,num2str(Nf-iter),'.mat'],'Data','Config')
+} 
+>> >> >> >> >> >> >> >> {Error using save
+Cannot create 'SIG_00103071_DEP4_FPSE1_config.mat' because
+'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSE1/SIG1000'
+does not exist.
+
+Error in load_and_process_sig1000_RDI_matrix_format (line 21)
+save(outFile,'Config','Descriptions')
+} 
+>> >> >> {Error using load
+Unable to find file or directory
+'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSE1/SIG1000/SIG_00103071_DEP4_FPSE1_config.mat'.
+
+Error in time_average_and_rotate_sig1000_RDI_matrix_format (line 2)
+load([outDir,filesep,filePrefix,'config.mat'])
+} 
+>> >> >> {Error using load
+Unable to find file or directory
+'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSE1/SIG1000/SIG_00103071_DEP4_FPSE1_config.mat'.
+
+Error in estimate_wave_bulk_stats_SIG1000_RDI_matrix_format (line 9)
+load([outDir,filePrefix,'config.mat'])
+} 
+>> >> >> 2024-10-10 10:06:39.394 MATLAB[25105:1711353] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-10-10 10:06:39.394 MATLAB[25105:1711353] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2024-10-10 10:06:39.400 MATLAB[25105:1711353] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-10-10 10:06:39.409 MATLAB[25105:1711353] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2024-10-10 10:06:39.409 MATLAB[25105:1711353] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+>> {Unable to resolve the name 'waves.Time'.
+} 
+>> >> >> >> >> >> >> {Error using exportgraphics
+The value of 'destination' is invalid. Unable to create output file
+'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSE1//figures/SIG_00103071_DEP4_FPSE1_L1_spectra.pdf',
+No such file or directory.
+} 
+>> >> >> 
