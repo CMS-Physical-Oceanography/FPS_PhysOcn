@@ -1,0 +1,152 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '04-Feb-2025 13:00:00'
+    '04-Feb-2025 14:00:00'
+
+
+ 
+pre-processing:       S101481A013_NCSU_1.mat 
+pre-processing:       S101481A013_NCSU_2.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_001.mat 
+pre-processing:       S101481A013_NCSU_3.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_002.mat 
+pre-processing:       S101481A013_NCSU_4.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_003.mat 
+pre-processing:       S101481A013_NCSU_5.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_004.mat 
+pre-processing:       S101481A013_NCSU_6.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_005.mat 
+pre-processing:       S101481A013_NCSU_7.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_006.mat 
+pre-processing:       S101481A013_NCSU_8.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_007.mat 
+pre-processing:       S101481A013_NCSU_9.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_008.mat 
+pre-processing:       S101481A013_NCSU_10.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_009.mat 
+pre-processing:       S101481A013_NCSU_11.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_010.mat 
+pre-processing:       S101481A013_NCSU_12.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_011.mat 
+pre-processing:       S101481A013_NCSU_13.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_012.mat 
+pre-processing:       S101481A013_NCSU_14.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_013.mat 
+pre-processing:       S101481A013_NCSU_15.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_014.mat 
+pre-processing:       S101481A013_NCSU_16.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_015.mat 
+pre-processing:       S101481A013_NCSU_17.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_016.mat 
+pre-processing:       S101481A013_NCSU_18.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_017.mat 
+pre-processing:       S101481A013_NCSU_19.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_018.mat 
+pre-processing:       S101481A013_NCSU_20.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_019.mat 
+pre-processing:       S101481A013_NCSU_21.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_020.mat 
+pre-processing:       S101481A013_NCSU_22.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_021.mat 
+pre-processing:       S101481A013_NCSU_23.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_022.mat 
+pre-processing:       S101481A013_NCSU_24.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_023.mat 
+pre-processing:       S101481A013_NCSU_25.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_024.mat 
+pre-processing:       S101481A013_NCSU_26.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_025.mat 
+pre-processing:       S101481A013_NCSU_27.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_026.mat 
+pre-processing:       S101481A013_NCSU_28.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_027.mat 
+pre-processing:       S101481A013_NCSU_29.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_028.mat 
+pre-processing:       S101481A013_NCSU_30.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_029.mat 
+pre-processing:       S101481A013_NCSU_31.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_030.mat 
+pre-processing:       S101481A013_NCSU_32.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_031.mat 
+pre-processing:       S101481A013_NCSU_33.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_032.mat 
+pre-processing:       S101481A013_NCSU_34.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_033.mat 
+pre-processing:       S101481A013_NCSU_35.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_034.mat 
+pre-processing:       S101481A013_NCSU_36.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_035.mat 
+pre-processing:       S101481A013_NCSU_37.mat 

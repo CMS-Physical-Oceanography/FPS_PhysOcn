@@ -1,4 +1,4 @@
- %
+%
 dtBurst = 1800;% seconds
 dtEns   = 512 ;% seconds
 rho0    = 1027.5;% kg/m^3
@@ -6,7 +6,7 @@ g       = 9.81;% m/s^2
 %
 %
 % get sampling information from config file
-load([rootDIR,filePrefix,'config.mat'])
+load([outDIR,filePrefix,'config.mat'])
 fs = double(Config.Burst_SamplingRate);
 Nc = Config.Burst_NCells;
 %
@@ -24,7 +24,7 @@ olap  = 2/3;
 chnks = (Na-Ne*olap-1)/(Ne*(1-olap));
 %
 % get structure with all files in archive
-files = dir([rootDIR,filePrefix,'*.mat']);
+files = dir([outDIR,filePrefix,'*.mat']);
 fNameCell=extractfield(files,'name');
 files = files(~contains(fNameCell,'config') & ~contains(fNameCell,'min.mat'));
 Nf    = length(files);
@@ -36,8 +36,8 @@ waves  = struct();
 for ii= 1:Nf
     %
     % load the raw data
-    inFileName = sprintf([filePrefix,'%02d.mat'],ii);
-    fin  = [rootDIR,inFileName];
+    inFileName = sprintf([filePrefix,'%03d.mat'],ii);
+    fin  = [outDIR,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
 % $$$     in = load(fin,'VelEast','VelNorth','VelUp1','VelUp2','VelBeam5','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','mab');
     in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','bin_mab');
@@ -68,20 +68,20 @@ for ii= 1:Nf
         waves.Time(1,ensNum) = tavg;
         if Nb<2
             disp('not enough good data')
-            waves.Hs(1,ensNum) = nan;
-            waves.Tm(1,ensNum) = nan;
-            waves.Suu(:,ensNum)= nan;
-            waves.Svv(:,ensNum)= nan;
-            waves.Spp(:,ensNum)= nan;
-            waves.Spu(:,ensNum)= nan;
-            waves.Spp(:,ensNum)= nan;
-            waves.Spv(:,ensNum)= nan;
-            waves.mean_dir(1:2,ensNum)   =nan;
-            waves.mean_spread(1:2,ensNum)=nan;
-            waves.mSxx(1,ensNum) = nan;
-            waves.mSxy(1,ensNum) = nan;
-            waves.mSyy(1,ensNum) = nan;
-            waves.Z2(:,ensNum) = nan;
+% $$$             waves.Hs(1,ensNum) = nan;
+% $$$             waves.Tm(1,ensNum) = nan;
+% $$$             waves.Suu(:,ensNum)= nan;
+% $$$             waves.Svv(:,ensNum)= nan;
+% $$$             waves.Spp(:,ensNum)= nan;
+% $$$             waves.Spu(:,ensNum)= nan;
+% $$$             waves.Spp(:,ensNum)= nan;
+% $$$             waves.Spv(:,ensNum)= nan;
+% $$$             waves.mean_dir(1:2,ensNum)   =nan;
+% $$$             waves.mean_spread(1:2,ensNum)=nan;
+% $$$             waves.mSxx(1,ensNum) = nan;
+% $$$             waves.mSxy(1,ensNum) = nan;
+% $$$             waves.mSyy(1,ensNum) = nan;
+% $$$             waves.Z2(:,ensNum) = nan;
             ensNum = ensNum+1;
             continue
         end
@@ -287,8 +287,8 @@ for ii= 1:Nf
         Hs = 4*sqrt(nansum(df*SePP(I)));
         Tm = m0/m1;
         %
-        % log the hourly averaged
-        if ii==1 & jj==1
+        % log the hourly averaged stats
+        if ~ismember(fieldnames(waves),'frequency')
             waves.frequency  = fq(1:I(end))';
             waves.wavenumber = k(1:I(end))';            
         end

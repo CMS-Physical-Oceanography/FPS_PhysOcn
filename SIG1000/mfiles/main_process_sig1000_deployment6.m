@@ -2,9 +2,9 @@ clear all
 close all
 % stages of processing
 % 1) define deployment number:
-deploy  = 4;
-% adcpID  = 1;
-for adcpID = 3
+deploy  = 6;
+% 
+for adcpID = 2:3
     if adcpID == 1
         echo_mode=1;
     else
@@ -14,24 +14,25 @@ for adcpID = 3
 time_shift = 0/24;
 % 2) raw data input directory & filename convention:
 rootDIRs= {'/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/';...
-           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/converted/';...
-           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/converted/'};
+           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/CoastalSig/';...
+           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/StormSig/'};
+siteIDs = {'FPSC0','FPSS0','FPSE0'};
 rootDIR = sprintf(rootDIRs{adcpID},deploy);
-fRoots  = {'S103071A017_FPS4_';...
-           'S101481A010_NCSU_';...
-           'S103080A006_NCSU_'};
+fRoots  = {'S103071A021_FPS6_';...
+           'S101481A013_NCSU_';...
+           'S103080A009_NCSU_'};
 fRoot   = fRoots{adcpID};
 % 3) output directory:
-outRoots= {'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSE1/';...
-           '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSS1/';...
-           '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSS0/'};
-outRoot = sprintf(outRoots{adcpID},deploy);
+outRoots= {'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/%s/';...
+           '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/%s/';...
+           '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/%s/'};
+outRoot = sprintf(outRoots{adcpID},deploy,siteIDs{adcpID});
 % 4) output data file prefix:
 outDIR  = [outRoot,filesep,'SIG1000',filesep];
-prefixes= {'SIG_00103071_DEP%d_FPSE1_';...
-           'SIG_00101481_DEP%d_FPSS1_';...
-           'SIG_00103080_DEP%d_FPSS0_'};
-filePrefix= sprintf(prefixes{adcpID},deploy);
+prefixes= {'SIG_00103071_DEP%d_%s_';...
+           'SIG_00101481_DEP%d_%s_';...
+           'SIG_00103080_DEP%d_%s_'};
+filePrefix= sprintf(prefixes{adcpID},deploy,siteIDs{adcpID});
 %
 % 4a) current/echo average interval (seconds)
 dtAvg     = 300;
@@ -41,9 +42,10 @@ L1dir     = [outRoot, filesep, 'L1',filesep];
 L1FRoot   = sprintf('%sL1',filePrefix);
 %
 % 5) time-periods when instrument was air (leave times empty to manually reselect them)
-atmosphTime = [datenum('20-Aug-2024 11:15:00'), datenum('20-Aug-2024 13:15:00')];% 6) deploy/recovery times
-deployTime  = [datenum('21-Aug-2024 00:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
-recoverTime = [datenum('18-Sep-2024 23:59:59')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
+atmosphTime = [datenum('04-Feb-2025 13:00:00'), datenum('04-Feb-2025 14:00:00')];
+% 6) deploy/recovery times
+deployTime  = [datenum('04-Feb-2025 19:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
+recoverTime = [datenum('27-Mar-2025 23:59:59')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
 %
 files = dir([rootDIR,fRoot,'*.mat']);
 Nf    = length(files);
@@ -60,13 +62,13 @@ atmosphTime = atmosphTime + time_shift;
 deployTime  = deployTime  + time_shift;
 recoverTime = recoverTime + time_shift;
 %
-if adcpID>1
+% if adcpID>1
 % load and pre-process data.
 load_and_process_sig1000_RDI_matrix_format
 %
 % make time-averages
 time_average_and_rotate_sig1000_RDI_matrix_format
-end
+% end
 %
 % estimate hourly wave stats
 estimate_wave_bulk_stats_SIG1000_RDI_matrix_format

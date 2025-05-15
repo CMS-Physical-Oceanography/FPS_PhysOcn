@@ -56,23 +56,22 @@ if isempty(recoverTime) | isempty(atmosphTime)
     end
 end
 
-inAir   = (Time>=atmosphTime(end,1) & Time<=atmosphTime(end,2));    
-while sum(inAir)==0 & ~isempty([inAir])
-    iter = iter+1;
-    load([rootDIR,filesep,fRoot,num2str(Nf-iter),'.mat'],'Data','Config')
-    Pres = Data.Burst_Pressure;
-    Time = Data.Burst_Time;
-    inAir   = (Time>=atmosphTime(end,1) & Time<=atmosphTime(end,2));
+if size(atmosphTime,1)>1
+    inAir   = (Time>=atmosphTime(end,1) & Time<=atmosphTime(end,2));    
+    while sum(inAir)==0 & ~isempty([inAir])
+        iter = iter+1;
+        load([rootDIR,filesep,fRoot,num2str(Nf-iter),'.mat'],'Data','Config')
+        Pres = Data.Burst_Pressure;
+        Time = Data.Burst_Time;
+        inAir   = (Time>=atmosphTime(end,1) & Time<=atmosphTime(end,2));
 % $$$     if sum(inAir)~=0 & ~isempty([inAir])
 % $$$         atmosphTime = cat(1,atmosphTime,Time(round(inAir(:,1)))');
 % $$$     end
-end
-
-
-close all
-
+    end
 ATM_Time        = cat(1,ATM_Time    , mean(Time(inAir)));
 ATM_Pressure    = cat(1,ATM_Pressure, mean(Pres(inAir)));
+end
 
+close all
 fprintf(' atmosphTime = \n')
 datestr(atmosphTime)

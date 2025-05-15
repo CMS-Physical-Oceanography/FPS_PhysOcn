@@ -22,9 +22,9 @@ mabE = hab+blnkE+binwE.*[1:NcE]';
 end
 %
 % save the config info
-outFile = [rootDir, filePrefix, 'config.mat'];
-if ~exist(rootDir,'dir')
-    eval(['!mkdir ',rootDIR])
+outFile = [outDIR, filePrefix, 'config.mat'];
+if ~exist(outDIR,'dir')
+    eval(['!mkdir ',outDIR])
 end
 save(outFile,'Config','Descriptions')
 % $$$ outFile = [L0dir, filePrefix, 'config.nc'];
@@ -59,8 +59,10 @@ while ii<=Nf
         fprintf(['pre-processing:       %s \n'], fileName)
         load(fin)
         % use 5th beam time; the other beams are offset by dt = 1/(2*fs)
-        t    = Data.IBurst_Time;
-        nt   = length(t);
+        t5   = Data.IBurst_Time;
+        t    = Data.Burst_Time;        
+        nt   = min( length(t), length(t5) );
+        t    = t5(1:nt);
         % check if instrument is deployed
         is   = find(t>=deployTime,1,'first');
         if isempty(is)
@@ -159,7 +161,10 @@ while ii<=Nf
         % save output
         outNf = outNf+1;
         outFileName = sprintf([filePrefix,'%03d.mat'],outNf);
-        fout  = [outDir,outFileName];
+        fout  = [outDIR,outFileName];
+        if ~exist(outDIR,'dir')
+            eval(['!mkdir -p ',outDIR])
+        end
         fprintf(['saving output file:   %s \n'],outFileName)
         save(fout,'-struct','out')
 % $$$         outFileName = sprintf([filePrefix,'%03d.nc'],outNf);

@@ -2,9 +2,9 @@ clear all
 close all
 % stages of processing
 % 1) define deployment number:
-deploy  = 4;
+deploy  = 5;
 % adcpID  = 1;
-for adcpID = 3
+for adcpID = 1:3
     if adcpID == 1
         echo_mode=1;
     else
@@ -14,12 +14,12 @@ for adcpID = 3
 time_shift = 0/24;
 % 2) raw data input directory & filename convention:
 rootDIRs= {'/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_SIG1000/';...
-           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/converted/';...
-           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/converted/'};
+           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/CoastalSig/';...
+           '/Users/derekgrimes/OneDriveUNCW/DATA/BOEM/FPSD%d_NCSU/StormSig/'};
 rootDIR = sprintf(rootDIRs{adcpID},deploy);
-fRoots  = {'S103071A017_FPS4_';...
-           'S101481A010_NCSU_';...
-           'S103080A006_NCSU_'};
+fRoots  = {'S103071A020_FPS5_';...
+           'S101481A012_NCSU_';...
+           'S103080A008_NCSU_'};
 fRoot   = fRoots{adcpID};
 % 3) output directory:
 outRoots= {'/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSE1/';...
@@ -41,9 +41,10 @@ L1dir     = [outRoot, filesep, 'L1',filesep];
 L1FRoot   = sprintf('%sL1',filePrefix);
 %
 % 5) time-periods when instrument was air (leave times empty to manually reselect them)
-atmosphTime = [datenum('20-Aug-2024 11:15:00'), datenum('20-Aug-2024 13:15:00')];% 6) deploy/recovery times
-deployTime  = [datenum('21-Aug-2024 00:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
-recoverTime = [datenum('18-Sep-2024 23:59:59')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
+atmosphTime = [datenum('19-Nov-2024 13:00:00'), datenum('19-Nov-2024 14:00:00')];
+% 6) deploy/recovery times
+deployTime  = [datenum('19-Nov-2024 19:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
+recoverTime = [datenum('09-Dec-2024 23:59:59')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
 %
 files = dir([rootDIR,fRoot,'*.mat']);
 Nf    = length(files);

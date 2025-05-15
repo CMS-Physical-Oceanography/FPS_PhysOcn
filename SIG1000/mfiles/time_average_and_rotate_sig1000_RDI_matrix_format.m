@@ -1,10 +1,10 @@
 %
-load([rootDIR,filesep,filePrefix,'config.mat'])
+load([outDIR,filesep,filePrefix,'config.mat'])
 fs = double(Config.Burst_SamplingRate);
 Nc = Config.Burst_NCells;
 %
-files    = dir([rootDIR,filesep,filePrefix,'*.mat']);
-fNameCell=extractfield(files,'name');
+files    = dir([outDIR,filesep,filePrefix,'*.mat']);
+fNameCell= extractfield(files,'name');
 files    = files(~contains(fNameCell,'config') & ~contains(fNameCell,'min.mat'));
 Nf       = length(files);
 %
@@ -22,7 +22,7 @@ for ii= 1:Nf
     %
     % load the raw data
     inFileName = sprintf([filePrefix,'%03d.mat'],ii);
-    fin  = [rootDIR,inFileName];
+    fin  = [outDIR,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
     in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','Velocity_Error','Correlation_Minimum','Amplitude_Minimum','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','Temperature','bin_mab');
     %
