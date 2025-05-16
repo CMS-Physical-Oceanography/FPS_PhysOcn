@@ -42,7 +42,7 @@ L1dir     = [outRoot, filesep, 'L1',filesep];
 L1FRoot   = sprintf('%sL1',filePrefix);
 %
 % 5) time-periods when instrument was air (leave times empty to manually reselect them)
-atmosphTime = [datenum('04-Feb-2025 13:00:00'), datenum('04-Feb-2025 14:00:00')];
+atmosphTime = [datenum('04-Feb-2025 14:00:00'), datenum('04-Feb-2025 15:00:00')];
 % 6) deploy/recovery times
 deployTime  = [datenum('04-Feb-2025 19:00:00')];%[datenum('15-Feb-2024 15:00:00')]; %datenum('09-Oct-2023 16:00:00');
 recoverTime = [datenum('27-Mar-2025 23:59:59')];%[datenum('17-Mar-2024 15:00:00')]; %datenum('30-Oct-2023 14:00:00');
@@ -56,6 +56,11 @@ HeadingOffset = -9;
 %
 % read in first/last data files and estimate atmospheric pressures
 select_times_from_pressure
+%
+if isnan(ATM_Pressure)
+    fprintf('**Pressure offset is NaN**')
+    return
+end
 %
 % shift time limits
 atmosphTime = atmosphTime + time_shift;
@@ -127,12 +132,12 @@ set(ax3,'tickdir','out','ticklabelinterpreter','latex','ydir','normal','ylim',[0
 %
 figname = sprintf('%s/figures/%s_currents_depth_varying.pdf',outRoot,L1FRoot);
 exportgraphics(fig,figname)
-
-
+%
+%
 Ubar = nanmean(U,1);
 Vbar = nanmean(V,1);
 Wbar = nanmean(W,1);
-
+%
 fig = figure;
 plot(Time, Ubar,'-r',Time,Vbar,'-b',Time,Wbar,'-k','linewidth',2)
 ylabel(' [m/s]','interpreter','latex')
@@ -141,6 +146,6 @@ set(h,'interpreter','latex','orientation','horizontal')
 set(gca,'tickdir','out','ticklabelinterpreter','latex','plotboxaspectratio',[1 1/2 1],'xlim',[Time(1) Time(end)])
 figname = sprintf('%s/figures/%s_currents_depth_averaged.pdf',outRoot,L1FRoot);
 exportgraphics(fig,figname)
-
+%
 end
 
