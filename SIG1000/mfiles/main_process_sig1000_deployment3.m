@@ -11,7 +11,7 @@ fRoot   = sprintf('S103071A013_FPS%d_',deploy);
 % 3) output directory:
 outRoot = sprintf('/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment%d/FPSC0/',deploy);
 % 4) output data file prefix:
-outDir  = [outRoot,filesep,'SIG1000',filesep];
+outDIR  = [outRoot,filesep,'SIG1000',filesep];
 filePrefix= sprintf('SIG_00103071_DEP%d_FPSC0_',deploy);
 %
 % 4a) current/echo average interval (seconds)
@@ -45,9 +45,9 @@ recoverTime = recoverTime + time_shift;
 %
 % load and pre-process data.
 % $$$ load_and_process_sig1000_RDI_matrix_format
-%
-% make time-averages
-time_average_and_rotate_sig1000_RDI_matrix_format
+% $$$ %
+% $$$ % make time-averages
+% $$$ time_average_and_rotate_sig1000_RDI_matrix_format
 %
 % estimate hourly wave stats
 estimate_wave_bulk_stats_SIG1000_RDI_matrix_format

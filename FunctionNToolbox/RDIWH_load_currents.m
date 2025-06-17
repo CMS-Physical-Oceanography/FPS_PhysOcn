@@ -44,10 +44,10 @@ mounting_dist   = ADCPparams.mounting_dist; % Need to check if we actually need 
     ADCP.roll_std(index)=[];
     ADCP.heading_std(index)=[];
     ADCP.depth(index)=[];
-    ADCP.temperature(index)=[];
+    ADCP.Temperature(index)=[];
     ADCP.salinity(index)=[];
-    ADCP.pressure(index)=[];
-    ADCP.pressure_std(index)=[];
+    ADCP.Pressure(index)=[];
+    ADCP.Pressure_std(index)=[];
     ADCP.east_vel(:,index)=[];
     ADCP.north_vel(:,index)=[];
     ADCP.vert_vel(:,index)=[];
@@ -68,9 +68,9 @@ mounting_dist   = ADCPparams.mounting_dist; % Need to check if we actually need 
 
 qcnan_dep = NaN(size(ADCP.east_vel));
 
-    if isempty(ADCP.pressure) == 0
+    if isempty(ADCP.Pressure) == 0
         for ii = 1:length(ADCP.mtime)
-            new_depth(ii) = nanmean((ADCP.pressure(ii))*10/(1026*9.81)); %recorded pressure is in deca-pascals so we use density of water to be 1026 and g to be 9.81
+            new_depth(ii) = nanmean((ADCP.Pressure(ii))*10/(1026*9.81)); %recorded pressure is in deca-pascals so we use density of water to be 1026 and g to be 9.81
             surf_i = find(abs(ADCP.config.ranges) <= new_depth(ii));
             if isempty(surf_i) == 0 
             surfbin_p(ii) = surf_i(end);
@@ -85,7 +85,7 @@ qcnan_dep = NaN(size(ADCP.east_vel));
     end
 disp('Section 3 complete')
 % Convert those Decapascal units to Dbar:
-ADCP.pressure = ADCP.pressure./1000;
+ADCP.Pressure = ADCP.Pressure./1000;
 %% Section 4 Calculating depth from intensity data, called int_depth
 qcnan_int = NaN(size(ADCP.east_vel));
 
@@ -100,26 +100,26 @@ disp('Section 4 complete')
 if qctouse == 'pres'
     qcflag = qcnan_dep;
     ADCP.depth = new_depth;
-    ADCP.qcFlag = isnan(qcflag);
+    ADCP.qcFlag = ~isnan(qcflag);
 elseif qctouse == 'intn'
     qcflag = qcnan_int;
     ADCP.depth = int_depth;
-    ADCP.qcFlag = isnan(qcflag);
+    ADCP.qcFlag = ~isnan(qcflag);
 else 
-    qcflag = zeros(size(ADCP.east_vel));
+    qcflag = ones(size(ADCP.east_vel));
 end
 
-    ADCP.velocity_east = ADCP.east_vel + qcflag;
-    ADCP.velocity_north = ADCP.north_vel + qcflag;
-    ADCP.velocity_up = ADCP.vert_vel + qcflag;
+    ADCP.Velocity_East = ADCP.east_vel + qcflag;
+    ADCP.Velocity_North = ADCP.north_vel + qcflag;
+    ADCP.Velocity_Up = ADCP.vert_vel + qcflag;
     ADCP.bins = abs(ADCP.config.ranges)+mounting_dist;
     ADCP.SN = ADCP.config.remus_serialnum;
-    ADCP.time = ADCP.mtime;
+    ADCP.Time = ADCP.mtime;
     disp('Section 5 complete')
     
 %% Section 6 Remove fields that are not needed for L0
 fields = {'name','config','pitch_std','roll_std','heading_std','status','bt_range','bt_vel',...
-    'bt_corr','bt_ampl','bt_perc_good','perc_good', 'number', 'pressure_std','salinity', ...
+    'bt_corr','bt_ampl','bt_perc_good','perc_good', 'number', 'Pressure_std','salinity', ...
     'east_vel','north_vel','vert_vel','coords', 'rerunparameter','mtime'};
 
 ADCP = rmfield(ADCP,fields);
@@ -130,18 +130,18 @@ ADCP.notes = {'Time base is GMT';
     sprintf('Created on %s',datestr(now))};
 %%
 % Trim the beginning and ends of the files:
-aa = find(ADCP.time>=stime & ADCP.time <=etime);
-ADCPc.time = ADCP.time(aa);
+aa = find(ADCP.Time>=stime & ADCP.Time <=etime);
+ADCPc.Time = ADCP.time(aa);
 ADCPc.pitch = ADCP.pitch(aa);ADCPc.roll = ADCP.roll(aa);ADCPc.heading = ADCP.heading(aa);
-ADCPc.temperature = ADCP.temperature(aa);ADCPc.pressure = ADCP.pressure(aa);ADCPc.depth = ADCP.depth(aa);
+ADCPc.Temperature = ADCP.Temperature(aa);ADCPc.Pressure = ADCP.Pressure(aa);ADCPc.depth = ADCP.depth(aa);
 ADCPc.bins = ADCP.bins;
 ADCPc.units = ADCP.units;
 ADCPc.SN = ADCP.SN;
 ADCPc.notes = ADCP.notes;
 
-ADCPc.velocity_east = ADCP.velocity_east(:,aa);
-ADCPc.velocity_north = ADCP.velocity_north(:,aa);
-ADCPc.velocity_up = ADCP.velocity_up(:,aa);
+ADCPc.Velocity_East = ADCP.Velocity_East(:,aa);
+ADCPc.Velocity_North = ADCP.Velocity_North(:,aa);
+ADCPc.Velocity_Up = ADCP.Velocity_Up(:,aa);
 ADCPc.velocity_error = ADCP.error_vel(:,aa);
 ADCPc.correlation = ADCP.corr(:,:,aa);
 ADCPc.amplitude = ADCP.intens(:,:,aa);
@@ -151,5 +151,5 @@ ADCPc.qcFlag = ADCP.qcFlag(:,aa);
 
 %% Saving the file name
 %filename=[save_to_path,'SBE_',sprintf('%08d',ADCP.SN),'_','DEP',num2str(depnum),'_',stationID,'_L0.mat'];
-%save(filename,'SN','time','pitch','roll','heading','temperature','pressure','depth','bins','amplitude','correlation',...
-%    'velocity_east','velocity_north','velocity_up','velocity_error','qcFlag','units','notes'); 
+%save(filename,'SN','time','pitch','roll','heading','Temperature','Pressure','depth','bins','amplitude','correlation',...
+%    'Velocity_East','Velocity_North','velocity_up','velocity_error','qcFlag','units','notes'); 

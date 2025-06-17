@@ -61,13 +61,13 @@ atmosphTime = atmosphTime + time_shift;
 deployTime  = deployTime  + time_shift;
 recoverTime = recoverTime + time_shift;
 %
-if adcpID>1
-% load and pre-process data.
-load_and_process_sig1000_RDI_matrix_format
-%
-% make time-averages
-time_average_and_rotate_sig1000_RDI_matrix_format
-end
+% $$$ if adcpID>4
+% $$$ % load and pre-process data.
+% $$$ load_and_process_sig1000_RDI_matrix_format
+% $$$ %
+% $$$ % make time-averages
+% $$$ time_average_and_rotate_sig1000_RDI_matrix_format
+% $$$ end
 %
 % estimate hourly wave stats
 estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
