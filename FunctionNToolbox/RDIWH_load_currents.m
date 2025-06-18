@@ -131,7 +131,7 @@ ADCP.notes = {'Time base is GMT';
 %%
 % Trim the beginning and ends of the files:
 aa = find(ADCP.Time>=stime & ADCP.Time <=etime);
-ADCPc.Time = ADCP.time(aa);
+ADCPc.Time = ADCP.Time(aa);
 ADCPc.pitch = ADCP.pitch(aa);ADCPc.roll = ADCP.roll(aa);ADCPc.heading = ADCP.heading(aa);
 ADCPc.Temperature = ADCP.Temperature(aa);ADCPc.Pressure = ADCP.Pressure(aa);ADCPc.depth = ADCP.depth(aa);
 ADCPc.bins = ADCP.bins;

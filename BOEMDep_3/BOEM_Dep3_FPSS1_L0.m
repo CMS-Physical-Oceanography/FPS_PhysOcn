@@ -10,6 +10,7 @@ clear; clc;
 % 1. Add the local path to all the BOEM functions:
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/MacLawhorn/BOEM_Dep1/FunctionNToolbox/'))
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/'))
+addpath('../FunctionNToolbox')
 
 % 2. Inputs:
 % Deployment number (1 - 8):
@@ -18,7 +19,7 @@ depnum = 3;
 StationID='FPSS1';
 % Base path to OneDrive or wherever the data files lie (AS OneDrive link doesn't work):
 %basepath = '~/Documents/BOEM_OD/data/BOEM_deployment3';
-basepath = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep3/';
+basepath = '~/OneDrive - UNC-Wilmington/Documents/Research/BOEM_OneDrive/General/data/BOEM_deployment3';
 % Exported file names for each instrument to process:
 fname_rbrs = '200061_20240606_1617.rsk';
 fname_rbrd1 = '207221_20240606_1547.rsk';
@@ -63,7 +64,7 @@ fname_sbe_full = [deploypath,fname_sbe];
 [SBE37L0,fname_sbe_new]=SBE37_load(fname_sbe_full,save_to_path,depnum,StationID,1,stime,etime); 
 
 %% ADCP
-clearvars -except save_to_path depnum StationID stime etime
+clearvars -except basepath save_to_path depnum StationID stime etime
 
 % ADCP - first create a structure that includes a few essentials
 ADCPparams.surfrange = [15:25]; % the approximate range of bins where we expect the surface to be
@@ -72,10 +73,10 @@ ADCPparams.beamnum = 1; % the beam to use to estimate the surface from intensity
 ADCPparams.qctouse = 'intn'; % the field to mask to use for QC
 ADCPparams.mounting_dist = 0.5; % the approximate distance from the seabed.
 % Currents
-inpathc = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep3/FPSS1/WAVES/WAVES_000_000_CUR.PD0';
+inpathc = strcat(basepath,'/',StationID,'/WAVES/WAVES_000_000_CUR.PD0')
 [currents] = RDIWH_load_currents(inpathc,save_to_path,depnum,StationID,ADCPparams,stime,etime);
 % Waves path to directory
-inpathw = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep3/FPSS1/WAVES/';
+inpathw = strcat(basepath,'/',StationID,'/WAVES/SPEC/');
 [waves] = RDIWH_load_waves(inpathw,save_to_path,depnum,StationID,stime,etime);
 filename=[save_to_path,'RDI_',sprintf('%08d',currents.SN),'_','DEP',num2str(depnum),'_',StationID,'_L0.mat'];
 save(filename,'currents','waves')

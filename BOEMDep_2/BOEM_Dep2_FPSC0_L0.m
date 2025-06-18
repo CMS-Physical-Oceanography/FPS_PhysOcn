@@ -53,8 +53,6 @@ fname_c6_full = [deploypath,'C6',filesep,fname_c6];
 [C6L0,fname_c6_new] = C6_load(fname_c6_full,save_to_path,depnum,StationID,stime,etime);
 
 %% NEED TO DO ADCP!
-% Check the time on the SBE37!
-%load('FPSS1/L0processing/RDI_00011548_DEP1_FPSS1_L0.mat')
 
 %% 4. OPTIONALS - this will depend on the instrument, deployment, etc:
 % In this case, we do some spike filtering on C6 (see RAW plots produced):

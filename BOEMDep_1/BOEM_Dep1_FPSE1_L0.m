@@ -9,6 +9,7 @@ clear; clc;
 
 % 1. Add the local path to all the BOEM functions:
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/MacLawhorn/BOEM_Dep1/FunctionNToolbox/'))
+addpath('../FunctionNToolbox')
 
 % 2. Inputs:
 % Deployment number (1 - 8):
@@ -16,7 +17,7 @@ depnum = 1;
 % Station ID (should match folder names):
 StationID='FPSE1';
 % Base path to OneDrive or wherever the data files lie:
-basepath = '~/Documents/BOEM_OD/data/BOEM_deployment1';
+basepath = '~/OneDrive - UNC-Wilmington/Documents/Research/BOEM_OneDrive/General/data/BOEM_deployment1';
 % Exported file names for each instrument to process:
 fname_rbrt = '214016_20231031_2014.rsk';
 fname_rbrs = '200061_20231031_1951.rsk';
@@ -54,7 +55,7 @@ ADCPparams.bins2del = 2;
 ADCPparams.beamnum = 1;
 ADCPparams.qctouse = 'intn';
 ADCPparams.mounting_dist = 0.5; 
-inpath = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/FPSE1/RDI_WH/WAVES/WAVES_000_000_TS2310091200_CUR.PD0'
+inpath = strcat(basepath,'/',StationID,'/RDI_WH/WAVES/WAVES_000_000_TS2310091200_CUR.PD0')
 [currents] = RDIWH_load_currents(inpath,save_to_path,depnum,StationID,ADCPparams,stime,etime);
 filename=[save_to_path,'RDI_',sprintf('%08d',currents.SN),'_','DEP',num2str(depnum),'_',StationID,'_L0.mat'];
 save(filename,'currents')

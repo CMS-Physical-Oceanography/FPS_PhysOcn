@@ -174,7 +174,7 @@ disp('Done Spec')
 end
 ADCP.spec.Time=TIME';
 aa = find(ADCP.spec.Time>=stime & ADCP.spec.Time <=etime);
-ADCP.spec.time = ADCP.spec.time(aa);
+ADCP.spec.time = ADCP.spec.Time(aa);
 ADCP.spec.PSpec.burst = ADCP.spec.PSpec.burst(:,aa);
 ADCP.spec.SSpec.burst = ADCP.spec.SSpec.burst(:,aa);
 ADCP.spec.VSpec.burst = ADCP.spec.VSpec.burst(:,aa);
@@ -185,9 +185,12 @@ ADCP.spec.DSpec.burst = ADCP.spec.DSpec.burst(:,:,aa);
  %====================== LOG 9 TXT file Processing =======================
  % The waves data stored within the log9 file is read in, and th data is
  % stored in the ADCP structure under the field log9
-   logfile_source=fullfile(inpath,'*LOG9.TXT');
+ % HACK:
+inpath2 = inpath(1:end-5);
+
+    logfile_source=fullfile(inpath2,'*LOG9.TXT');
     logfile_dir=dir(logfile_source);
-    file=append(inpath, logfile_dir.name);
+    file=append(inpath2, logfile_dir.name);
     fileID = fopen(file);
     [C] = textscan(fileID, '%d, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f , %f, %f, %f, %f, %f, %f , %f, %f, %f %*[^\n]');  
     fclose(fileID);

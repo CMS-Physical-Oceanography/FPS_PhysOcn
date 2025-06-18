@@ -10,6 +10,7 @@ clear; clc;
 % 1. Add the local path to all the BOEM functions:
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/MacLawhorn/BOEM_Dep1/FunctionNToolbox/'))
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/'))
+addpath('../FunctionNToolbox')
 
 % 2. Inputs:
 % Deployment number (1 - 8):
@@ -18,7 +19,7 @@ depnum = 2;
 StationID='FPSE1';
 % Base path to OneDrive or wherever the data files lie:
 %basepath = '~/Documents/BOEM_OD/data/BOEM_deployment2';
-basepath = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep2/';
+basepath = '~/OneDrive - UNC-Wilmington/Documents/Research/BOEM_OneDrive/General/data/BOEM_deployment2';
 % Exported file names for each instrument to process:
 fname_rbrt = '214015_20240410_2059.rsk';
 fname_rbrd = '210872_20240410_2004.rsk';
@@ -59,10 +60,10 @@ ADCPparams.beamnum = 1; % the beam to use to estimate the surface from intensity
 ADCPparams.qctouse = 'intn'; % the field to mask to use for QC
 ADCPparams.mounting_dist = 0.5; % the approximate distance from the seabed.
 % Currents
-inpathc = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep2/FPSE1/RDIWH/WAVES/WAVES_000_000_TS2402151300_CUR.PD0';
+inpathc = strcat(basepath,'/',StationID,'/RDIWH/WAVES/WAVES_000_000_TS2402151300_CUR.PD0')
 [currents] = RDIWH_load_currents(inpathc,save_to_path,depnum,StationID,ADCPparams,stime,etime);
 % Waves path to directory
-inpathw = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep2/FPSE1/RDIWH/WAVES/';
+inpathw = strcat(basepath,'/',StationID,'/RDIWH/WAVES/SPEC/');
 [waves] = RDIWH_load_waves(inpathw,save_to_path,depnum,StationID,stime,etime);
 filename=[save_to_path,'RDI_',sprintf('%08d',currents.SN),'_','DEP',num2str(depnum),'_',StationID,'_L0.mat'];
 save(filename,'currents','waves')
