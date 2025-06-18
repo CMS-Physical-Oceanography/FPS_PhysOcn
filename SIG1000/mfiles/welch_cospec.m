@@ -59,9 +59,9 @@ for m=1:M
     SYY  =SYY+AYY;
     CXY  =CXY+AXY;
 end
-SXX=SXX*dt/M/ds;
-SYY=SYY*dt/M/ds;
-CXY=CXY*dt/M/ds;
+SXX=SXX*dt/M/Ns;
+SYY=SYY*dt/M/Ns;
+CXY=CXY*dt/M/Ns;
 
 CoSP= real(CXY);
 QuSP= imag(CXY);

@@ -1,0 +1,640 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '04-Feb-2025 14:00:00'
+    '04-Feb-2025 15:00:00'
+
+
+ 
+pre-processing:       S101481A013_NCSU_1.mat 
+pre-processing:       S101481A013_NCSU_2.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_001.mat 
+pre-processing:       S101481A013_NCSU_3.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_002.mat 
+pre-processing:       S101481A013_NCSU_4.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_003.mat 
+pre-processing:       S101481A013_NCSU_5.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_004.mat 
+pre-processing:       S101481A013_NCSU_6.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_005.mat 
+pre-processing:       S101481A013_NCSU_7.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_006.mat 
+pre-processing:       S101481A013_NCSU_8.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_007.mat 
+pre-processing:       S101481A013_NCSU_9.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_008.mat 
+pre-processing:       S101481A013_NCSU_10.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_009.mat 
+pre-processing:       S101481A013_NCSU_11.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_010.mat 
+pre-processing:       S101481A013_NCSU_12.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_011.mat 
+pre-processing:       S101481A013_NCSU_13.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_012.mat 
+pre-processing:       S101481A013_NCSU_14.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_013.mat 
+pre-processing:       S101481A013_NCSU_15.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_014.mat 
+pre-processing:       S101481A013_NCSU_16.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_015.mat 
+pre-processing:       S101481A013_NCSU_17.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_016.mat 
+pre-processing:       S101481A013_NCSU_18.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_017.mat 
+pre-processing:       S101481A013_NCSU_19.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_018.mat 
+pre-processing:       S101481A013_NCSU_20.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_019.mat 
+pre-processing:       S101481A013_NCSU_21.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_020.mat 
+pre-processing:       S101481A013_NCSU_22.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_021.mat 
+pre-processing:       S101481A013_NCSU_23.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_022.mat 
+pre-processing:       S101481A013_NCSU_24.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_023.mat 
+pre-processing:       S101481A013_NCSU_25.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_024.mat 
+pre-processing:       S101481A013_NCSU_26.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_025.mat 
+pre-processing:       S101481A013_NCSU_27.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_026.mat 
+pre-processing:       S101481A013_NCSU_28.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_027.mat 
+pre-processing:       S101481A013_NCSU_29.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_028.mat 
+pre-processing:       S101481A013_NCSU_30.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_029.mat 
+pre-processing:       S101481A013_NCSU_31.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_030.mat 
+pre-processing:       S101481A013_NCSU_32.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_031.mat 
+pre-processing:       S101481A013_NCSU_33.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_032.mat 
+pre-processing:       S101481A013_NCSU_34.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_033.mat 
+pre-processing:       S101481A013_NCSU_35.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_034.mat 
+pre-processing:       S101481A013_NCSU_36.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_035.mat 
+pre-processing:       S101481A013_NCSU_37.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_036.mat 
+pre-processing:       S101481A013_NCSU_38.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_037.mat 
+pre-processing:       S101481A013_NCSU_39.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_038.mat 
+pre-processing:       S101481A013_NCSU_40.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_039.mat 
+pre-processing:       S101481A013_NCSU_41.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_040.mat 
+pre-processing:       S101481A013_NCSU_42.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_041.mat 
+pre-processing:       S101481A013_NCSU_43.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_042.mat 
+pre-processing:       S101481A013_NCSU_44.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_043.mat 
+pre-processing:       S101481A013_NCSU_45.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_044.mat 
+pre-processing:       S101481A013_NCSU_46.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_045.mat 
+pre-processing:       S101481A013_NCSU_47.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_046.mat 
+pre-processing:       S101481A013_NCSU_48.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_047.mat 
+pre-processing:       S101481A013_NCSU_49.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_048.mat 
+pre-processing:       S101481A013_NCSU_50.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_049.mat 
+pre-processing:       S101481A013_NCSU_51.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_050.mat 
+pre-processing:       S101481A013_NCSU_52.mat 
+trimming data at recovery time: nt = 345600--> 143996
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_051.mat 
+pre-processing:       S101481A013_NCSU_53.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S101481A013_NCSU_54.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S101481A013_NCSU_55.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S101481A013_NCSU_56.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S101481A013_NCSU_57.mat 
+trimming data at recovery time: nt = 202725--> 0
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00101481_DEP6_FPSS0_052.mat 
+done! 
+
+ 
+loading file:   SIG_00101481_DEP6_FPSS0_001.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_002.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_003.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_004.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_005.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_006.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_007.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_008.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_009.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_010.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_011.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_012.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_013.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_014.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_015.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_016.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_017.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_018.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_019.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_020.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_021.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_022.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_023.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_024.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_025.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_026.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_027.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_028.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_029.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_030.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_031.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_032.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_033.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_034.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_035.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_036.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_037.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_038.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_039.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_040.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_041.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_042.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_043.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_044.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_045.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_046.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_047.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_048.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_049.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_050.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_051.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSS0//L0/SIG_00101481_DEP6_FPSS0_L0 
+done! 
+
+ 
+loading file:   SIG_00101481_DEP6_FPSS0_001.mat 
+2025-05-16 14:41:19.741 MATLAB[40146:853523] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-05-16 14:41:19.741 MATLAB[40146:853523] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2025-05-16 14:41:19.744 MATLAB[40146:853523] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-05-16 14:41:19.748 MATLAB[40146:853523] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-05-16 14:41:19.748 MATLAB[40146:853523] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00101481_DEP6_FPSS0_002.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_003.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_004.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_005.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_006.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_007.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_008.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_009.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_010.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_011.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_012.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_013.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_014.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_015.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_016.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_017.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_018.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_019.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_020.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_021.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_022.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_023.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_024.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_025.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_026.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_027.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_028.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_029.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_030.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_031.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_032.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_033.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_034.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_035.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_036.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_037.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_038.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_039.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_040.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_041.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_042.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_043.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_044.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_045.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_046.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_047.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_048.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_049.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_050.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_051.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSS0//L1/SIG_00101481_DEP6_FPSS0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '04-Feb-2025 14:00:00'
+    '04-Feb-2025 15:00:00'
+
+
+ 
+pre-processing:       S103080A009_NCSU_1.mat 
+pre-processing:       S103080A009_NCSU_2.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_001.mat 
+pre-processing:       S103080A009_NCSU_3.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_002.mat 
+pre-processing:       S103080A009_NCSU_4.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_003.mat 
+pre-processing:       S103080A009_NCSU_5.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_004.mat 
+pre-processing:       S103080A009_NCSU_6.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_005.mat 
+pre-processing:       S103080A009_NCSU_7.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_006.mat 
+pre-processing:       S103080A009_NCSU_8.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_007.mat 
+pre-processing:       S103080A009_NCSU_9.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_008.mat 
+pre-processing:       S103080A009_NCSU_10.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_009.mat 
+pre-processing:       S103080A009_NCSU_11.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_010.mat 
+pre-processing:       S103080A009_NCSU_12.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_011.mat 
+pre-processing:       S103080A009_NCSU_13.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_012.mat 
+pre-processing:       S103080A009_NCSU_14.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_013.mat 
+pre-processing:       S103080A009_NCSU_15.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_014.mat 
+pre-processing:       S103080A009_NCSU_16.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_015.mat 
+pre-processing:       S103080A009_NCSU_17.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_016.mat 
+pre-processing:       S103080A009_NCSU_18.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_017.mat 
+pre-processing:       S103080A009_NCSU_19.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_018.mat 
+pre-processing:       S103080A009_NCSU_20.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_019.mat 
+pre-processing:       S103080A009_NCSU_21.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_020.mat 
+pre-processing:       S103080A009_NCSU_22.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_021.mat 
+pre-processing:       S103080A009_NCSU_23.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_022.mat 
+pre-processing:       S103080A009_NCSU_24.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_023.mat 
+pre-processing:       S103080A009_NCSU_25.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_024.mat 
+pre-processing:       S103080A009_NCSU_26.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_025.mat 
+pre-processing:       S103080A009_NCSU_27.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_026.mat 
+pre-processing:       S103080A009_NCSU_28.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_027.mat 
+pre-processing:       S103080A009_NCSU_29.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_028.mat 
+pre-processing:       S103080A009_NCSU_30.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_029.mat 
+pre-processing:       S103080A009_NCSU_31.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_030.mat 
+pre-processing:       S103080A009_NCSU_32.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_031.mat 
+pre-processing:       S103080A009_NCSU_33.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_032.mat 
+pre-processing:       S103080A009_NCSU_34.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_033.mat 
+pre-processing:       S103080A009_NCSU_35.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_034.mat 
+pre-processing:       S103080A009_NCSU_36.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_035.mat 
+pre-processing:       S103080A009_NCSU_37.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_036.mat 
+pre-processing:       S103080A009_NCSU_38.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_037.mat 
+pre-processing:       S103080A009_NCSU_39.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_038.mat 
+pre-processing:       S103080A009_NCSU_40.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_039.mat 
+pre-processing:       S103080A009_NCSU_41.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_040.mat 
+pre-processing:       S103080A009_NCSU_42.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_041.mat 
+pre-processing:       S103080A009_NCSU_43.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_042.mat 
+pre-processing:       S103080A009_NCSU_44.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_043.mat 
+pre-processing:       S103080A009_NCSU_45.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_044.mat 
+pre-processing:       S103080A009_NCSU_46.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_045.mat 
+pre-processing:       S103080A009_NCSU_47.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_046.mat 
+pre-processing:       S103080A009_NCSU_48.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_047.mat 
+pre-processing:       S103080A009_NCSU_49.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_048.mat 
+pre-processing:       S103080A009_NCSU_50.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_049.mat 
+pre-processing:       S103080A009_NCSU_51.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_050.mat 
+pre-processing:       S103080A009_NCSU_52.mat 
+trimming data at recovery time: nt = 345600--> 143996
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_051.mat 
+pre-processing:       S103080A009_NCSU_53.mat 
+trimming data at recovery time: nt = 60116--> 0
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP6_FPSE0_052.mat 
+done! 
+
+ 
+loading file:   SIG_00103080_DEP6_FPSE0_001.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_002.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_003.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_004.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_005.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_006.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_007.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_008.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_009.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_010.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_011.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_012.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_013.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_014.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_015.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_016.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_017.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_018.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_019.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_020.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_021.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_022.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_023.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_024.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_025.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_026.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_027.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_028.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_029.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_030.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_031.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_032.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_033.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_034.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_035.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_036.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_037.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_038.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_039.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_040.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_041.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_042.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_043.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_044.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_045.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_046.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_047.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_048.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_049.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_050.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_051.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSE0//L0/SIG_00103080_DEP6_FPSE0_L0 
+done! 
+
+ 
+loading file:   SIG_00103080_DEP6_FPSE0_001.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_002.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_003.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_004.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_005.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_006.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_007.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_008.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_009.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_010.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_011.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_012.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_013.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_014.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_015.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_016.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_017.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_018.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_019.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_020.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_021.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_022.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_023.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_024.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_025.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_026.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_027.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_028.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_029.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_030.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_031.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_032.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_033.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_034.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_035.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_036.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_037.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_038.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_039.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_040.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_041.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_042.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_043.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_044.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_045.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_046.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_047.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_048.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_049.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_050.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_051.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSE0//L1/SIG_00103080_DEP6_FPSE0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+>> >> 

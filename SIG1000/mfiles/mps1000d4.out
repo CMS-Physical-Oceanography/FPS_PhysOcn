@@ -1,0 +1,234 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '20-Aug-2024 11:15:00'
+    '20-Aug-2024 13:15:00'
+
+
+ 
+pre-processing:       S103080A006_NCSU_1.mat 
+pre-processing:       S103080A006_NCSU_2.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_001.mat 
+pre-processing:       S103080A006_NCSU_3.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_002.mat 
+pre-processing:       S103080A006_NCSU_4.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_003.mat 
+pre-processing:       S103080A006_NCSU_5.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_004.mat 
+pre-processing:       S103080A006_NCSU_6.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_005.mat 
+pre-processing:       S103080A006_NCSU_7.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_006.mat 
+pre-processing:       S103080A006_NCSU_8.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_007.mat 
+pre-processing:       S103080A006_NCSU_9.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_008.mat 
+pre-processing:       S103080A006_NCSU_10.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_009.mat 
+pre-processing:       S103080A006_NCSU_11.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_010.mat 
+pre-processing:       S103080A006_NCSU_12.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_011.mat 
+pre-processing:       S103080A006_NCSU_13.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_012.mat 
+pre-processing:       S103080A006_NCSU_14.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_013.mat 
+pre-processing:       S103080A006_NCSU_15.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_014.mat 
+pre-processing:       S103080A006_NCSU_16.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_015.mat 
+pre-processing:       S103080A006_NCSU_17.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_016.mat 
+pre-processing:       S103080A006_NCSU_18.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_017.mat 
+pre-processing:       S103080A006_NCSU_19.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_018.mat 
+pre-processing:       S103080A006_NCSU_20.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_019.mat 
+pre-processing:       S103080A006_NCSU_21.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_020.mat 
+pre-processing:       S103080A006_NCSU_22.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_021.mat 
+pre-processing:       S103080A006_NCSU_23.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_022.mat 
+pre-processing:       S103080A006_NCSU_24.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_023.mat 
+pre-processing:       S103080A006_NCSU_25.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_024.mat 
+pre-processing:       S103080A006_NCSU_26.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_025.mat 
+pre-processing:       S103080A006_NCSU_27.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_026.mat 
+pre-processing:       S103080A006_NCSU_28.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_027.mat 
+pre-processing:       S103080A006_NCSU_29.mat 
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_028.mat 
+pre-processing:       S103080A006_NCSU_30.mat 
+trimming data at recovery time: nt = 345600--> 187196
+pre-processing:       S103080A006_NCSU_31.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S103080A006_NCSU_32.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S103080A006_NCSU_33.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S103080A006_NCSU_34.mat 
+trimming data at recovery time: nt = 345600--> 0
+pre-processing:       S103080A006_NCSU_35.mat 
+trimming data at recovery time: nt = 52239--> 0
+not applying heading offset correction, velocities are relative to magnetic north/south
+saving output file:   SIG_00103080_DEP4_FPSS0_029.mat 
+done! 
+
+ 
+loading file:   SIG_00103080_DEP4_FPSS0_001.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_002.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_003.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_004.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_005.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_006.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_007.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_008.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_009.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_010.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_011.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_012.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_013.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_014.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_015.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_016.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_017.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_018.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_019.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_020.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_021.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_022.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_023.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_024.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_025.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_026.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_027.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_028.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_029.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSS0//L0/SIG_00103080_DEP4_FPSS0_L0 
+done! 
+
+ 
+loading file:   SIG_00103080_DEP4_FPSS0_001.mat 
+2025-03-21 19:26:03.873 MATLAB[56581:7983033] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-03-21 19:26:03.873 MATLAB[56581:7983033] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2025-03-21 19:26:03.877 MATLAB[56581:7983033] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-03-21 19:26:03.881 MATLAB[56581:7983033] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-03-21 19:26:03.881 MATLAB[56581:7983033] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00103080_DEP4_FPSS0_002.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_003.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_004.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_005.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_006.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_007.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_008.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_009.mat 
+not enough good data
+loading file:   SIG_00103080_DEP4_FPSS0_010.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_011.mat 
+not enough good data
+not enough good data
+not enough good data
+loading file:   SIG_00103080_DEP4_FPSS0_012.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_013.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_014.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_015.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_016.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_017.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_018.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_019.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_020.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_021.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_022.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_023.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_024.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_025.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_026.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_027.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_028.mat 
+loading file:   SIG_00103080_DEP4_FPSS0_029.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSS0//L1/SIG_00103080_DEP4_FPSS0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+>> >> 

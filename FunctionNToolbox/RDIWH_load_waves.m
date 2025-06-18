@@ -172,8 +172,8 @@ disp('Done Spec')
      end
        end
 end
-ADCP.spec.time=TIME';
-aa = find(ADCP.spec.time>=stime & ADCP.spec.time <=etime);
+ADCP.spec.Time=TIME';
+aa = find(ADCP.spec.Time>=stime & ADCP.spec.Time <=etime);
 ADCP.spec.time = ADCP.spec.time(aa);
 ADCP.spec.PSpec.burst = ADCP.spec.PSpec.burst(:,aa);
 ADCP.spec.SSpec.burst = ADCP.spec.SSpec.burst(:,aa);
@@ -264,26 +264,26 @@ ADCP.spec.DSpec.burst = ADCP.spec.DSpec.burst(:,:,aa);
  %Trim the beginning and ends of the files:
 wave_time2=convertTo(wave_time, 'datenum');
 aa = find(wave_time2>=stime & wave_time2 <=etime);
-     ADCP.log9.Hs=H_s(aa);
-     ADCP.log9.Tp=T_p(aa);
-     ADCP.log9.Dp=D_p(aa);
-     ADCP.log9.Tp_Sea = Tp_Sea(aa);
-     ADCP.log9.Dp_Sea = Dp_Sea(aa);
-     ADCP.log9.Hs_Sea = Hs_Sea(aa);
-     ADCP.log9.Tp_Swell = Tp_Swell(aa);
-     ADCP.log9.Dp_Swell = Dp_Swell(aa);
-     ADCP.log9.Hs_Swell = Hs_Swell(aa);
-     ADCP.log9.Hmax = Hmax(aa);
-     ADCP.log9.Tmax = Tmax(aa);
-     ADCP.log9.Honethird = Honethird(aa);
-     ADCP.log9.Tonethird = Tonethird(aa);
-     ADCP.log9.Honetenth = Honetenth(aa);
-     ADCP.log9.Tonetenth = Tonetenth(aa);
-     ADCP.log9.Hmean = Hmean(aa);
-     ADCP.log9.Tmean = Tmean(aa);
-     ADCP.log9.D_pmean=Dmean(aa);
-     ADCP.log9.units={'Hs= m'; 'Tp = s'; 'Md = deg'};
-     ADCP.log9.wave_time= wave_time2(aa);
+     ADCP.Hs=H_s(aa);
+     ADCP.Tp=T_p(aa);
+     ADCP.Dp=D_p(aa);
+     ADCP.Tp_Sea = Tp_Sea(aa);
+     ADCP.Dp_Sea = Dp_Sea(aa);
+     ADCP.Hs_Sea = Hs_Sea(aa);
+     ADCP.Tp_Swell = Tp_Swell(aa);
+     ADCP.Dp_Swell = Dp_Swell(aa);
+     ADCP.Hs_Swell = Hs_Swell(aa);
+     ADCP.Hmax = Hmax(aa);
+     ADCP.Tmax = Tmax(aa);
+     ADCP.Honethird = Honethird(aa);
+     ADCP.Tonethird = Tonethird(aa);
+     ADCP.Honetenth = Honetenth(aa);
+     ADCP.Tonetenth = Tonetenth(aa);
+     ADCP.Hmean = Hmean(aa);
+     ADCP.Tmean = Tmean(aa);
+     ADCP.D_pmean=Dmean(aa);
+     ADCP.units={'Hs= m'; 'Tp = s'; 'Md = deg'};
+     ADCP.Time= wave_time2(aa);
 
 
 

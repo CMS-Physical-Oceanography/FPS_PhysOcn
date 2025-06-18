@@ -1,4 +1,4 @@
- %
+%
 dtBurst = 1800;% seconds
 dtEns   = 512 ;% seconds
 rho0    = 1027.5;% kg/m^3
@@ -6,7 +6,7 @@ g       = 9.81;% m/s^2
 %
 %
 % get sampling information from config file
-load([outDir,filePrefix,'config.mat'])
+load([outDIR,filePrefix,'config.mat'])
 fs = double(Config.Burst_SamplingRate);
 Nc = Config.Burst_NCells;
 %
@@ -23,8 +23,15 @@ Ne    = dtEns*fs;
 olap  = 2/3;
 chnks = (Na-Ne*olap-1)/(Ne*(1-olap));
 %
+% the corresponding frequency resolution is:
+f0 = 1/dtEns;
+% and the number of frequencies between the "resolvable" range is:
+fmin = 1/20;
+fmax = 1/4;
+Nfrq = fmax/f0;
+%
 % get structure with all files in archive
-files = dir([outDir,filePrefix,'*.mat']);
+files = dir([outDIR,filePrefix,'*.mat']);
 fNameCell=extractfield(files,'name');
 files = files(~contains(fNameCell,'config') & ~contains(fNameCell,'min.mat'));
 Nf    = length(files);
@@ -37,7 +44,7 @@ for ii= 1:Nf
     %
     % load the raw data
     inFileName = sprintf([filePrefix,'%03d.mat'],ii);
-    fin  = [outDir,inFileName];
+    fin  = [outDIR,inFileName];
     fprintf(['loading file:   %s \n'],inFileName)
 % $$$     in = load(fin,'VelEast','VelNorth','VelUp1','VelUp2','VelBeam5','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','mab');
     in = load(fin,'Velocity_East','Velocity_North','Velocity_Up','qcFlag','HeadingOffset','Time','Heading','Pitch','Roll','Pressure','bin_mab');
@@ -68,20 +75,26 @@ for ii= 1:Nf
         waves.Time(1,ensNum) = tavg;
         if Nb<2
             disp('not enough good data')
-            waves.Hs(1,ensNum) = nan;
-            waves.Tm(1,ensNum) = nan;
-            waves.Suu(:,ensNum)= nan;
-            waves.Svv(:,ensNum)= nan;
-            waves.Spp(:,ensNum)= nan;
-            waves.Spu(:,ensNum)= nan;
-            waves.Spp(:,ensNum)= nan;
-            waves.Spv(:,ensNum)= nan;
-            waves.mean_dir(1:2,ensNum)   =nan;
-            waves.mean_spread(1:2,ensNum)=nan;
-            waves.mSxx(1,ensNum) = nan;
-            waves.mSxy(1,ensNum) = nan;
-            waves.mSyy(1,ensNum) = nan;
-            waves.Z2(:,ensNum) = nan;
+            if ismember('Hs',fieldnames(waves))
+                waves.Hs(1,ensNum) = nan;
+                waves.Tm(1,ensNum) = nan;
+                waves.Suu(1:Nfrq,ensNum)= nan;
+                waves.Svv(1:Nfrq,ensNum)= nan;
+                waves.Spp(1:Nfrq,ensNum)= nan;
+                waves.Spu(1:Nfrq,ensNum)= nan;
+                waves.Spp(1:Nfrq,ensNum)= nan;
+                waves.Spv(1:Nfrq,ensNum)= nan;
+                waves.mdir(1:2,ensNum)   =nan;
+                waves.mspread(1:2,ensNum)=nan;
+                waves.a1(1:Nfrq,ensNum) = nan;
+                waves.b1(1:Nfrq,ensNum) = nan;
+                waves.a2(1:Nfrq,ensNum) = nan;
+                waves.b2(1:Nfrq,ensNum) = nan;                                
+                waves.mSxx(1,ensNum) = nan;
+                waves.mSxy(1,ensNum) = nan;
+                waves.mSyy(1,ensNum) = nan;
+                waves.Z2(1:Nfrq,ensNum) = nan;
+            end
             ensNum = ensNum+1;
             continue
         end
@@ -250,7 +263,7 @@ for ii= 1:Nf
         %
         % average over wind-wave band
         df= fq(2)-fq(1);
-        I = find(fq>=1/20 & fq<=1/4);
+        I = find(fq>=fmin & fq<=fmax);
         m0 = nansum(SePP(I)*df);
         m1 = nansum(fq(I).*SePP(I)*df);        
         ma1= nansum(a1(I,:).*SePP(I)*df,1)/m0;
@@ -287,8 +300,8 @@ for ii= 1:Nf
         Hs = 4*sqrt(nansum(df*SePP(I)));
         Tm = m0/m1;
         %
-        % log the hourly averaged
-        if ii==1 & jj==1
+        % log the hourly averaged stats
+        if ~ismember(fieldnames(waves),'frequency')
             waves.frequency  = fq(1:I(end))';
             waves.wavenumber = k(1:I(end))';            
         end
@@ -302,10 +315,10 @@ for ii= 1:Nf
         waves.Spv    (:,ensNum)   = nanmean(SPV(1:I(end),:),2);
         waves.mdir   (1:2,ensNum) = [nanmean(mdir1)   ,nanmean(mdir2)];
         waves.mspread(1:2,ensNum) = [nanmean(mspread1),nanmean(mspread2)];
-        waves.a1     (:,ensNum)   = nanmean(a1,2);
-        waves.b1     (:,ensNum)   = nanmean(b1,2);        
-        waves.a2     (:,ensNum)   = nanmean(a2,2);
-        waves.b2     (:,ensNum)   = nanmean(b2,2);        
+        waves.a1     (:,ensNum)   = nanmean(a1(I,:),2);
+        waves.b1     (:,ensNum)   = nanmean(b1(I,:),2);        
+        waves.a2     (:,ensNum)   = nanmean(a2(I,:),2);
+        waves.b2     (:,ensNum)   = nanmean(b2(I,:),2);        
         waves.mSxx   (1,ensNum)     = nanmean(mSxx);
         waves.mSxy   (1,ensNum)     = nanmean(mSxy);
         waves.mSyy   (1,ensNum)     = nanmean(mSyy);

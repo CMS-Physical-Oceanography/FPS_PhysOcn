@@ -1,0 +1,611 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> working on deployment 1
+>>  atmosphTime = 
+
+ans =
+
+  4x20 char array
+
+    '09-Oct-2023 12:28:13'
+    '30-Oct-2023 15:01:26'
+    '09-Oct-2023 15:12:12'
+    '31-Oct-2023 04:35:57'
+
+{Unrecognized function or variable 'outDIR'.
+
+Error in estimate_wave_bulk_stats_SIG1000_RDI_matrix_format (line 9)
+load([outDIR,filePrefix,'config.mat'])
+
+Error in main_process_sig1000_deployment1 (line 53)
+estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
+} 
+>> working on deployment 2
+>>  atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '15-Feb-2024 13:12:05'
+    '15-Feb-2024 14:08:32'
+
+{Unrecognized function or variable 'outDIR'.
+
+Error in estimate_wave_bulk_stats_SIG1000_RDI_matrix_format (line 9)
+load([outDIR,filePrefix,'config.mat'])
+
+Error in main_process_sig1000_deployment2 (line 52)
+estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
+} 
+>> working on deployment 3
+>>  atmosphTime = 
+
+ans =
+
+  4x20 char array
+
+    '13-May-2024 11:30:54'
+    '03-Jun-2024 16:39:11'
+    '13-May-2024 15:46:17'
+    '04-Jun-2024 02:41:20'
+
+{Unrecognized function or variable 'outDIR'.
+
+Error in estimate_wave_bulk_stats_SIG1000_RDI_matrix_format (line 9)
+load([outDIR,filePrefix,'config.mat'])
+
+Error in main_process_sig1000_deployment3 (line 53)
+estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
+} 
+>> working on deployment 4
+>>  atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '20-Aug-2024 11:15:00'
+    '20-Aug-2024 13:15:00'
+
+
+ 
+loading file:   SIG_00103071_DEP4_FPSE1_001.mat 
+2025-06-09 09:17:35.078 MATLAB[29014:3884379] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-06-09 09:17:35.078 MATLAB[29014:3884379] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2025-06-09 09:17:35.083 MATLAB[29014:3884379] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-06-09 09:17:35.087 MATLAB[29014:3884379] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-06-09 09:17:35.087 MATLAB[29014:3884379] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00103071_DEP4_FPSE1_002.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_003.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_004.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_005.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_006.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_007.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_008.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_009.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_010.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_011.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_012.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_013.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_014.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_015.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_016.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_017.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_018.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_019.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_020.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_021.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_022.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_023.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_024.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_025.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_026.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_027.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_028.mat 
+loading file:   SIG_00103071_DEP4_FPSE1_029.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4/FPSE1//L1/SIG_00103071_DEP4_FPSE1_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '20-Aug-2024 11:15:00'
+    '20-Aug-2024 13:15:00'
+
+
+ 
+loading file:   SIG_00101481_DEP4_FPSS1_001.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_002.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_003.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_004.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_005.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_006.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_007.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_008.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_009.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_010.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_011.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_012.mat 
+loading file:   SIG_00101481_DEP4_FPSS1_013.mat 
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+{Unable to perform assignment because the size of the left side is 128-by-1 and
+the size of the right side is 103-by-1.
+
+Error in estimate_wave_bulk_stats_SIG1000_RDI_matrix_format (line 318)
+        waves.a1     (:,ensNum)   = nanmean(a1(I,:),2);
+
+Error in main_process_sig1000_deployment4 (line 72)
+estimate_wave_bulk_stats_SIG1000_RDI_matrix_format
+} 
+>> working on deployment 5
+>>  atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '19-Nov-2024 13:00:00'
+    '19-Nov-2024 14:00:00'
+
+
+ 
+loading file:   SIG_00103071_DEP5_FPSE1_001.mat 
+not enough good data
+loading file:   SIG_00103071_DEP5_FPSE1_002.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_003.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_004.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_005.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_006.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_007.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_008.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_009.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_010.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_011.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_012.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_013.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_014.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_015.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_016.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_017.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_018.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_019.mat 
+loading file:   SIG_00103071_DEP5_FPSE1_020.mat 
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+loading file:   SIG_00103071_DEP5_FPSE1_021.mat 
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment5/FPSE1//L1/SIG_00103071_DEP5_FPSE1_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '19-Nov-2024 13:00:00'
+    '19-Nov-2024 14:00:00'
+
+
+ 
+loading file:   SIG_00101481_DEP5_FPSS1_001.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_002.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_003.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_004.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_005.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_006.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_007.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_008.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_009.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_010.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_011.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_012.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_013.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_014.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_015.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_016.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_017.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_018.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_019.mat 
+loading file:   SIG_00101481_DEP5_FPSS1_020.mat 
+not enough good data
+not enough good data
+loading file:   SIG_00101481_DEP5_FPSS1_021.mat 
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment5/FPSS1//L1/SIG_00101481_DEP5_FPSS1_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '19-Nov-2024 13:00:00'
+    '19-Nov-2024 14:00:00'
+
+
+ 
+loading file:   SIG_00103080_DEP5_FPSS0_001.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_002.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_003.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_004.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_005.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_006.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_007.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_008.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_009.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_010.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_011.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_012.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_013.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_014.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_015.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_016.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_017.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_018.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_019.mat 
+loading file:   SIG_00103080_DEP5_FPSS0_020.mat 
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+loading file:   SIG_00103080_DEP5_FPSS0_021.mat 
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+not enough good data
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment5/FPSS0//L1/SIG_00103080_DEP5_FPSS0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+>> working on deployment 6
+>>  atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '04-Feb-2025 14:00:00'
+    '04-Feb-2025 15:00:00'
+
+
+ 
+loading file:   SIG_00103071_DEP6_FPSC0_001.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_002.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_003.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_004.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_005.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_006.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_007.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_008.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_009.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_010.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_011.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_012.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_013.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_014.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_015.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_016.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_017.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_018.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_019.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_020.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_021.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_022.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_023.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_024.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_025.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_026.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_027.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_028.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_029.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_030.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_031.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_032.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_033.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_034.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_035.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_036.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_037.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_038.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_039.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_040.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_041.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_042.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_043.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_044.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_045.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_046.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_047.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_048.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_049.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_050.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_051.mat 
+loading file:   SIG_00103071_DEP6_FPSC0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSC0//L1/SIG_00103071_DEP6_FPSC0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '04-Feb-2025 14:00:00'
+    '04-Feb-2025 15:00:00'
+
+
+ 
+loading file:   SIG_00101481_DEP6_FPSS0_001.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_002.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_003.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_004.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_005.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_006.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_007.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_008.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_009.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_010.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_011.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_012.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_013.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_014.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_015.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_016.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_017.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_018.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_019.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_020.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_021.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_022.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_023.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_024.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_025.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_026.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_027.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_028.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_029.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_030.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_031.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_032.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_033.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_034.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_035.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_036.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_037.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_038.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_039.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_040.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_041.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_042.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_043.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_044.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_045.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_046.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_047.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_048.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_049.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_050.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_051.mat 
+loading file:   SIG_00101481_DEP6_FPSS0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSS0//L1/SIG_00101481_DEP6_FPSS0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '04-Feb-2025 14:00:00'
+    '04-Feb-2025 15:00:00'
+
+
+ 
+loading file:   SIG_00103080_DEP6_FPSE0_001.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_002.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_003.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_004.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_005.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_006.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_007.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_008.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_009.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_010.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_011.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_012.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_013.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_014.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_015.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_016.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_017.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_018.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_019.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_020.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_021.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_022.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_023.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_024.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_025.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_026.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_027.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_028.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_029.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_030.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_031.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_032.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_033.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_034.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_035.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_036.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_037.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_038.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_039.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_040.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_041.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_042.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_043.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_044.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_045.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_046.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_047.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_048.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_049.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_050.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_051.mat 
+loading file:   SIG_00103080_DEP6_FPSE0_052.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment6/FPSE0//L1/SIG_00103080_DEP6_FPSE0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+>> >> 
