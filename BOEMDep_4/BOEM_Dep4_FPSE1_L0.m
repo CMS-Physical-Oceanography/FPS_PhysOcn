@@ -10,6 +10,7 @@ clear; clc;
 % 1. Add the local path to all the BOEM functions:
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/MacLawhorn/BOEM_Dep1/FunctionNToolbox/'))
 addpath(genpath('/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep1/'))
+addpath('../FunctionNToolbox')
 
 % 2. Inputs:
 % Deployment number (1 - 8):
@@ -54,22 +55,8 @@ fname_c6_full = [deploypath,fname_c6];
 [C6L0,fname_c6_new] = C6_load_ALL(fname_c6_full,save_to_path,depnum,StationID,stime,etime);
 
 %% ADCP
-clearvars -except save_to_path depnum StationID stime etime
+%clearvars -except save_to_path depnum StationID stime etime
 
-% ADCP - first create a structure that includes a few essentials
-ADCPparams.surfrange = [15:25]; % the approximate range of bins where we expect the surface to be
-ADCPparams.bins2del = 2; % the number of bins below the surface that will be masked
-ADCPparams.beamnum = 1; % the beam to use to estimate the surface from intensity
-ADCPparams.qctouse = 'intn'; % the field to mask to use for QC
-ADCPparams.mounting_dist = 0.5; % the approximate distance from the seabed.
-% Currents
-inpathc = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep3/FPSE1/WAVES/WAVES_000_000_CUR.PD0';
-[currents] = RDIWH_load_currents(inpathc,save_to_path,depnum,StationID,ADCPparams,stime,etime);
-% Waves path to directory
-inpathw = '/Users/suandas/Documents/Research_Local/BOEM/BOEM_Dep3/FPSE1/WAVES/';
-[waves] = RDIWH_load_waves(inpathw,save_to_path,depnum,StationID,stime,etime);
-filename=[save_to_path,'RDI_',sprintf('%08d',currents.SN),'_','DEP',num2str(depnum),'_',StationID,'_L0.mat'];
-save(filename,'currents','waves')
 
 %% 4. OPTIONALS - this will depend on the instrument, deployment, etc:
 % In this case, we do some spike filtering on RBRtri (see RAW plots produced):

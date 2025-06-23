@@ -39,6 +39,7 @@ etime = datenum(end_time,'mm/dd/yyyy HH:MM:SS');
 deploypath=[basepath, filesep, StationID,filesep];
 save_to_path = [deploypath,filesep,'L0',filesep];
 
+%%
 % Instrument path names for the deployment. Change and add to as needed
 fname_rbrt_full = [deploypath,'RBRtri',filesep,fname_rbrt];
 fname_rbrs_full = [deploypath,'RBRsolot',filesep,fname_rbrs];
