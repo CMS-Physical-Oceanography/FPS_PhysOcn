@@ -43,6 +43,8 @@ for ii= 1:Nf
         vb2p = [];
         vb3p = [];
         vb4p = [];
+        aP   = [];
+        cP   = [];
         e1p  = [];
         e2p  = [];
         hP   = [];
@@ -83,19 +85,21 @@ for ii= 1:Nf
     vb2   = conv2(1, F, [vb2p, in.Velocity_North].*on,'same')./norm;
     vb3   = conv2(1, F, [vb3p, in.Velocity_Up   ].*on,'same')./norm;
     vb4   = conv2(1, F, [vb4p, in.Velocity_Error].*on,'same')./norm;
+    a     = conv2(1, F, [aP  , in.Amplitude_Minimum].*on,'same')./norm;
+    c     = conv2(1, F, [cP  , in.Correlation_Minimum].*on,'same')./norm;        
     head  = conv2(1, F, [hP  , in.Heading ]    ,'same')./norm0;
     pitch = conv2(1, F, [pP  , in.Pitch   ]    ,'same')./norm0;
     roll  = conv2(1, F, [rP  , in.Roll    ]    ,'same')./norm0;
     P     = conv2(1, F, [Pp  , in.Pressure]    ,'same')./norm0;
     T     = conv2(1, F, [Tp  , in.Temperature] ,'same')./norm0;
     if echo_mode
-        echo1 = conv2(1, F, [e1p , in.Echo1]       ,'same')./norm0;
+        echo1     = conv2(1, F, [e1p , in.Echo1]       ,'same')./norm0;
         try echo2 = conv2(1, F, [e2p , in.Echo2]       ,'same')./norm0;
         catch disp('only one echo-mode'), end
     end
     %
     %
-    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(:,Ns:Ns:Ns*(N-1)),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'bin_mab',in.bin_mab);    
+    avg = struct('Time',t1(Ns:Ns:Ns*(N-1)),'Velocity_East',vb1(:,Ns:Ns:Ns*(N-1)),'Velocity_North',vb2(:,Ns:Ns:Ns*(N-1)),'Velocity_Up',vb3(:,Ns:Ns:Ns*(N-1)),'Velocity_Error',vb4(:,Ns:Ns:Ns*(N-1)),'amplitude',a(:,Ns:Ns:Ns*(N-1)),'correlation',c(:,Ns:Ns:Ns*(N-1)),'Heading',head(:,Ns:Ns:Ns*(N-1)),'Pitch',pitch(:,Ns:Ns:Ns*(N-1)),'Roll',pitch(:,Ns:Ns:Ns*(N-1)),'Pressure',P(Ns:Ns:Ns*(N-1)),'Temperature',T(Ns:Ns:Ns*(N-1)),'qcFlag',avgFlag(:,Ns:Ns:Ns*(N-1)),'HeadingOffset',in.HeadingOffset,'bin_mab',in.bin_mab);    
     %
     if echo_mode
         avg(1).bin_mab_Echo=in.bin_mab_Echo;
@@ -123,12 +127,14 @@ for ii= 1:Nf
     end
     %
     % get pad data for next file
-    tP   = in.Time       (:,nt-Ns*(1+ns)+1:nt);
-    qcP  = in.qcFlag     (:,nt-Ns*(1+ns)+1:nt);
-    vb1p = in.Velocity_East    (:,nt-Ns*(1+ns)+1:nt);
-    vb2p = in.Velocity_North   (:,nt-Ns*(1+ns)+1:nt);
-    vb3p = in.Velocity_Up      (:,nt-Ns*(1+ns)+1:nt);
-    vb4p = in.Velocity_Error   (:,nt-Ns*(1+ns)+1:nt);
+    tP   = in.Time               (:,nt-Ns*(1+ns)+1:nt);
+    qcP  = in.qcFlag             (:,nt-Ns*(1+ns)+1:nt);
+    vb1p = in.Velocity_East      (:,nt-Ns*(1+ns)+1:nt);
+    vb2p = in.Velocity_North     (:,nt-Ns*(1+ns)+1:nt);
+    vb3p = in.Velocity_Up        (:,nt-Ns*(1+ns)+1:nt);
+    vb4p = in.Velocity_Error     (:,nt-Ns*(1+ns)+1:nt);
+    aP   = in.Amplitude_Minimum  (:,nt-Ns*(1+ns)+1:nt);
+    cP   = in.Correlation_Minimum(:,nt-Ns*(1+ns)+1:nt);    
     hP   = in.Heading    (nt-Ns*(1+ns)+1:nt);
     pP   = in.Pitch      (nt-Ns*(1+ns)+1:nt);
     rP   = in.Roll       (nt-Ns*(1+ns)+1:nt);
@@ -136,7 +142,7 @@ for ii= 1:Nf
     Pp   = in.Pressure   (nt-Ns*(1+ns)+1:nt);
     if echo_mode
         e1p  = in.Echo1      (:,nt-Ns*(1+ns)+1:nt);
-        try e2p  = in.Echo2      (:,nt-Ns*(1+ns)+1:nt);
+        try e2p  = in.Echo2  (:,nt-Ns*(1+ns)+1:nt);
         catch disp('only one echo-mode'), end
     end
     %

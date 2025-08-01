@@ -3,6 +3,7 @@ close all
 % stages of processing
 % 1) define deployment number:
 deploy  = 3;
+echo_mode=1;
 % need to shift time to convert EST to UTC
 time_shift = 0/24;
 % 2) raw data input directory & filename convention:
@@ -46,8 +47,8 @@ recoverTime = recoverTime + time_shift;
 % load and pre-process data.
 % $$$ load_and_process_sig1000_RDI_matrix_format
 % $$$ %
-% $$$ % make time-averages
-% $$$ time_average_and_rotate_sig1000_RDI_matrix_format
+% make time-averages
+time_average_and_rotate_sig1000_RDI_matrix_format
 %
 % estimate hourly wave stats
 estimate_wave_bulk_stats_SIG1000_RDI_matrix_format

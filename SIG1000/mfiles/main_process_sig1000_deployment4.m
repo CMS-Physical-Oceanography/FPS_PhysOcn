@@ -64,8 +64,8 @@ recoverTime = recoverTime + time_shift;
 % $$$ % load and pre-process data.
 % $$$ load_and_process_sig1000_RDI_matrix_format
 % $$$ %
-% $$$ % make time-averages
-% $$$ time_average_and_rotate_sig1000_RDI_matrix_format
+% make time-averages
+time_average_and_rotate_sig1000_RDI_matrix_format
 % $$$ end
 %
 % estimate hourly wave stats
