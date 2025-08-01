@@ -267,26 +267,26 @@ inpath2 = inpath(1:end-5);
  %Trim the beginning and ends of the files:
 wave_time2=convertTo(wave_time, 'datenum');
 aa = find(wave_time2>=stime & wave_time2 <=etime);
-     ADCP.Hs=H_s(aa);
-     ADCP.Tp=T_p(aa);
-     ADCP.Dp=D_p(aa);
-     ADCP.Tp_Sea = Tp_Sea(aa);
-     ADCP.Dp_Sea = Dp_Sea(aa);
-     ADCP.Hs_Sea = Hs_Sea(aa);
-     ADCP.Tp_Swell = Tp_Swell(aa);
-     ADCP.Dp_Swell = Dp_Swell(aa);
-     ADCP.Hs_Swell = Hs_Swell(aa);
-     ADCP.Hmax = Hmax(aa);
-     ADCP.Tmax = Tmax(aa);
-     ADCP.Honethird = Honethird(aa);
-     ADCP.Tonethird = Tonethird(aa);
-     ADCP.Honetenth = Honetenth(aa);
-     ADCP.Tonetenth = Tonetenth(aa);
-     ADCP.Hmean = Hmean(aa);
-     ADCP.Tmean = Tmean(aa);
-     ADCP.D_pmean=Dmean(aa);
+     ADCP.Hs=H_s(aa)';
+     ADCP.Tp=T_p(aa)';
+     ADCP.Dp=D_p(aa)';
+     ADCP.Tp_Sea = Tp_Sea(aa)';
+     ADCP.Dp_Sea = Dp_Sea(aa)';
+     ADCP.Hs_Sea = Hs_Sea(aa)';
+     ADCP.Tp_Swell = Tp_Swell(aa)';
+     ADCP.Dp_Swell = Dp_Swell(aa)';
+     ADCP.Hs_Swell = Hs_Swell(aa)';
+     ADCP.Hmax = Hmax(aa)';
+     ADCP.Tmax = Tmax(aa)';
+     ADCP.Honethird = Honethird(aa)';
+     ADCP.Tonethird = Tonethird(aa)';
+     ADCP.Honetenth = Honetenth(aa)';
+     ADCP.Tonetenth = Tonetenth(aa)';
+     ADCP.Hmean = Hmean(aa)';
+     ADCP.Tmean = Tmean(aa)';
+     ADCP.D_pmean=Dmean(aa)';
      ADCP.units={'Hs= m'; 'Tp = s'; 'Md = deg'};
-     ADCP.Time= wave_time2(aa);
+     ADCP.Time= wave_time2(aa)';
 
 
 
