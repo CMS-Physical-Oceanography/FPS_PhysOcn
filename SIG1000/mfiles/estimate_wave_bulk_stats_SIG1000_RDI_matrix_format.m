@@ -268,7 +268,7 @@ for ii= 1:Nf
         m1 = nansum(fq(I).*SePP(I)*df);        
         ma1= nansum(a1(I,:).*SePP(I)*df,1)/m0;
         mb1= nansum(b1(I,:).*SePP(I)*df,1)/m0;
-        mdir1=rem(90+180-r2d*atan2(mb1,ma1),360);% nautical 
+        mdir1    = rem(90+180-r2d*atan2(mb1,ma1),360);% nautical 
         mspread1 = r2d*sqrt(abs(2*(1-(ma1.*cos(mdir1/r2d) + mb1.*sin(mdir1/r2d)))));
         %
         % get a2 b2
@@ -315,10 +315,10 @@ for ii= 1:Nf
         waves.Spv    (:,ensNum)   = nanmean(SPV(1:I(end),:),2);
         waves.mdir   (1:2,ensNum) = [nanmean(mdir1)   ,nanmean(mdir2)];
         waves.mspread(1:2,ensNum) = [nanmean(mspread1),nanmean(mspread2)];
-        waves.a1     (:,ensNum)   = nanmean(a1(I,:),2);
-        waves.b1     (:,ensNum)   = nanmean(b1(I,:),2);        
-        waves.a2     (:,ensNum)   = nanmean(a2(I,:),2);
-        waves.b2     (:,ensNum)   = nanmean(b2(I,:),2);        
+        waves.a1     (:,ensNum)   = nanmean(a1(1:I(end),:),2);
+        waves.b1     (:,ensNum)   = nanmean(b1(1:I(end),:),2);        
+        waves.a2     (:,ensNum)   = nanmean(a2(1:I(end),:),2);
+        waves.b2     (:,ensNum)   = nanmean(b2(1:I(end),:),2);        
         waves.mSxx   (1,ensNum)     = nanmean(mSxx);
         waves.mSxy   (1,ensNum)     = nanmean(mSxy);
         waves.mSyy   (1,ensNum)     = nanmean(mSyy);

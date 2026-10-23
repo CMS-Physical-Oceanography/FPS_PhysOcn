@@ -4,6 +4,7 @@ close all
 ctdType = 'seahawk';
 rootDIR = '/Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data';
 for ii=1:7
+    fprintf('\nWorking on deployment: %d\n',ii)
     depDir = sprintf([rootDIR,filesep,'BOEM_deployment%d',filesep],ii);
     rawDir  = [depDir, filesep, 'RVSH_flowthrough',filesep];
     arcDir  = [rawDir , filesep, 'L0',filesep];

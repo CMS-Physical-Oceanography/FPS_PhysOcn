@@ -30,9 +30,9 @@ load([rootDIR,filesep,fRoot,num2str(Nf),'.mat'],'Data','Config')
 Pres = Data.Burst_Pressure;
 Time = Data.Burst_Time;
 iter    = 0;
-if isempty(recoverTime) | isempty(atmosphTime)
+if (isempty(recoverTime) | isempty(atmosphTime))
     inWater = [];
-    while isempty(inWater)
+    while isempty(inWater) & Nf-iter>1
         load([rootDIR,filesep,fRoot,num2str(Nf-iter),'.mat'],'Data','Config')
         Pres = Data.Burst_Pressure;
         Time = Data.Burst_Time;
@@ -56,9 +56,9 @@ if isempty(recoverTime) | isempty(atmosphTime)
     end
 end
 
-if size(atmosphTime,1)>1
+if size(atmosphTime,1)>1 | isnan(ATM_Pressure) 
     inAir   = (Time>=atmosphTime(end,1) & Time<=atmosphTime(end,2));    
-    while sum(inAir)==0 & ~isempty([inAir])
+    while (sum(inAir)==0 & ~isempty([inAir])) & Nf-iter>1
         iter = iter+1;
         load([rootDIR,filesep,fRoot,num2str(Nf-iter),'.mat'],'Data','Config')
         Pres = Data.Burst_Pressure;
@@ -69,7 +69,13 @@ if size(atmosphTime,1)>1
 % $$$     end
     end
 ATM_Time        = cat(1,ATM_Time    , mean(Time(inAir)));
-ATM_Pressure    = cat(1,ATM_Pressure, mean(Pres(inAir)));
+ATM_Pressure    = cat(1,ATM_Pressure, mean(Pres(inAir),'omitnan'));
+end
+
+if isnan(ATM_Pressure)
+    disp('No atmospheric pressure found, setting P_atm=0.')
+    ATM_Time = nan;
+    ATM_Pressure = 0;
 end
 
 close all

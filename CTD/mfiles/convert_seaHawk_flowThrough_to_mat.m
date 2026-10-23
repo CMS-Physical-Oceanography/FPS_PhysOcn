@@ -27,9 +27,12 @@ for jj = 1:nd
     flowDir   = [datDir,date];
     flowFiles = dir(flowDir);
     % remove '.', '..', and '.mat' files
-    flowFiles(ismember({flowFiles.name},{'.','..'})) = [];
-    flowFiles(endsWith({flowFiles.name},'.mat')) = [];
+    flowFiles(cell2mat({flowFiles.isdir})) = [];
+    flowFiles(endsWith({flowFiles.name},{'.mat','notes','.txt'})) = [];
     allFiles  = {flowFiles.name}';
+    if isempty(allFiles)
+        continue
+    end
     % find indices of NMEA & flow-through files 
     NMEAexp   = regexp(allFiles,'.*(NMEA).*');
     isNMEA    = ~cellfun('isempty',NMEAexp);
@@ -209,7 +212,11 @@ for jj = 1:nd
                 flag  = 1;
             end
         end
-        format = '%s %s %f %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
+        if length(strsplit(varString,','))
+            format = '%s %s %f %s %f %*f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
+        else
+            format = '%s %s %f %s %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f';
+        end
         D      = textscan(fid,format,'Delimiter',',');
         N      = size(D{1},1);
         timeStr= cat(2, char(D{1}),repmat(' ',N,1),char(D{2}));
@@ -254,7 +261,11 @@ for jj = 1:nd
         startUncertainty       = minStartDiff./min(startDiff(pairs'~=indNMEAstart));
         endUncertainty         = minEndDiff./min(  endDiff(  pairs'~=indNMEAend  ));
         fprintf('fractional error btwn NMEA/SENSOR start-time: %f \n',round(mean(startUncertainty),5))
-        indNMEA = indNMEAstart;
+        fprintf('fractional error btwn NMEA/SENSOR end-time: %f \n',round(mean(startUncertainty),5))
+        indStartEnd = [indNMEAstart; indNMEAend];
+        [~,ind2use] = min([startUncertainty;endUncertainty],[],1);
+        idx = sub2ind(size(indStartEnd),ind2use,[1:nf]);
+        indNMEA = indStartEnd(idx);
     else
         indNMEA=1;
     end
@@ -300,6 +311,10 @@ for jj = 1:nd
 end
 % now save a combined file
 seahawk = temporary;
+if isempty(seahawk)
+    fprintf('No data: %s\n',datDir)
+    return
+end
 fileOut = sprintf([arcDir,filesep,'seahawk_flowThrough_%s_to_%s_L0.mat'],datestr(seahawk(1).time(1),'yyyymmdd'),datestr(seahawk(end).time(1),'yyyymmdd'));
 save(fileOut,'seahawk')
 end

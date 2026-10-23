@@ -5,7 +5,7 @@ Config.ATM_Time = ATM_Time;
 Config.ATM_Pressure=ATM_Pressure;
 %
 % average the start/end pressures
-ATM_Pressure = mean(ATM_Pressure);
+ATM_Pressure = mean(ATM_Pressure,'omitnan');
 %
 % get bin sizing etc for currents
 blnk = Config.Burst_BlankingDistance;
@@ -62,6 +62,17 @@ while ii<=Nf
         t5   = Data.IBurst_Time;
         t    = Data.Burst_Time;        
         nt   = min( length(t), length(t5) );
+        if echo_mode
+            tE = Data.Echo1Bin1_1000kHz_Time;
+            if nt>length(tE)
+                Data.Echo1Bin1_1000kHz_Echo(length(tE)+1:nt,:)    =repmat(Data.Echo1Bin1_1000kHz_Echo(end,:),nt-length(tE),1);
+                try
+                    Data.Echo2Bin1_1000kHz_Echo(length(tE)+1:nt,:)=repmat(Data.Echo2Bin1_1000kHz_Echo(end,:),nt+length(tE),1);
+                catch
+                    disp('only one echo mode')
+                end
+            end
+        end
         t    = t5(1:nt);
         % check if instrument is deployed
         is   = find(t>=deployTime,1,'first');

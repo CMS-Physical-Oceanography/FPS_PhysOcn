@@ -1,0 +1,5 @@
+ID,lat,lon,ele,time,magvar,geoidheight,name,cmt,desc,src,sym,type,fix,sat,hdop,vdop,pdop,ageofdgpsdata,dgpsid,Proximity,Temperature,Depth,DisplayMode,Samples,Expiration,CreationTime,
+1,33.84477099403739,-77.957480996847153,-75.569275000000005,2026-05-05T19:50:12Z,,,"Ep01",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2026-05-05T19:50:12Z,
+2,33.854642026126385,-77.95955803245306,2,2026-05-05T20:16:22Z,,,"Ep02",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2026-05-05T20:16:22Z,
+3,33.84238600730896,-77.965720994397998,-75.569275000000005,2026-05-05T19:26:35Z,,,"Sp01",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2026-05-05T19:26:35Z,
+4,33.84681198745966,-77.975147031247616,2.179688,2026-05-05T19:03:59Z,,,"Sp02",,,,"Flag, Blue","user",,,,,,,,,,,SymbolAndName,,,2026-05-05T19:03:59Z,

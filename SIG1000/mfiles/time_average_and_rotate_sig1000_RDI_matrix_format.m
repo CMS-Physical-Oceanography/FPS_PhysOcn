@@ -127,22 +127,23 @@ for ii= 1:Nf
     end
     %
     % get pad data for next file
-    tP   = in.Time               (:,nt-Ns*(1+ns)+1:nt);
-    qcP  = in.qcFlag             (:,nt-Ns*(1+ns)+1:nt);
-    vb1p = in.Velocity_East      (:,nt-Ns*(1+ns)+1:nt);
-    vb2p = in.Velocity_North     (:,nt-Ns*(1+ns)+1:nt);
-    vb3p = in.Velocity_Up        (:,nt-Ns*(1+ns)+1:nt);
-    vb4p = in.Velocity_Error     (:,nt-Ns*(1+ns)+1:nt);
-    aP   = in.Amplitude_Minimum  (:,nt-Ns*(1+ns)+1:nt);
-    cP   = in.Correlation_Minimum(:,nt-Ns*(1+ns)+1:nt);    
-    hP   = in.Heading    (nt-Ns*(1+ns)+1:nt);
-    pP   = in.Pitch      (nt-Ns*(1+ns)+1:nt);
-    rP   = in.Roll       (nt-Ns*(1+ns)+1:nt);
-    Tp   = in.Temperature(nt-Ns*(1+ns)+1:nt);
-    Pp   = in.Pressure   (nt-Ns*(1+ns)+1:nt);
+    idt  = round(nt-Ns*(1+ns)+1:nt);
+    tP   = in.Time               (:,idt);
+    qcP  = in.qcFlag             (:,idt);
+    vb1p = in.Velocity_East      (:,idt);
+    vb2p = in.Velocity_North     (:,idt);
+    vb3p = in.Velocity_Up        (:,idt);
+    vb4p = in.Velocity_Error     (:,idt);
+    aP   = in.Amplitude_Minimum  (:,idt);
+    cP   = in.Correlation_Minimum(:,idt);    
+    hP   = in.Heading    (idt);
+    pP   = in.Pitch      (idt);
+    rP   = in.Roll       (idt);
+    Tp   = in.Temperature(idt);
+    Pp   = in.Pressure   (idt);
     if echo_mode
-        e1p  = in.Echo1      (:,nt-Ns*(1+ns)+1:nt);
-        try e2p  = in.Echo2  (:,nt-Ns*(1+ns)+1:nt);
+        e1p  = in.Echo1      (:,idt);
+        try e2p  = in.Echo2  (:,idt);
         catch disp('only one echo-mode'), end
     end
     %

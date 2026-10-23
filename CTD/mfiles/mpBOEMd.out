@@ -1,0 +1,65 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Working on deployment: 1
+fractional error btwn NMEA/SENSOR start-time: 0.006600 
+fractional error btwn NMEA/SENSOR end-time: 0.006600 
+2025-08-04 10:33:16.241 MATLAB[60329:3211759] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-08-04 10:33:16.241 MATLAB[60329:3211759] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2025-08-04 10:33:16.244 MATLAB[60329:3211759] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-08-04 10:33:16.247 MATLAB[60329:3211759] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2025-08-04 10:33:16.248 MATLAB[60329:3211759] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+
+Working on deployment: 2
+missing at least one NMEA/RVSH file pair; 
+ continuing anyway...
+
+Working on deployment: 3
+missing at least one NMEA/RVSH file pair
+
+Working on deployment: 4
+No data: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment4//RVSH_flowthrough/
+
+Working on deployment: 5
+missing at least one NMEA/RVSH file pair
+
+Working on deployment: 6
+fractional error btwn NMEA/SENSOR start-time: 0.000540 
+fractional error btwn NMEA/SENSOR end-time: 0.000540 
+
+Working on deployment: 7
+fractional error btwn NMEA/SENSOR start-time: 246.165020 
+fractional error btwn NMEA/SENSOR end-time: 246.165020 
+>> 

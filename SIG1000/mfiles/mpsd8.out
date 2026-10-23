@@ -1,0 +1,329 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >> >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '17-Sep-2025 18:30:00'
+    '17-Sep-2025 19:00:00'
+
+
+ 
+loading file:   SIG_00107730_DEP8_FPSC0_001.mat 
+2026-07-16 17:06:22.483 MATLAB[24056:2409061] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2026-07-16 17:06:22.483 MATLAB[24056:2409061] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2026-07-16 17:06:22.487 MATLAB[24056:2409061] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2026-07-16 17:06:22.490 MATLAB[24056:2409061] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2026-07-16 17:06:22.491 MATLAB[24056:2409061] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00107730_DEP8_FPSC0_002.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_003.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_004.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_005.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_006.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_007.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_008.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_009.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_010.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_011.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_012.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_013.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_014.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_015.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_016.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_017.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_018.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_019.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_020.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_021.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_022.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_023.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_024.mat 
+not enough good data
+loading file:   SIG_00107730_DEP8_FPSC0_025.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_026.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_027.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_028.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_029.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_030.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_031.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_032.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_033.mat 
+loading file:   SIG_00107730_DEP8_FPSC0_034.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment8/FPSC0//L1/SIG_00107730_DEP8_FPSC0_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+No atmospheric pressure found, setting P_atm=0.
+ atmosphTime = 
+
+ans =
+
+  2x20 char array
+
+    '17-Sep-2025 18:30:00'
+    '17-Sep-2025 19:00:00'
+
+
+ 
+loading file:   SIG_00101481_DEP8_FPSS1_001.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_002.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_003.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_004.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_005.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_006.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_007.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_008.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_009.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_010.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_011.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_012.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_013.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_014.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_015.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_016.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_017.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_018.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_019.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_020.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_021.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_022.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_023.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_024.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_025.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_026.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_027.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_028.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_029.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_030.mat 
+only one echo-mode
+only one echo-mode
+only one echo-mode
+loading file:   SIG_00101481_DEP8_FPSS1_031.mat 
+only one echo-mode
+only one echo-mode
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 130)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 131)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 132)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 133)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 134)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 135)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 136)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 137)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 138)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 139)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 140)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 141)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 142)
+] 
+[Warning: Integer operands are required for colon operator when used as index.] 
+[> In time_average_and_rotate_sig1000_RDI_matrix_format (line 144)
+] 
+only one echo-mode
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment8/FPSS1//L0/SIG_00101481_DEP8_FPSS1_L0 
+done! 
+
+ 
+loading file:   SIG_00101481_DEP8_FPSS1_001.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_002.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_003.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_004.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_005.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_006.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_007.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_008.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_009.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_010.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_011.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_012.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_013.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_014.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_015.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_016.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_017.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_018.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_019.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_020.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_021.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_022.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_023.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_024.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_025.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_026.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_027.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_028.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_029.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_030.mat 
+loading file:   SIG_00101481_DEP8_FPSS1_031.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment8/FPSS1//L1/SIG_00101481_DEP8_FPSS1_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+>> >> 

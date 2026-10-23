@@ -1,0 +1,115 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2023 The MathWorks, Inc.
+                  R2023b (23.2.0.2365128) 64-bit (maci64)
+                              August 23, 2023
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ismac has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+[Warning: Function ispc has the same name as a MATLAB built-in. We suggest you
+rename the function to avoid a potential name conflict.] 
+[> In path (line 109)
+In addpath>doPathAddition (line 116)
+In addpath (line 80)
+In startup (line 12)] 
+>> >> >> >> >> >> >> >> >>>> >> >> >>>> >> >>>> >> >> >> >> >> >> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ 
+loading file:   SIG_00103080_DEP7_FPSS1_001.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_002.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_003.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_004.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_005.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_006.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_007.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_008.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_009.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_010.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_011.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_012.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_013.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_014.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_015.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_016.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_017.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_018.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_019.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_020.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_021.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_022.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_023.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_024.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_025.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_026.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_027.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment7/FPSS1//L0/SIG_00103080_DEP7_FPSS1_L0 
+done! 
+
+ 
+loading file:   SIG_00103080_DEP7_FPSS1_001.mat 
+2026-07-09 16:47:51.161 MATLAB[15870:290984] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2026-07-09 16:47:51.161 MATLAB[15870:290984] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+2026-07-09 16:47:51.164 MATLAB[15870:290984] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2026-07-09 16:47:51.168 MATLAB[15870:290984] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+2026-07-09 16:47:51.168 MATLAB[15870:290984] CoreText note: Client requested name ".SFNS-Bold", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+loading file:   SIG_00103080_DEP7_FPSS1_002.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_003.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_004.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_005.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_006.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_007.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_008.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_009.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_010.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_011.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_012.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_013.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_014.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_015.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_016.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_017.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_018.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_019.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_020.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_021.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_022.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_023.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_024.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_025.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_026.mat 
+loading file:   SIG_00103080_DEP7_FPSS1_027.mat 
+saving: /Users/derekgrimes/OneDriveUNCW/Documents-UNCW-BOEM-FryingPanShoals/General/data/BOEM_deployment7/FPSS1//L1/SIG_00103080_DEP7_FPSS1_L1 
+done! 
+
+fig = 
+
+  Figure (2) with properties:
+
+      Number: 2
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [256 230 512 384]
+       Units: 'pixels'
+
+  Use GET to show all properties
+
+>> >> 
